@@ -10,6 +10,7 @@ public class PlayerController : CharacterBehaviourBase
     public float jumpPower;
 
     private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+	private AudioSource jumpsound;
 
     // Use this for initialization
     protected void Start()
@@ -19,6 +20,7 @@ public class PlayerController : CharacterBehaviourBase
         rb2d = GetComponent<Rigidbody2D>();        
         animator = GetComponent<Animator>();
         Debug.Log(rb2d.transform.position.x);
+		jumpsound = GetComponent<AudioSource> ();
     }
 
     bool IsGrounded()
@@ -33,6 +35,7 @@ public class PlayerController : CharacterBehaviourBase
         if (Input.GetKey(KeyCode.Space) && IsGrounded())
         {
             rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
+			jumpsound.Play();
         }
 
         float moveHorizontal = 0;
