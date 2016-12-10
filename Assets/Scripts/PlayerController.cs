@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assets.Scripts;
+using Assets.Scripts.Weapons;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +23,7 @@ public class PlayerController : CharacterBehaviourBase
         animator = GetComponent<Animator>();
         Debug.Log(rb2d.transform.position.x);
 		jumpsound = GetComponent<AudioSource> ();
+        selectedWeapon = gameObject.AddComponent<Pistol>();
     }
 
     bool IsGrounded()
@@ -48,6 +51,11 @@ public class PlayerController : CharacterBehaviourBase
         if (Input.GetKey(KeyCode.D))
         {
             moveHorizontal += speed;
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            Attack();
         }
 
         //Store the current horizontal input in the float moveHorizontal.

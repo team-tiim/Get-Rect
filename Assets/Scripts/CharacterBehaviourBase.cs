@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
     public int hp = 10;
 
     protected Animator animator;
+    protected Weapon selectedWeapon;
 
     // Use this for initialization
     protected void Start () {
@@ -35,5 +37,10 @@ public class CharacterBehaviourBase : MonoBehaviour {
         {
             animator.SetBool("isMove", false);
         }
+    }
+
+    protected void Attack()
+    {
+        selectedWeapon.Attack();
     }
 }
