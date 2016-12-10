@@ -12,10 +12,11 @@ public class PlayerController : CharacterBehaviourBase
     private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
 
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
+        base.Start();
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();        
         animator = GetComponent<Animator>();
         Debug.Log(rb2d.transform.position.x);
     }

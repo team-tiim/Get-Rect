@@ -10,7 +10,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected Animator animator;
 
     // Use this for initialization
-    void Start () {
+    protected void Start () {
+        GetComponent<BoxCollider2D>().size = GetComponent<SpriteRenderer>().sprite.bounds.size;
     }
 	
 	// Update is called once per frame
