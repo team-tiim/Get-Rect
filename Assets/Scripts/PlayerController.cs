@@ -35,10 +35,14 @@ public class PlayerController : CharacterBehaviourBase
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
+        animator.SetBool("isGrounded", IsGrounded());
+
         if (Input.GetKey(KeyCode.Space) && IsGrounded())
         {
+            animator.SetTrigger("doJump");
             rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
 			jumpsound.Play();
+
         }
 
         float moveHorizontal = 0;
