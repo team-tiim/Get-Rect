@@ -35,8 +35,20 @@ public class PlayerController : CharacterBehaviourBase
             rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
         }
 
+        float moveHorizontal = 0;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveHorizontal -= speed;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveHorizontal += speed;
+        }
+
         //Store the current horizontal input in the float moveHorizontal.
-        float moveHorizontal = Input.GetAxis("Horizontal") * speed;
+        //float moveHorizontal = Input.GetAxis("Horizontal") * speed;
 
         //Use the two store floats to create a new Vector2 variable movement.
         Vector2 movement = new Vector2(moveHorizontal, rb2d.velocity.y);
