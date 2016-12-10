@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySimpleBehaviour : CharacterControllerBase {
+public class EnemySimpleBehaviour : CharacterBehaviourBase
+{
 
     public GameObject target;
     public float turnSpeed = 1;

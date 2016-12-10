@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterBehaviourBase
+
 {
 
-    public float speed;             //Floating point variable to store the player's movement speed.
     public float jumpPower;
 
     private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     {
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         Debug.Log(rb2d.transform.position.x);
     }
 
@@ -44,6 +45,6 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = movement;
 
 
-
+        updateAnimation(moveHorizontal);
     }
 }

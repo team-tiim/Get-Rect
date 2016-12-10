@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterControllerBase : MonoBehaviour {
+public class CharacterBehaviourBase : MonoBehaviour {
 
-    public float speed = 1;
+    public float speed = 1;  //Floating point variable to store the player's movement speed.
     public int hp = 10;
 
     protected Animator animator;
