@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             Debug.Log("Pressed A");
-            rb.AddForce(Vector3.left * 1, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.left * 1, ForceMode2D.Impulse);
             rb.AddForce(Vector3.forward * 1, ForceMode2D.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.D))
