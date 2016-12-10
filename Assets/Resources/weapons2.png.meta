@@ -1,0 +1,441 @@
+fileFormatVersion: 2
+guid: a0832bf7125d7df4dbd679a004a7dc7a
+timeCreated: 1481396984
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: weapons2_0
+    21300002: weapons2_1
+    21300004: weapons2_3
+    21300006: weapons2_5
+    21300008: weapons2_6
+    21300010: weapons2_15
+    21300012: weapons2_16
+    21300014: weapons2_17
+    21300016: weapons2_18
+    21300018: weapons2_19
+    21300020: weapons2_20
+    21300022: weapons2_21
+    21300024: weapons2_22
+    21300026: weapons2_23
+    21300028: weapons2_24
+    21300030: weapons2_26
+    21300032: weapons2_27
+    21300034: weapons2_29
+    21300036: weapons2_30
+    21300038: weapons2_32
+    21300040: weapons2_36
+    21300042: weapons2_37
+    21300044: weapons2_41
+    21300046: weapons2_44
+    21300048: weapons2_45
+    21300050: weapons2_47
+    21300052: weapons2_50
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: weapons2_0
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 1210
+        width: 85
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_1
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 1212
+        width: 81
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_3
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 1172
+        width: 141
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_5
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 1207
+        width: 83
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_6
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1224
+        width: 113
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_15
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1040
+        width: 131
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_16
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1032
+        width: 131
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_17
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 1035
+        width: 134
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_18
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1030
+        width: 129
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_19
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 881
+        width: 113
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_21
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 878
+        width: 117
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_22
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 879
+        width: 88
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_23
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 882
+        width: 123
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_24
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 890
+        width: 124
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_26
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 964
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_27
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 708
+        width: 134
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_29
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 698
+        width: 151
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_30
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 694
+        width: 156
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_32
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 701
+        width: 145
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_36
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 515
+        width: 194
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_37
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 463
+        width: 124
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_41
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 439
+        width: 284
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_44
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 289
+        width: 212
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_45
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 108
+        width: 288
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_47
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 133
+        width: 260
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_50
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 99
+        width: 211
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
