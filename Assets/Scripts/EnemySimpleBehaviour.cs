@@ -14,6 +14,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 
 	// Use this for initialization
 	void Start () {
+        animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player");
         startingPos = transform.position;
         Debug.Log("Target found: "+ target.name);
@@ -46,15 +47,14 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     private void moveTowards(Vector3 targetPosition)
     {
         Debug.DrawLine(transform.position, targetPosition, Color.yellow);
+        updateAnimation(targetPosition.x - transform.position.x);
         if (transform.position.x < targetPosition.x)
         {
             Debug.Log("Player to right");
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
             transform.position += transform.right * speed * Time.deltaTime;
         } else
         {
             Debug.Log("Player to left");
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
             transform.position += transform.right * speed * Time.deltaTime;
         }
         
