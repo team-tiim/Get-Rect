@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class EnemySimpleBehaviour : CharacterBehaviourBase
 {
 
@@ -15,6 +16,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 
     private Vector2 startingPos;
     private float attackTime = 0;
+	private AudioSource amps_sound;
 
 	// Use this for initialization
 	void Start () {
@@ -22,19 +24,22 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         GetComponent<BoxCollider2D>().size = GetComponent<SpriteRenderer>().sprite.bounds.size;
         target = GameObject.FindGameObjectWithTag("Player");
         startingPos = transform.position;
+		amps_sound = GetComponent<AudioSource> ();
     }
-	
+
 	// Update is called once per frame
 	void Update () {
         float targetDistance = getDistanceTo(target.transform.position);
         if (targetDistance < range )
         {
             float timeFromLastAttack = Time.time - attackTime;
+
             if(timeFromLastAttack > coolDown)
             {
                 Debug.Log("attacked player");
                 attackTime = Time.time;
                 Attack(target, damage);
+				amps_sound.Play ();
             }
         }
 		else if(targetDistance < aggroDistance)
