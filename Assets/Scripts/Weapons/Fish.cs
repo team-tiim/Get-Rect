@@ -9,7 +9,7 @@ public class Fish : Weapon {
     {
         _damage = 100;
         _idleAnimation = "weapon_fish_idle";
-        _swingLength = 12f;
+        _swingLength = 1.2f;
         _swingRadius = 0.5f;
         attackCooldown = 1f;
     }
