@@ -6,6 +6,7 @@ public class EnemyFlyingBehaviour : EnemySimpleBehaviour
 {
 
     private Vector2 direction;
+	private AudioSource amps_sound;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,7 @@ public class EnemyFlyingBehaviour : EnemySimpleBehaviour
         //transform.Rotate(direction);
         //rb2d.velocity = Random.insideUnitCircle * speed;
         rb2d.AddForce(transform.up * speed);
+		amps_sound = GetComponent<AudioSource> ();
     }
 	
 	// Update is called once per frame
@@ -36,6 +38,7 @@ public class EnemyFlyingBehaviour : EnemySimpleBehaviour
         {
             Debug.Log("hit player");
             Attack(target, damage);
+			amps_sound.Play ();
         }
     }
     private void move(Collision2D collision)
