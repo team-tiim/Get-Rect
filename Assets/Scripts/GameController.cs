@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     public GameObject explosion;
 
     public Text timerText;
+    public Text healthText;
     public int levelTime = 60; // seconds
     public int timeoutTime = 10;
     private float startTime;
@@ -17,7 +18,8 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>() ;
+        timerText = GameObject.Find("Timer").GetComponent<Text>();
+        healthText = GameObject.Find("Health").GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         platforms = GameObject.FindGameObjectsWithTag("Platform");
         startTime = Time.time;
@@ -29,6 +31,7 @@ public class GameController : MonoBehaviour {
         float timeLeft = levelTime - (Time.time - startTime);
         updatePlayerClosestPlatform();
         updateTimer(timeLeft);
+        updateHealth();
         if (timeLeft < timeoutTime && !isTimeout)
         {
             setTimeoutAnimation();
@@ -48,6 +51,11 @@ public class GameController : MonoBehaviour {
         float minutes = Mathf.Floor(timeLeft / 60);
         float seconds = (timeLeft % 60);
         timerText.text = string.Format("{0}:{1}", minutes.ToString("0"), seconds.ToString("00"));
+    }
+
+    private void updateHealth()
+    {
+        healthText.text = player.GetComponent<PlayerController>().hp.ToString();
     }
 
     private void updatePlayerClosestPlatform()
