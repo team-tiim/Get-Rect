@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6302f3d33b2e9444ebeca075a5d9762d
-timeCreated: 1481386274
+timeCreated: 1481469987
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -89,9 +89,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 1915
-        width: 532
-        height: 294
+        y: 1937
+        width: 534
+        height: 272
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,9 +102,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 53
-        y: 1625
-        width: 528
-        height: 284
+        y: 1645
+        width: 527
+        height: 264
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,10 +114,10 @@ TextureImporter:
       name: npc3_4
       rect:
         serializedVersion: 2
-        x: 76
-        y: 1332
+        x: 78
+        y: 1352
         width: 484
-        height: 278
+        height: 255
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +127,8 @@ TextureImporter:
       name: npc3_5
       rect:
         serializedVersion: 2
-        x: 49
-        y: 1045
+        x: 56
+        y: 1048
         width: 524
         height: 261
       alignment: 0
@@ -140,10 +140,10 @@ TextureImporter:
       name: npc3_8
       rect:
         serializedVersion: 2
-        x: 36
-        y: 737
-        width: 525
-        height: 279
+        x: 34
+        y: 758
+        width: 514
+        height: 254
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: npc3_9
       rect:
         serializedVersion: 2
-        x: 31
-        y: 385
-        width: 569
-        height: 316
+        x: 47
+        y: 410
+        width: 554
+        height: 287
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,10 +166,10 @@ TextureImporter:
       name: npc3_11
       rect:
         serializedVersion: 2
-        x: 55
-        y: 56
-        width: 553
-        height: 323
+        x: 60
+        y: 65
+        width: 542
+        height: 292
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
