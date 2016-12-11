@@ -1302,8 +1302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be0d53245c17f54f832de6138451173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  sprite: 
   projectilePrefab: {fileID: 1409893308557742, guid: 5a5b1923ecd8f944c9456dc8896f9262,
     type: 2}
 --- !u!4 &852969601
@@ -1376,7 +1374,7 @@ GameObject:
   - component: {fileID: 954407013}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
