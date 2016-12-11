@@ -62,7 +62,14 @@ public class PlayerController : CharacterBehaviourBase
         {
             animator.SetTrigger("doJump");
             rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
-			jumpsound.Play();
+
+			if (!jumpsound.isPlaying)
+			{
+				jumpsound.Play ();
+			} 
+				
+
+		
         }
 
         float moveHorizontal = 0;
