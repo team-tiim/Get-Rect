@@ -20,8 +20,8 @@ namespace Assets.Scripts.Weapons
         {
             if (canAttack())
             {
-                Debug.Log("Projectile attack");
-                Debug.Log(projectileSpeed);
+                //Debug.Log("Projectile attack");
+                //Debug.Log(projectileSpeed);
                 lastAttack = Time.time;
                 GameObject projectile = GameObject.FindGameObjectWithTag("GameController").GetComponent<Weapon>().getProjectile(parent.transform);
 

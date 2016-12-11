@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : CharacterBehaviourBase
 
@@ -28,6 +29,11 @@ public class PlayerController : CharacterBehaviourBase
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            exitGame();
+        }
+
         animator.SetBool("isGrounded", IsGrounded());
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded())
@@ -92,5 +98,11 @@ public class PlayerController : CharacterBehaviourBase
 
         this.rightHand.GetComponent<Animator>().Play(weapon.idleAnimation);
         this.leftHand.GetComponent<Animator>().Play(weapon.idleAnimation);
+    }
+
+    private void exitGame()
+    {
+        Debug.Log("exitGame");
+        SceneManager.LoadScene("menu");
     }
 }
