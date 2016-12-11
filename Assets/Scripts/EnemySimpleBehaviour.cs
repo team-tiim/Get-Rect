@@ -59,7 +59,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         float xDif = targetPosition.x - transform.position.x;
         if (shouldJump(targetPosition))
         {
-            Debug.Log("jump");
+            //Debug.Log("jump");
             this.animator.SetTrigger("doJump");
             this.rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
         }
@@ -85,7 +85,6 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         GameObject targetPlatform = target.GetComponent<PlayerController>().closestPlatform;
         return (yDif > 0.5) && (canJumpToObject(target) || canJumpToObject(targetPlatform));
     }
-
 
     private bool canJumpToObject(GameObject obj)
     {
