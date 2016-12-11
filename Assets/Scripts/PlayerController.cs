@@ -11,11 +11,10 @@ public class PlayerController : CharacterBehaviourBase
 
     public float jumpPower;
 
-    private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
 	private AudioSource jumpsound;
 
     // Use this for initialization
-    protected void Start()
+    protected new void Start()
     {
         base.Start();
         //Get and store a reference to the Rigidbody2D component so that we can access it.
@@ -55,7 +54,23 @@ public class PlayerController : CharacterBehaviourBase
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            Attack();
+            //Debug.Log("Click");
+            //Debug.Log(transform.position);
+            //Debug.Log(Input.mousePosition);
+            //Debug.Log(transform.position + Input.mousePosition);
+            //Debug.Log((transform.position + Input.mousePosition).normalized);
+            //Debug.Log("Angle");
+            Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Debug.Log(Camera.main);
+            pz.z = 0;
+            //Debug.Log("Click");
+            //Debug.Log(transform.position);
+            //Debug.Log(pz);
+            //Debug.Log(pz - transform.position);
+            //Debug.Log((pz - transform.position).normalized);
+            //Debug.Log("Angle");
+            //Debug.Log(Vector2.Angle(new Vector2(transform.position.x, transform.position.y), Input.mousePosition));
+            Attack((pz - transform.position).normalized);
         }
 
         //Store the current horizontal input in the float moveHorizontal.

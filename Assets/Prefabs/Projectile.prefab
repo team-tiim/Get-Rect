@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 212688600661954364}
   - component: {fileID: 61564341659264896}
   - component: {fileID: 114563520049552748}
-  - component: {fileID: 50057263936478040}
+  - component: {fileID: 95348712558075900}
+  - component: {fileID: 50766818462687140}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -43,7 +44,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50057263936478040
+--- !u!50 &50766818462687140
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -72,11 +73,28 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!95 &95348712558075900
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409893308557742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5145ba2e8b882142adc2f55be9c6cc6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114563520049552748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,6 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  origin: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!212 &212688600661954364
 SpriteRenderer:
   m_ObjectHideFlags: 1

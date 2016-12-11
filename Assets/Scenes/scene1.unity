@@ -967,9 +967,10 @@ GameObject:
   m_Component:
   - component: {fileID: 852969601}
   - component: {fileID: 852969600}
+  - component: {fileID: 852969602}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: ScriptsContainer
+  m_TagString: ScriptsContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -985,8 +986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be0d53245c17f54f832de6138451173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  sprite: 
   projectilePrefab: {fileID: 1409893308557742, guid: 5a5b1923ecd8f944c9456dc8896f9262,
     type: 2}
 --- !u!4 &852969601
@@ -1000,8 +999,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852969602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 852969599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e629dd6f2fef5904e83d6ce3bf8e0756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  levelTime: 60
 --- !u!1001 &879880479
 Prefab:
   m_ObjectHideFlags: 0
@@ -1059,7 +1071,7 @@ GameObject:
   - component: {fileID: 954407013}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1144,48 +1156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
---- !u!1 &1181891935
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1181891937}
-  - component: {fileID: 1181891936}
-  m_Layer: 0
-  m_Name: GameControllers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1181891936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1181891935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e629dd6f2fef5904e83d6ce3bf8e0756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
-  levelTime: 60
---- !u!4 &1181891937
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1181891935}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.46, y: 7.52, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1248398365
 Prefab:
   m_ObjectHideFlags: 0
@@ -1321,6 +1291,16 @@ Prefab:
     - target: {fileID: 1086086997303662, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11, type: 2}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 50793436046001698, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040145948842450, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: jumpPower
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11, type: 2}

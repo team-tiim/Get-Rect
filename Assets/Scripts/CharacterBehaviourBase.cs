@@ -10,6 +10,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected Animator animator;
     protected Weapon selectedWeapon;
+    protected Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
 
     // Use this for initialization
     protected void Start () {
@@ -39,8 +40,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
         }
     }
 
-    protected void Attack()
+    protected void Attack(Vector3 direction)
     {
-        selectedWeapon.Attack();
+        selectedWeapon.Attack(gameObject, direction);
     }
 }
