@@ -27,6 +27,9 @@ public class DudeSpawner : MonoBehaviour {
         newDude.GetComponent<SpriteRenderer>().sprite = sprite;
         newDude.GetComponent<Animator>().runtimeAnimatorController = animationController;
         newDude.transform.position = this.transform.position;
-
+        if(arrayIdx == 0)
+        {
+            newDude.GetComponent<EnemySimpleBehaviour>().canJump = true;
+        }
     }
 }
