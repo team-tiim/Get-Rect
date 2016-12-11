@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +10,11 @@ public class Powerup : MonoBehaviour {
 
     public PowerupType type;
     public int value;
-    public Weapon weapon;
-
-    public GameObject spawner;
+    public DudeSpawner spawner;
 
 	// Use this for initialization
 	void Start () {
-        this.spawner.GetComponent<DudeSpawner>().enabled = false;
+        this.spawner.isEnabled = false;
         createRandom();
     }
 
@@ -28,22 +27,18 @@ public class Powerup : MonoBehaviour {
         switch (this.type)
         {
             case PowerupType.WEAPON:
-                //TODO change weapon
+                addWeapon(other);
                 break;
             case PowerupType.HEALTH:
-                Debug.Log(other.GetComponent<CharacterBehaviourBase>().hp);
                 other.GetComponent<CharacterBehaviourBase>().hp += this.value;
-                Debug.Log(other.GetComponent<CharacterBehaviourBase>().hp);
                 break;
             case PowerupType.TIME:
-                Debug.Log(GameObject.Find("GameControllers").GetComponent<GameController>().levelTime);
+                //TODO move to GameController and change animation back to normal if needed
                 GameObject.Find("GameControllers").GetComponent<GameController>().levelTime += this.value;
-                Debug.Log(GameObject.Find("GameControllers").GetComponent<GameController>().levelTime);
                 break;
         }
-
+        this.spawner.isEnabled = true;
         GameObject.Destroy(this.gameObject);
-        this.spawner.GetComponent<DudeSpawner>().enabled = true;
     }
 
     private void createRandom()
@@ -51,7 +46,7 @@ public class Powerup : MonoBehaviour {
         switch (this.type)
         {
             case PowerupType.WEAPON:
-                //TODO create random weapon
+                this.value = Random.Range(0, 3);
                 break;
             case PowerupType.HEALTH:
                 this.value = Random.Range(5, 10);
@@ -59,6 +54,32 @@ public class Powerup : MonoBehaviour {
             case PowerupType.TIME:
                 this.value = Random.Range(10, 30);
                 break;
+        }
+    }
+
+
+    private void addWeapon(Collider2D other)
+    {
+        PlayerController player = other.GetComponent<PlayerController>();
+        Weapon weapon = getWeapon(player);
+        if (weapon != null)
+        {
+            player.selectWeapon(weapon);
+        }
+    }
+
+    private Weapon getWeapon(PlayerController player)
+    {
+        switch (this.value)
+        {
+            case 0:
+                return player.gameObject.AddComponent<Pistol>();
+            case 1:
+                return player.gameObject.AddComponent<Knife>();
+            case 2:
+                return player.gameObject.AddComponent<Fish>();
+            default:
+                return null;
         }
     }
 }
