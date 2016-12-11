@@ -8,18 +8,29 @@ namespace Assets.Scripts
 {
     public class Weapon : MonoBehaviour
     {
-        public float damage;
-        public string sprite;
+        protected float damage;
+        protected string sprite;
+        protected float attackCooldown = 1;
+        protected float lastAttack;
         public GameObject projectilePrefab;
 
-        public virtual void Attack()
+        public virtual void Attack(GameObject parent, Vector3 direction)
         {
-            Debug.Log("Regular weapon");
+            if (canAttack())
+            {
+                Debug.Log("Regular weapon");
+                lastAttack = Time.time;
+            }
         }
 
-        public GameObject getProjectile()
+        protected bool canAttack()
         {
-            return Instantiate(projectilePrefab);
+            return (Time.time - lastAttack) > attackCooldown;
+        }
+
+        public GameObject getProjectile(Transform parentTransform)
+        {
+            return Instantiate(projectilePrefab, parentTransform.position, Quaternion.identity);
         }
     }
 }
