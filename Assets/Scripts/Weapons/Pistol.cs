@@ -10,13 +10,13 @@ namespace Assets.Scripts.Weapons
         public Pistol()
         {
             _damage = 5;
-            sprite = "PistolAttackAnimation";
+            _idleAnimation = "weapon_pistol_idle";
             projectileSprite = "weapons 1";
             projectileSpriteIndex = 7;
-            projectileSpeed = 10;
+            projectileSpeed = 20;
             animationName = "projectile_pistol";
             gravityScale = 0.5f;
-            attackCooldown = 0.1f;
+            attackCooldown = 0.2f;
         }
     }
 }

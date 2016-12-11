@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,5 +69,10 @@ public class CharacterBehaviourBase : MonoBehaviour {
         {
             GameObject.Destroy(this.gameObject);
         }
+    }
+
+    public virtual void selectWeapon(Weapon weapon)
+    {
+        this.selectedWeapon = weapon;
     }
 }

@@ -6,9 +6,9 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
 
-    public float speed;
+    //public float speed;
     public GameObject origin;
-    public Vector3 direction;
+    //public Vector3 direction;
     public Weapon weapon;
 
     private Rigidbody2D rb2d;
@@ -33,13 +33,21 @@ public class ProjectileController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log("Velocity");
+        //Debug.Log(rb2d.velocity);
+        //Debug.Log(speed);
         //Debug.Log(transform.position);
         //Debug.Log(direction);
-        transform.position = transform.position + (direction * speed * Time.deltaTime);
+        //transform.position = transform.position + (direction * speed * Time.deltaTime);
+        //transform.Translate(direction.normalized * speed * Time.deltaTime);
+        //Debug.Log(direction.normalized * speed * Time.deltaTime);
+        //Debug.Log(transform.position.magnitude);
         //Debug.Log(transform.position);
         //Vector2 movement = new Vector2(speed, speed);
 
-        //rb2d.velocity = movement;
+        //rb2d.velocity = direction * speed * Time.deltaTime;
+        //rb2d.AddForce(direction * speed * Time.deltaTime);
+        //rb2d.AddForce(direction * speed);
     }
 
     void OnTriggerEnter2D(Collider2D col)

@@ -9,7 +9,7 @@ namespace Assets.Scripts
     public class Weapon : MonoBehaviour
     {
         protected int _damage;
-        protected string sprite;
+        protected string _idleAnimation;
         protected float attackCooldown = 1;
         protected float lastAttack;
         public GameObject projectilePrefab;
@@ -36,6 +36,11 @@ namespace Assets.Scripts
         public int damage
         {
             get { return _damage; }
+        }
+
+        public string idleAnimation
+        {
+            get { return _idleAnimation; }
         }
     }
 }

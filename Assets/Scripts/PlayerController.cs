@@ -10,14 +10,19 @@ public class PlayerController : CharacterBehaviourBase
 {
     public GameObject closestPlatform;
 
+    protected GameObject rightHand;
+    protected GameObject leftHand;
+
     // Use this for initialization
     protected new void Start()
     {
         base.Start();
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        Debug.Log(rb2d.transform.position.x);
-		jumpsound = GetComponent<AudioSource> ();
-        selectedWeapon = gameObject.AddComponent<Pistol>();
+        //Debug.Log(rb2d.transform.position.x);
+        rightHand = gameObject.transform.GetChild(0).gameObject;
+        leftHand = gameObject.transform.GetChild(1).gameObject;
+        jumpsound = GetComponent<AudioSource> ();
+        selectWeapon(gameObject.AddComponent<Pistol>());
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -62,7 +67,9 @@ public class PlayerController : CharacterBehaviourBase
             //Debug.Log((pz - transform.position).normalized);
             //Debug.Log("Angle");
             //Debug.Log(Vector2.Angle(new Vector2(transform.position.x, transform.position.y), Input.mousePosition));
-            Attack((pz - transform.position).normalized);
+            this.rightHand.GetComponent<Animator>().SetTrigger("Attack");
+            this.leftHand.GetComponent<Animator>().SetTrigger("Attack");
+            Attack(pz - transform.position);
         }
 
         //Store the current horizontal input in the float moveHorizontal.
@@ -77,5 +84,13 @@ public class PlayerController : CharacterBehaviourBase
 
 
         updateAnimation(moveHorizontal);
+    }
+
+    public override void selectWeapon(Weapon weapon)
+    {
+        base.selectWeapon(weapon);
+
+        this.rightHand.GetComponent<Animator>().Play(weapon.idleAnimation);
+        this.leftHand.GetComponent<Animator>().Play(weapon.idleAnimation);
     }
 }

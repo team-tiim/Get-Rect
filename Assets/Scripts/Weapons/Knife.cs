@@ -10,7 +10,7 @@ namespace Assets.Scripts.Weapons
         public Knife()
         {
             _damage = 5;
-            sprite = "weapons1_0";
+            _idleAnimation = "weapons1_0";
         }
     }
 }
