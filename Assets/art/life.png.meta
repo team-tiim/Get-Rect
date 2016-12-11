@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 7d40c937d34f44244b5334f82c374e06
-timeCreated: 1481480189
+guid: d1fbe8858706bd8428cfaf130b9813f9
+timeCreated: 1481482335
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: weaponcrate_0
-    21300002: weaponcrate_2
-    21300004: weaponcrate_4
+    21300000: life_0
+    21300002: life_1
+    21300004: life_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -73,39 +73,39 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weaponcrate_0
+      name: life_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 4
-        width: 112
-        height: 129
+        x: 0
+        y: 12
+        width: 69
+        height: 74
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weaponcrate_2
+      name: life_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 3
-        width: 111
-        height: 129
+        x: 74
+        y: 7
+        width: 88
+        height: 77
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weaponcrate_4
+      name: life_2
       rect:
         serializedVersion: 2
-        x: 272
-        y: 5
-        width: 113
-        height: 116
+        x: 181
+        y: 1
+        width: 88
+        height: 79
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
