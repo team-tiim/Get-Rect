@@ -73,6 +73,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
             else
             {
                 GameObject.Destroy(this.gameObject);
+                GameObject controller = GameObject.Find("GameControllers");
+                controller.GetComponent<GameController>().doExplosion(this.transform.position);
             }
         }
     }
