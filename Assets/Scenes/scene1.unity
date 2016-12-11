@@ -1482,6 +1482,7 @@ MonoBehaviour:
   explosion: {fileID: 1653250589104610, guid: e75127b8195bb044e93a9a7cf489e604, type: 2}
   timerText: {fileID: 0}
   levelTime: 60
+  timeoutTime: 10
 --- !u!4 &1181891937
 Transform:
   m_ObjectHideFlags: 0
@@ -1680,6 +1681,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4587422802441978, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040145948842450, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: hp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 212222802299172858, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212222802299172858, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212222802299172858, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
