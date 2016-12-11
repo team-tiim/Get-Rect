@@ -6,6 +6,7 @@ public class DudeSpawner : MonoBehaviour {
 
     public GameObject[] prefabs;
     public int spawnTick = 15; //seconds
+    public bool isEnabled = true;
     private int counter = 0;
 
     void Start()
@@ -19,5 +20,11 @@ public class DudeSpawner : MonoBehaviour {
         GameObject newDude = Instantiate(prefabs[arrayIdx]);
         newDude.name = name;
         newDude.transform.position = this.transform.position;
+
+        Powerup powerup = newDude.GetComponent<Powerup>();
+        if(powerup != null)
+        {
+            powerup.spawner = this.gameObject;
+        }
     }
 }

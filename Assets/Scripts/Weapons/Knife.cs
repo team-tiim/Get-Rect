@@ -9,8 +9,11 @@ namespace Assets.Scripts.Weapons
     {
         public Knife()
         {
-            _damage = 5;
-            _idleAnimation = "weapons1_0";
+            _damage = 10;
+            _idleAnimation = "weapon_sword_idle";
+            _swingLength = 1.2f;
+            _swingRadius = 0.2f;
+            attackCooldown = 0.5f;
         }
     }
 }
