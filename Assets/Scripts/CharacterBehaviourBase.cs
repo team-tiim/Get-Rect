@@ -61,7 +61,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected void Attack(Vector3 direction)
     {
-        selectedWeapon.Attack(gameObject, direction);
+        this.selectedWeapon.Attack(gameObject, direction);
     }
 
     protected void Attack(GameObject target, int damage)
