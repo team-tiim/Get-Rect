@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class EnemySimpleBehaviour : CharacterBehaviourBase
 {
 
@@ -9,27 +10,43 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     public float turnSpeed = 1;
     public float aggroDistance = 1;
     public float patrolDistance = 5;
+    public int range = 1;
+    public int damage = 1;
+    public int coolDown = 5;
 
     private Vector2 startingPos;
+    private float attackTime = 0;
+	private AudioSource amps_sound;
 
 	// Use this for initialization
 	new void Start () {
         base.Start();
+        animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player");
         startingPos = transform.position;
+        amps_sound = GetComponent<AudioSource>();
         //Debug.Log("Target found: "+ target.name);
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-		if(getDistanceTo(target.transform.position) < aggroDistance)
+        float targetDistance = getDistanceTo(target.transform.position);
+        if (targetDistance < range )
+        {
+            float timeFromLastAttack = Time.time - attackTime;
+
+            if(timeFromLastAttack > coolDown)
+            {
+                Debug.Log("attacked player");
+                attackTime = Time.time;
+                Attack(target, damage);
+				amps_sound.Play ();
+            }
+        }
+		else if(targetDistance < aggroDistance)
         {
             //Debug.Log("Target found: " + target.name);
             moveTowards(target.transform.position);
-        }
-        else
-        {
-            patrol();
         }
 	}
 
@@ -59,11 +76,6 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             transform.position += transform.right * speed * Time.deltaTime;
         }
         
-    }
-
-    private void attack()
-    {
-
     }
 
     private float getDistanceTo(Vector3 position)
