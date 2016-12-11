@@ -18,12 +18,13 @@ public class PlayerController : CharacterBehaviourBase
     protected new void Start()
     {
         base.Start();
+        this.rightHand = gameObject.transform.GetChild(0).gameObject;
+        this.leftHand = gameObject.transform.GetChild(1).gameObject;
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        //Debug.Log(rb2d.transform.position.x);
-        rightHand = gameObject.transform.GetChild(0).gameObject;
-        leftHand = gameObject.transform.GetChild(1).gameObject;
-        jumpsound = GetComponent<AudioSource> ();
+        Debug.Log(rb2d.transform.position.x);
+		jumpsound = GetComponent<AudioSource> ();
         selectWeapon(gameObject.AddComponent<Pistol>());
+        
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -85,17 +86,28 @@ public class PlayerController : CharacterBehaviourBase
         updateAnimation(moveHorizontal);
     }
 
-    public override void selectWeapon(Weapon weapon)
+    protected override void onDeath()
     {
-        base.selectWeapon(weapon);
+        GetComponent<Animator>().Play("player_death");
+    }
 
-        this.rightHand.GetComponent<Animator>().Play(weapon.idleAnimation);
-        this.leftHand.GetComponent<Animator>().Play(weapon.idleAnimation);
+    protected override void onDamage(int damage)
+    {
+        base.onDamage(damage);
+        StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
 
     private void exitGame()
     {
         Debug.Log("exitGame");
         SceneManager.LoadScene("menu");
+    }
+
+    public override void selectWeapon(Weapon weapon)
+    {
+        base.selectWeapon(weapon);
+
+        this.rightHand.GetComponent<Animator>().Play(selectedWeapon.idleAnimation);
+        this.leftHand.GetComponent<Animator>().Play(selectedWeapon.idleAnimation);
     }
 }

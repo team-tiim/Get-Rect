@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts;
-using Assets.Scripts.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,18 +10,23 @@ public class CharacterBehaviourBase : MonoBehaviour {
     public int hp = 10;
 
     protected Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    protected SpriteRenderer spriteRenderer;
     protected Vector3 size;
     protected Animator animator;
     protected Weapon selectedWeapon;
     protected AudioSource jumpsound;
     protected bool flipped;
 
+    protected Color origColor;
+
     // Use this for initialization
     protected void Start () {
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.animator = GetComponent<Animator>();
         this.rb2d = GetComponent<Rigidbody2D>();
         this.size = GetComponent<SpriteRenderer>().sprite.bounds.size;
         this.flipped = false;
+        this.origColor = spriteRenderer.color;
         GetComponent<BoxCollider2D>().size = size;
     }
 	
@@ -68,20 +72,23 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     public void takeDamage(int damage)
     {
-        this.hp -= damage;
+        onDamage(damage);
         if (this.hp <= 0)
         {
-            if (this.gameObject.tag == "Player")
-            {
-                GetComponent<Animator>().Play("player_death");
-            }
-            else
-            {
-                GameObject.Destroy(this.gameObject);
-                GameObject controller = GameObject.Find("GameControllers");
-                controller.GetComponent<GameController>().doExplosion(this.transform.position);
-            }
+            onDeath();
         }
+    }
+
+    protected virtual void onDeath()
+    {
+        GameObject.Destroy(this.gameObject);
+        GameObject controller = GameObject.Find("GameControllers");
+        controller.GetComponent<GameController>().doExplosion(this.transform.position);
+    }
+
+    protected virtual void onDamage(int damage)
+    {
+        this.hp -= damage;
     }
 
     public virtual void selectWeapon(Weapon weapon)

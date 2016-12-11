@@ -8,10 +8,12 @@ public class GameController : MonoBehaviour {
     public GameObject explosion;
 
     public Text timerText;
-    public float levelTime = 60; // seconds
+    public int levelTime = 60; // seconds
+    public int timeoutTime = 10;
     private float startTime;
     private GameObject player;
     private GameObject[] platforms;
+    private bool isTimeout;
 
     // Use this for initialization
     void Start () {
@@ -24,18 +26,12 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        updatePlayerClosestPlatform();
-
         float timeLeft = levelTime - (Time.time - startTime);
-        float minutes = Mathf.Floor(timeLeft / 60);
-        float seconds = (timeLeft % 60);
-        timerText.text = string.Format("{0}:{1}", minutes.ToString("0"), seconds.ToString("00"));
-
-        if (timeLeft < 10)
+        updatePlayerClosestPlatform();
+        updateTimer(timeLeft);
+        if (timeLeft < timeoutTime && !isTimeout)
         {
-            Animator anim = this.gameObject.GetComponent<Animator>();
-            Debug.Log("sweatting");
-            //TODO change idle to sweating animation
+            setTimeoutAnimation();
         }
 	}
 
@@ -44,6 +40,13 @@ public class GameController : MonoBehaviour {
         GameObject expl = Instantiate(explosion);
         expl.transform.position = location;
         Destroy(expl, expl.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+    }
+
+    private void updateTimer(float timeLeft)
+    {
+        float minutes = Mathf.Floor(timeLeft / 60);
+        float seconds = (timeLeft % 60);
+        timerText.text = string.Format("{0}:{1}", minutes.ToString("0"), seconds.ToString("00"));
     }
 
     private void updatePlayerClosestPlatform()
@@ -59,5 +62,12 @@ public class GameController : MonoBehaviour {
             }
         }
         player.GetComponent<PlayerController>().closestPlatform = closest;
+    }
+
+    private void setTimeoutAnimation()
+    {
+        Animator anim = player.GetComponent<Animator>();
+        anim.runtimeAnimatorController = Resources.Load("Animations/player_timeout") as RuntimeAnimatorController;
+        isTimeout = true;
     }
 }
