@@ -22,7 +22,7 @@ namespace Assets.Scripts.Weapons
             {
                 Debug.Log("Projectile attack");
                 lastAttack = Time.time;
-                GameObject projectile = GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<Weapon>().getProjectile(parent.transform);
+                GameObject projectile = GameObject.FindGameObjectWithTag("GameController").GetComponent<Weapon>().getProjectile(parent.transform);
 
                 Sprite[] resources = Resources.LoadAll<Sprite>(projectileSprite);
                 projectile.GetComponent<SpriteRenderer>().sprite = resources[projectileSpriteIndex];
