@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/art/UI/New Game.png.meta
 guid: 8596fdced0041f74ea0475c3d4122c73
-timeCreated: 1481452853
-=======
-guid: 677952f74d2937f48a4ab5f288e04908
-timeCreated: 1481394280
->>>>>>> 1d886f7e010f82b9da9e4552c0180138ac402b78:Assets/Materials/platform.png.meta
+timeCreated: 1481465705
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
