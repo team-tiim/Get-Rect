@@ -1468,6 +1468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e629dd6f2fef5904e83d6ce3bf8e0756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 1653250589104610, guid: e75127b8195bb044e93a9a7cf489e604, type: 2}
   timerText: {fileID: 0}
   levelTime: 60
 --- !u!4 &1181891937

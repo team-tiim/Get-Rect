@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
+    public GameObject explosion;
+
     public Text timerText;
     public float levelTime = 60; // seconds
     private float startTime;
@@ -36,6 +38,13 @@ public class GameController : MonoBehaviour {
             //TODO change idle to sweating animation
         }
 	}
+
+    public void doExplosion(Vector3 location)
+    {
+        GameObject expl = Instantiate(explosion);
+        expl.transform.position = location;
+        Destroy(expl, expl.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+    }
 
     private void updatePlayerClosestPlatform()
     {
