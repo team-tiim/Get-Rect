@@ -43,4 +43,19 @@ public class CharacterBehaviourBase : MonoBehaviour {
     {
         selectedWeapon.Attack();
     }
+
+    protected void Attack(GameObject target, int damage)
+    {
+        animator.SetTrigger("doAttack");
+        target.GetComponent<CharacterBehaviourBase>().takeDamage(damage);
+    }
+
+    public void takeDamage(int damage)
+    {
+        this.hp -= damage;
+        if (this.hp <= 0)
+        {
+            GameObject.Destroy(this.gameObject);
+        }
+    }
 }
