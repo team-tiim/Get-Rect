@@ -25,7 +25,17 @@ namespace Assets.Scripts
                 Debug.Log("Regular weapon");
                 lastAttack = Time.time;
 
-
+                RaycastHit2D[] targets = Physics2D.CircleCastAll(parent.transform.position, _swingRadius, direction, _swingLength);
+                Debug.Log(targets.Length);
+                foreach (RaycastHit2D target in targets)
+                {
+                    if (target.transform.CompareTag("Enemy"))
+                    {
+                        Debug.Log("Hit: " + target.transform.gameObject.name);
+                        target.transform.gameObject.GetComponent<EnemySimpleBehaviour>().takeDamage(damage);
+                    }
+                    
+                }
             }
         }
 

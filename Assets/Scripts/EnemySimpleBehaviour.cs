@@ -97,4 +97,10 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         bool xReachable = Math.Abs(t.position.x - transform.position.x) <= jumpPower * 0.33;
         return yReachable && xReachable;
     }
+
+    protected override void onDamage(int damage)
+    {
+        base.onDamage(damage);
+        StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
+    }
 }

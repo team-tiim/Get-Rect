@@ -61,13 +61,39 @@ public class PlayerController : CharacterBehaviourBase
             moveHorizontal += speed;
         }
 
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            if (selectedWeapon)
+            {
+                GameObject.Destroy(selectedWeapon);
+            }
+            selectWeapon(gameObject.AddComponent<Knife>());
+        }
+
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            if (selectedWeapon)
+            {
+                GameObject.Destroy(selectedWeapon);
+            }
+            selectWeapon(gameObject.AddComponent<Pistol>());
+        }
+
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            if (selectedWeapon)
+            {
+                GameObject.Destroy(selectedWeapon);
+            }
+            selectWeapon(gameObject.AddComponent<Fish>());
+        }
+
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pz.z = 0;
             
             Vector3 direction = pz - transform.position;
-            Debug.Log(transform.rotation.ToString());
             if (direction.x > 0 && flipped || direction.x <= 0 && !flipped)
             {
                 this.leftHand.GetComponent<Animator>().SetTrigger("Attack");
