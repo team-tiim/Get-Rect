@@ -851,6 +851,96 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95751376852a4ea498505143218f2098, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &672991627 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1086086997303662, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+    type: 2}
+  m_PrefabInternal: {fileID: 1322633164}
+--- !u!82 &672991629 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82015755236348258, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+    type: 2}
+  m_PrefabInternal: {fileID: 1322633164}
+--- !u!82 &672991634
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672991627}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9c17ad1ba3d52e14f869eb069bc372ad, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 42
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &692318941 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4626513296628044, guid: 10c64b58eddf3b14db30177054ed102e,
@@ -1721,6 +1811,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1361349480}
     m_Modifications:
+    - target: {fileID: 114040145948842450, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4587422802441978, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1773,6 +1868,41 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114040145948842450, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 672991629}
+    - target: {fileID: 82015755236348258, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f5117d356f8c52a4f82d536cdf447625, type: 3}
+    - target: {fileID: 82015755236348258, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82015755236348258, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82015755236348258, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040145948842450, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 672991634}
+    - target: {fileID: 114040145948842450, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: bgm
+      value: 
+      objectReference: {fileID: 672991634}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11, type: 2}
   m_IsPrefabParent: 0
