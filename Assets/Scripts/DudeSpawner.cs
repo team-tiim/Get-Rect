@@ -16,15 +16,18 @@ public class DudeSpawner : MonoBehaviour {
 
     public void MakeDude()
     {
-        int arrayIdx = Random.Range(0, prefabs.Length);
-        GameObject newDude = Instantiate(prefabs[arrayIdx]);
-        newDude.name = name;
-        newDude.transform.position = this.transform.position;
-
-        Powerup powerup = newDude.GetComponent<Powerup>();
-        if(powerup != null)
+        if (isEnabled)
         {
-            powerup.spawner = this.gameObject;
+            int arrayIdx = Random.Range(0, prefabs.Length);
+            GameObject newDude = Instantiate(prefabs[arrayIdx]);
+            newDude.name = name;
+            newDude.transform.position = this.transform.position;
+
+            Powerup powerup = newDude.GetComponent<Powerup>();
+            if (powerup != null)
+            {
+                powerup.spawner = this;
+            }
         }
     }
 }

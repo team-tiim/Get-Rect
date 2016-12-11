@@ -1703,6 +1703,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1204318133807892, guid: d878c91b2054ebb4292c3ebb7072852c,
         type: 2}
+    - target: {fileID: 114845073834919822, guid: 1e7b7507ac5277c4f971a9f9a866e003,
+        type: 2}
+      propertyPath: spawnTick
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e7b7507ac5277c4f971a9f9a866e003, type: 2}
   m_IsPrefabParent: 0
