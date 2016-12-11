@@ -10,6 +10,8 @@ public class PlayerController : CharacterBehaviourBase
 
 {
     public GameObject closestPlatform;
+	public AudioSource[] sounds;
+	public AudioSource bgm;
 
     protected GameObject rightHand;
     protected GameObject leftHand;
@@ -22,10 +24,24 @@ public class PlayerController : CharacterBehaviourBase
         this.leftHand = gameObject.transform.GetChild(1).gameObject;
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         Debug.Log(rb2d.transform.position.x);
-		jumpsound = GetComponent<AudioSource> ();
+
         selectWeapon(gameObject.AddComponent<Pistol>());
+		jumpsound = sounds [0];
+		bgm = sounds [1]; 
         
     }
+	void Update ()
+	{
+		if (Input.GetKeyDown (KeyCode.M)) {
+
+			if (bgm.isPlaying) {
+				bgm.Pause ();
+			} else { 
+				bgm.UnPause ();
+			}
+		}
+	}
+
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
@@ -78,6 +94,9 @@ public class PlayerController : CharacterBehaviourBase
             
             Attack(direction);
         }
+
+
+
 
         Vector2 movement = new Vector2(moveHorizontal, rb2d.velocity.y);
 
