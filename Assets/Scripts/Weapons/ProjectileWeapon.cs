@@ -32,6 +32,7 @@ namespace Assets.Scripts.Weapons
                 projectileController.speed = projectileSpeed;
                 projectileController.direction = direction;
                 projectileController.origin = parent;
+                projectileController.weapon = this;
 
                 //BoxCollider2D boxCollider2d = projectileController.GetComponent<BoxCollider2D>();
                 //SpriteRenderer spriteRenderer = projectileController.GetComponent<SpriteRenderer>();

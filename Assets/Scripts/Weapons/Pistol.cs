@@ -9,7 +9,7 @@ namespace Assets.Scripts.Weapons
     {
         public Pistol()
         {
-            damage = 5;
+            _damage = 5;
             sprite = "PistolAttackAnimation";
             projectileSprite = "weapons 1";
             projectileSpriteIndex = 7;

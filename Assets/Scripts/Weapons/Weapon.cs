@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public class Weapon : MonoBehaviour
     {
-        protected float damage;
+        protected int _damage;
         protected string sprite;
         protected float attackCooldown = 1;
         protected float lastAttack;
@@ -31,6 +31,11 @@ namespace Assets.Scripts
         public GameObject getProjectile(Transform parentTransform)
         {
             return Instantiate(projectilePrefab, parentTransform.position, Quaternion.identity);
+        }
+
+        public int damage
+        {
+            get { return _damage; }
         }
     }
 }

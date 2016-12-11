@@ -9,7 +9,7 @@ namespace Assets.Scripts.Weapons
     {
         public Knife()
         {
-            damage = 5;
+            _damage = 5;
             sprite = "weapons1_0";
         }
     }
