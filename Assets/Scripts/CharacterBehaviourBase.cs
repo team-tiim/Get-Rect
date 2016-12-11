@@ -5,38 +5,48 @@ using UnityEngine;
 
 public class CharacterBehaviourBase : MonoBehaviour {
 
+    public float jumpPower;
     public float speed = 1;  //Floating point variable to store the player's movement speed.
     public int hp = 10;
 
+    protected Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    protected Vector3 size;
     protected Animator animator;
     protected Weapon selectedWeapon;
-    protected Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    protected AudioSource jumpsound;
 
     // Use this for initialization
     protected void Start () {
-        GetComponent<BoxCollider2D>().size = GetComponent<SpriteRenderer>().sprite.bounds.size;
+        this.animator = GetComponent<Animator>();
+        this.rb2d = GetComponent<Rigidbody2D>();
+        this.size = GetComponent<SpriteRenderer>().sprite.bounds.size;
+        GetComponent<BoxCollider2D>().size = size;
     }
 	
 	// Update is called once per frame
 	void Update () {		
 	}
 
+    protected bool IsGrounded()
+    {
+        return this.rb2d.velocity.y == 0;
+    }
 
     protected void updateAnimation(float moveHorizontal)
     {
         if (moveHorizontal > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-            animator.SetBool("isMove", true);
+            this.animator.SetBool("isMove", true);
         }
         else if (moveHorizontal < 0)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
-            animator.SetBool("isMove", true);
+            this.animator.SetBool("isMove", true);
         }
         else
         {
-            animator.SetBool("isMove", false);
+            this.animator.SetBool("isMove", false);
         }
     }
 
@@ -47,7 +57,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected void Attack(GameObject target, int damage)
     {
-        animator.SetTrigger("doAttack");
+        this.animator.SetTrigger("doAttack");
         target.GetComponent<CharacterBehaviourBase>().takeDamage(damage);
     }
 
