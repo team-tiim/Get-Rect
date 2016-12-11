@@ -12,6 +12,10 @@ namespace Assets.Scripts
         protected string _idleAnimation;
         protected float attackCooldown = 1;
         protected float lastAttack;
+        protected float _swingLength;
+        protected float _swingRadius;
+
+
         public GameObject projectilePrefab;
 
         public virtual void Attack(GameObject parent, Vector3 direction)
@@ -20,6 +24,8 @@ namespace Assets.Scripts
             {
                 Debug.Log("Regular weapon");
                 lastAttack = Time.time;
+
+
             }
         }
 

@@ -14,7 +14,7 @@ namespace Assets.Scripts.Weapons
             projectileSprite = "weapons 1";
             projectileSpriteIndex = 7;
             projectileSpeed = 20;
-            animationName = "projectile_pistol";
+            projectileAnimation = "projectile_pistol";
             gravityScale = 0.5f;
             attackCooldown = 0.2f;
         }

@@ -62,38 +62,26 @@ public class PlayerController : CharacterBehaviourBase
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            //Debug.Log("Click");
-            //Debug.Log(transform.position);
-            //Debug.Log(Input.mousePosition);
-            //Debug.Log(transform.position + Input.mousePosition);
-            //Debug.Log((transform.position + Input.mousePosition).normalized);
-            //Debug.Log("Angle");
             Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Debug.Log(Camera.main);
             pz.z = 0;
-            //Debug.Log("Click");
-            //Debug.Log(transform.position);
-            //Debug.Log(pz);
-            //Debug.Log(pz - transform.position);
-            //Debug.Log((pz - transform.position).normalized);
-            //Debug.Log("Angle");
-            //Debug.Log(Vector2.Angle(new Vector2(transform.position.x, transform.position.y), Input.mousePosition));
-            this.rightHand.GetComponent<Animator>().SetTrigger("Attack");
-            this.leftHand.GetComponent<Animator>().SetTrigger("Attack");
-            Attack(pz - transform.position);
+            
+            Vector3 direction = pz - transform.position;
+            Debug.Log(transform.rotation.ToString());
+            if (direction.x > 0 && flipped || direction.x <= 0 && !flipped)
+            {
+                this.leftHand.GetComponent<Animator>().SetTrigger("Attack");
+            } else
+            {
+                this.rightHand.GetComponent<Animator>().SetTrigger("Attack");
+            }
+            
+            Attack(direction);
         }
 
-        //Store the current horizontal input in the float moveHorizontal.
-        //float moveHorizontal = Input.GetAxis("Horizontal") * speed;
-
-        //Use the two store floats to create a new Vector2 variable movement.
         Vector2 movement = new Vector2(moveHorizontal, rb2d.velocity.y);
 
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-        //rb2d.AddForce(movement * speed);
         rb2d.velocity = movement;
-
-
         updateAnimation(moveHorizontal);
     }
 

@@ -8,7 +8,7 @@ namespace Assets.Scripts.Weapons
 {
     public class ProjectileWeapon : Weapon
     {
-        protected string animationName;
+        protected string projectileAnimation;
         protected float projectileSpeed;
         protected float gravityScale;
         protected Vector2 projectileSize;
@@ -30,12 +30,10 @@ namespace Assets.Scripts.Weapons
 
                 projectile.name = "Bullet";
                 ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-                //projectileController.speed = projectileSpeed;
-                //projectileController.direction = direction;
                 projectileController.origin = parent;
                 projectileController.weapon = this;
 
-                projectile.GetComponent<Animator>().Play(animationName);
+                projectile.GetComponent<Animator>().Play(projectileAnimation);
 
                 Rigidbody2D projectileBody = projectile.GetComponent<Rigidbody2D>();
                 projectileBody.gravityScale = gravityScale;

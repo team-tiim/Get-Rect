@@ -15,12 +15,14 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected Animator animator;
     protected Weapon selectedWeapon;
     protected AudioSource jumpsound;
+    protected bool flipped;
 
     // Use this for initialization
     protected void Start () {
         this.animator = GetComponent<Animator>();
         this.rb2d = GetComponent<Rigidbody2D>();
         this.size = GetComponent<SpriteRenderer>().sprite.bounds.size;
+        this.flipped = false;
         GetComponent<BoxCollider2D>().size = size;
     }
 	
@@ -38,11 +40,13 @@ public class CharacterBehaviourBase : MonoBehaviour {
         if (moveHorizontal > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+            this.flipped = false;
             this.animator.SetBool("isMove", true);
         }
         else if (moveHorizontal < 0)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
+            this.flipped = true;
             this.animator.SetBool("isMove", true);
         }
         else
