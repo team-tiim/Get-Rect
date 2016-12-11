@@ -51,11 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1836002fd8c5c5a4a895c523060b5b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1894204357284924, guid: 00888ed8771e5784e87e9d320ef28896, type: 2}
-  sprites:
-  - {fileID: 21300000, guid: b6f59acdb254b414595831e15fd0091f, type: 3}
-  - {fileID: 21300000, guid: c38ce9ccc87f148449ecf0fcdf171bb2, type: 3}
-  controllers:
-  - {fileID: 22100000, guid: 1c187ab40de6b0747855a7933bfd0d50, type: 2}
-  - {fileID: 9100000, guid: 6c088bebb24934d4cbc9dae0821a6e58, type: 2}
-  spawnTick: 10
+  prefabs:
+  - {fileID: 1894204357284924, guid: 00888ed8771e5784e87e9d320ef28896, type: 2}
+  - {fileID: 1151490452515256, guid: 6ede55b791a50bd48829f7f7fca568d9, type: 2}
+  - {fileID: 1566351546194136, guid: 62e6d3f4d71b8f34d95a99abc96e0427, type: 2}
+  spawnTick: 15

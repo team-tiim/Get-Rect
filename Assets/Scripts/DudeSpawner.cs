@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class DudeSpawner : MonoBehaviour {
 
-    public GameObject prefab;
-    public Sprite[] sprites;
-    public RuntimeAnimatorController[] controllers;
-    public float spawnTick = 10; //seconds
+    public GameObject[] prefabs;
+    public int spawnTick = 15; //seconds
+    private int counter = 0;
 
     void Start()
     {
@@ -16,20 +15,9 @@ public class DudeSpawner : MonoBehaviour {
 
     public void MakeDude()
     {
-        int arrayIdx = Random.Range(0, sprites.Length);
-
-        Sprite sprite = sprites[arrayIdx];
-        RuntimeAnimatorController animationController = controllers[arrayIdx];
-        string name = sprite.name;
-
-        GameObject newDude = Instantiate(prefab);
+        int arrayIdx = Random.Range(0, prefabs.Length);
+        GameObject newDude = Instantiate(prefabs[arrayIdx]);
         newDude.name = name;
-        newDude.GetComponent<SpriteRenderer>().sprite = sprite;
-        newDude.GetComponent<Animator>().runtimeAnimatorController = animationController;
         newDude.transform.position = this.transform.position;
-        if(arrayIdx == 0)
-        {
-            newDude.GetComponent<EnemySimpleBehaviour>().canJump = true;
-        }
     }
 }
