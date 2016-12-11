@@ -29,6 +29,11 @@ public class PlayerController : CharacterBehaviourBase
             exitGame();
         }
 
+        if (this.hp <= 0)
+        {
+            return;
+        }
+
         animator.SetBool("isGrounded", IsGrounded());
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded())
