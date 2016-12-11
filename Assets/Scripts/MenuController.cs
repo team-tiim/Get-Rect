@@ -19,7 +19,7 @@ public class MenuController : MonoBehaviour {
         playerInsult = GameObject.Find("PlayerInsult");
         credits.SetActive(false);
         backButton.SetActive(false);
-        playerInsult.SetActive(false);
+        //playerInsult.SetActive(false);
     }
 
     public void startNewGame()
@@ -38,9 +38,10 @@ public class MenuController : MonoBehaviour {
 
     public void mockPlayer()
     {
-        Debug.Log("mockplayer");
-        playerInsult.GetComponent<Text>().text = "I bet your mom is a quitter too";
-        playerInsult.SetActive(true);
+        Application.Quit();
+        //Debug.Log("mockplayer");
+        //playerInsult.GetComponent<Text>().text = "I bet your mom is a quitter too";
+       // playerInsult.SetActive(true);
     }
 
     public void back()

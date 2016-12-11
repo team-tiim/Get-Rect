@@ -1354,6 +1354,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114845073834919822, guid: 1e7b7507ac5277c4f971a9f9a866e003,
+        type: 2}
+      propertyPath: spawnTick
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114845073834919822, guid: 1e7b7507ac5277c4f971a9f9a866e003,
+        type: 2}
+      propertyPath: prefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1281346428599854, guid: 2d7873f004e5b894cb5440668e585bcf,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e7b7507ac5277c4f971a9f9a866e003, type: 2}
   m_IsPrefabParent: 0
@@ -1807,7 +1818,7 @@ Prefab:
     - target: {fileID: 114845073834919822, guid: 1e7b7507ac5277c4f971a9f9a866e003,
         type: 2}
       propertyPath: spawnTick
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114845073834919822, guid: 1e7b7507ac5277c4f971a9f9a866e003,
         type: 2}
