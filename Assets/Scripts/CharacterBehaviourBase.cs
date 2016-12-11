@@ -66,7 +66,14 @@ public class CharacterBehaviourBase : MonoBehaviour {
         this.hp -= damage;
         if (this.hp <= 0)
         {
-            GameObject.Destroy(this.gameObject);
+            if (this.gameObject.tag == "Player")
+            {
+                GetComponent<Animator>().Play("player_death");
+            }
+            else
+            {
+                GameObject.Destroy(this.gameObject);
+            }
         }
     }
 }
