@@ -33,6 +33,7 @@ public class Powerup : MonoBehaviour {
                 other.GetComponent<CharacterBehaviourBase>().hp += this.value;
                 break;
             case PowerupType.TIME:
+                //TODO move to GameController and change animation back to normal if needed
                 GameObject.Find("GameControllers").GetComponent<GameController>().levelTime += this.value;
                 break;
         }
