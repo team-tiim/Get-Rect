@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a0832bf7125d7df4dbd679a004a7dc7a
-timeCreated: 1481396984
+timeCreated: 1481446705
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,28 +9,28 @@ TextureImporter:
     21300004: weapons2_3
     21300006: weapons2_5
     21300008: weapons2_6
-    21300010: weapons2_15
-    21300012: weapons2_16
-    21300014: weapons2_17
-    21300016: weapons2_18
-    21300018: weapons2_19
-    21300020: weapons2_20
+    21300010: weapons2_7
+    21300012: weapons2_15
+    21300014: weapons2_16
+    21300016: weapons2_17
+    21300018: weapons2_18
+    21300020: weapons2_19
     21300022: weapons2_21
     21300024: weapons2_22
     21300026: weapons2_23
     21300028: weapons2_24
-    21300030: weapons2_26
-    21300032: weapons2_27
-    21300034: weapons2_29
-    21300036: weapons2_30
-    21300038: weapons2_32
+    21300030: weapons2_27
+    21300032: weapons2_29
+    21300034: weapons2_31
+    21300036: weapons2_33
+    21300038: weapons2_35
     21300040: weapons2_36
-    21300042: weapons2_37
-    21300044: weapons2_41
-    21300046: weapons2_44
-    21300048: weapons2_45
-    21300050: weapons2_47
-    21300052: weapons2_50
+    21300042: weapons2_38
+    21300044: weapons2_43
+    21300046: weapons2_48
+    21300048: weapons2_49
+    21300050: weapons2_52
+    21300052: weapons2_53
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -127,9 +127,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 373
-        y: 1172
-        width: 141
-        height: 162
+        y: 1224
+        width: 116
+        height: 110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,7 +180,7 @@ TextureImporter:
         serializedVersion: 2
         x: 300
         y: 1032
-        width: 131
+        width: 140
         height: 133
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -206,7 +206,7 @@ TextureImporter:
         serializedVersion: 2
         x: 595
         y: 1030
-        width: 129
+        width: 139
         height: 119
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -258,8 +258,8 @@ TextureImporter:
         serializedVersion: 2
         x: 518
         y: 882
-        width: 123
-        height: 143
+        width: 126
+        height: 132
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,21 +271,8 @@ TextureImporter:
         serializedVersion: 2
         x: 665
         y: 890
-        width: 124
-        height: 138
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: weapons2_26
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 964
-        width: 4
-        height: 8
+        width: 126
+        height: 120
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,7 +285,7 @@ TextureImporter:
         x: 139
         y: 708
         width: 134
-        height: 107
+        height: 117
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -308,9 +295,22 @@ TextureImporter:
       name: weapons2_29
       rect:
         serializedVersion: 2
-        x: 316
-        y: 698
-        width: 151
+        x: 318
+        y: 692
+        width: 145
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: weapons2_31
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 692
+        width: 135
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -318,26 +318,26 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weapons2_30
+      name: weapons2_33
       rect:
         serializedVersion: 2
-        x: 490
-        y: 694
-        width: 156
-        height: 145
+        x: 680
+        y: 706
+        width: 119
+        height: 146
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weapons2_32
+      name: weapons2_35
       rect:
         serializedVersion: 2
-        x: 670
-        y: 701
-        width: 145
-        height: 158
+        x: 191
+        y: 514
+        width: 129
+        height: 98
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,74 +347,61 @@ TextureImporter:
       name: weapons2_36
       rect:
         serializedVersion: 2
-        x: 95
-        y: 515
-        width: 194
-        height: 141
+        x: 369
+        y: 483
+        width: 82
+        height: 131
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weapons2_37
+      name: weapons2_38
       rect:
         serializedVersion: 2
-        x: 362
-        y: 463
-        width: 124
-        height: 195
+        x: 488
+        y: 446
+        width: 133
+        height: 173
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weapons2_41
+      name: weapons2_43
       rect:
         serializedVersion: 2
-        x: 547
-        y: 439
-        width: 284
-        height: 176
+        x: 154
+        y: 328
+        width: 178
+        height: 125
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weapons2_44
+      name: weapons2_48
       rect:
         serializedVersion: 2
-        x: 71
-        y: 289
-        width: 212
-        height: 94
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: weapons2_45
-      rect:
-        serializedVersion: 2
-        x: 332
+        x: 354
         y: 108
-        width: 288
-        height: 172
+        width: 246
+        height: 133
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weapons2_47
+      name: weapons2_49
       rect:
         serializedVersion: 2
-        x: 618
+        x: 613
         y: 133
-        width: 260
+        width: 265
         height: 143
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -422,7 +409,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: weapons2_50
+      name: weapons2_52
       rect:
         serializedVersion: 2
         x: 119
