@@ -63,9 +63,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     public void takeDamage(int damage)
     {
-        Debug.Log("Takedamage: " + damage);
         this.hp -= damage;
-        Debug.Log(hp);
         if (this.hp <= 0)
         {
             GameObject.Destroy(this.gameObject);
