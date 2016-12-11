@@ -16,7 +16,7 @@ namespace Assets.Scripts.Weapons
             projectileSpeed = 20;
             projectileAnimation = "projectile_pistol";
             gravityScale = 0.5f;
-            attackCooldown = 0.001f;
+            attackCooldown = 0.2f;
         }
     }
 }

@@ -45,7 +45,7 @@ public class Powerup : MonoBehaviour {
         switch (this.type)
         {
             case PowerupType.WEAPON:
-                this.value = Random.Range(0, 3);
+                this.value = Random.Range(0, 6);
                 break;
             case PowerupType.HEALTH:
                 this.value = Random.Range(5, 10);
@@ -77,6 +77,12 @@ public class Powerup : MonoBehaviour {
                 return player.gameObject.AddComponent<Knife>();
             case 2:
                 return player.gameObject.AddComponent<Fish>();
+            case 3:
+                return player.gameObject.AddComponent<Catapult>();
+            case 4:
+                return player.gameObject.AddComponent<Tank>();
+            case 5:
+                return player.gameObject.AddComponent<Uzi>();
             default:
                 return null;
         }

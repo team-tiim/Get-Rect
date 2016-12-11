@@ -14,6 +14,7 @@ namespace Assets.Scripts.Weapons
         protected Vector2 projectileSize;
         protected string projectileSprite;
         protected int projectileSpriteIndex;
+        protected string _projectileExplosion = "tiny_explosion";
 
 
         public override void Attack(GameObject parent, Vector3 direction)
@@ -39,8 +40,11 @@ namespace Assets.Scripts.Weapons
                 projectileBody.gravityScale = gravityScale;
                 projectileBody.AddForce(direction.normalized * projectileSpeed, ForceMode2D.Impulse);
             }
+        }
 
-            
+        public string projectileExplosion
+        {
+            get { return _projectileExplosion; }
         }
     }
 }

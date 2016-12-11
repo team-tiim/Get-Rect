@@ -35,10 +35,11 @@ public class GameController : MonoBehaviour {
         }
 	}
 
-    public void doExplosion(Vector3 location)
+    public void doExplosion(Vector3 location, string animation = "explosion")
     {
         GameObject expl = Instantiate(explosion);
         expl.transform.position = location;
+        expl.GetComponent<Animator>().Play(animation);
         Destroy(expl, expl.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
 

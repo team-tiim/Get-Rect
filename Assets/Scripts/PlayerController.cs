@@ -104,6 +104,33 @@ public class PlayerController : CharacterBehaviourBase
             selectWeapon(gameObject.AddComponent<Fish>());
         }
 
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            if (selectedWeapon)
+            {
+                GameObject.Destroy(selectedWeapon);
+            }
+            selectWeapon(gameObject.AddComponent<Uzi>());
+        }
+
+        if (Input.GetKey(KeyCode.Alpha5))
+        {
+            if (selectedWeapon)
+            {
+                GameObject.Destroy(selectedWeapon);
+            }
+            selectWeapon(gameObject.AddComponent<Catapult>());
+        }
+
+        if (Input.GetKey(KeyCode.Alpha6))
+        {
+            if (selectedWeapon)
+            {
+                GameObject.Destroy(selectedWeapon);
+            }
+            selectWeapon(gameObject.AddComponent<Tank>());
+        }
+
         if (Input.GetKey(KeyCode.Mouse0))
         {
             Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
