@@ -15,7 +15,7 @@ public class Holyhand : ProjectileWeapon
 		projectileSpriteIndex = 5;
 		projectileSpeed = 10;
 		projectileAnimation = "projectile_holyhand";
-		_projectileExplosion = "explosion";
+		_projectileExplosion = "nuke";
 		gravityScale = 0.1f;
 		attackCooldown = 0.2f;
 	}
