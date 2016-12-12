@@ -136,6 +136,15 @@ public class PlayerController : CharacterBehaviourBase
                 GameObject.Destroy(selectedWeapon);
             }
             selectWeapon(gameObject.AddComponent<Tank>());
+		}
+
+		if (Input.GetKey(KeyCode.Alpha7))
+		{
+			if (selectedWeapon)
+			{
+				GameObject.Destroy(selectedWeapon);
+			}
+			selectWeapon(gameObject.AddComponent<Holyhand>());
         }
 
         if (Input.GetKey(KeyCode.Mouse0))
