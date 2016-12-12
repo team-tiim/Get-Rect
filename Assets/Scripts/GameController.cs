@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -55,7 +56,11 @@ public class GameController : MonoBehaviour {
 
     private void updateHealth()
     {
-        healthText.text = player.GetComponent<PlayerController>().hp.ToString();
+		var controller = player.GetComponent<PlayerController> ();
+		if (controller.hp < 0) {
+			SceneManager.LoadScene ("menu");
+		}
+		healthText.text = controller.hp.ToString();
     }
 
     private void updatePlayerClosestPlatform()
