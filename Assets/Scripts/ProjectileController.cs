@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class ProjectileController : MonoBehaviour
     //public float speed;
     public GameObject origin;
     //public Vector3 direction;
-    public Weapon weapon;
+    public ProjectileWeapon weapon;
 
     private Rigidbody2D rb2d;
 
@@ -33,6 +34,8 @@ public class ProjectileController : MonoBehaviour
         }
         if (!col.gameObject.tag.Equals(origin.tag))
         {
+            GameObject controller = GameObject.Find("GameControllers");
+            controller.GetComponent<GameController>().doExplosion(this.transform.position, weapon.projectileExplosion);
             Destroy(gameObject);
         }
         
