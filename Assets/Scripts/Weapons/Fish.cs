@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : Weapon {
+public class Fish : MeleeWeapon
+{
 
     public Fish()
     {
-        _damage = 100;
-        _idleAnimation = "weapon_fish_idle";
-        _swingLength = 1.2f;
-        _swingRadius = 0.5f;
+        damage = 100;
+        idleAnimation = "weapon_fish_idle";
+        swingLength = 1.2f;
+        swingRadius = 0.5f;
         attackCooldown = 1f;
     }
 }

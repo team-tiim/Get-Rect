@@ -9,8 +9,8 @@ namespace Assets.Scripts.Weapons
     {
         public Pistol()
         {
-            _damage = 5;
-            _idleAnimation = "weapon_pistol_idle";
+            damage = 5;
+            idleAnimation = "weapon_pistol_idle";
             gravityScale = 0.5f;
             attackCooldown = 0.2f;
             knockback = 30;

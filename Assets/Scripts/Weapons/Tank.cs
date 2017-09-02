@@ -9,8 +9,8 @@ public class Tank : ProjectileWeapon
 
     public Tank()
     {
-        _damage = 100;
-        _idleAnimation = "weapon_tank_idle";
+        damage = 100;
+        idleAnimation = "weapon_tank_idle";
         gravityScale = 0.1f;
         attackCooldown = 1;
     }

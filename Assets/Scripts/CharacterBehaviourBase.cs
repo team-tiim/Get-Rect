@@ -41,7 +41,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
         return this.rb2d.velocity.y == 0;
     }
 
-    protected void updateAnimation(float moveHorizontal)
+    protected void UpdateAnimation(float moveHorizontal)
     {
         if (moveHorizontal > 0)
         {
@@ -71,39 +71,39 @@ public class CharacterBehaviourBase : MonoBehaviour {
         this.animator.SetTrigger("doAttack");
 
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
-        cbb.takeDamage(damage);
+        cbb.TakeDamage(damage);
         Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
         Debug.Log(knockBackDir);
-        cbb.doKnockback(knockBackDir * 20);
+        cbb.DoKnockback(knockBackDir * 20);
     }
 
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
-        onDamage(damage);
+        OnDamage(damage);
         if (this.hp <= 0)
         {
-            onDeath();
+            OnDeath();
         }
     }
 
-    protected virtual void onDeath()
+    protected virtual void OnDeath()
     {
         GameObject.Destroy(this.gameObject);
         GameObject controller = GameObject.Find("GameControllers");
         controller.GetComponent<GameController>().doExplosion(this.transform.position);
     }
 
-    protected virtual void onDamage(int damage)
+    protected virtual void OnDamage(int damage)
     {
         this.hp -= damage;
     }
 
-    public virtual void selectWeapon(Weapon weapon)
+    public virtual void SelectWeapon(Weapon weapon)
     {
         this.selectedWeapon = weapon;
     }
 
-    public virtual void doKnockback(Vector3 direction)
+    public virtual void DoKnockback(Vector3 direction)
     {
         isInKnockback = true;
         rb2d.AddForce(direction, ForceMode2D.Impulse);

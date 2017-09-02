@@ -9,8 +9,8 @@ public class Uzi : ProjectileWeapon
 
     public Uzi()
     {
-        _damage = 1;
-        _idleAnimation = "weapon_uzi_idle";
+        damage = 1;
+        idleAnimation = "weapon_uzi_idle";
         gravityScale = 0.5f;
         attackCooldown = 0.001f;
     }

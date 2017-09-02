@@ -8,7 +8,6 @@ namespace Assets.Scripts.Weapons
 {
     public class ProjectileWeapon : Weapon
     {
-        protected float knockback;
         protected float gravityScale;
         protected GameObject projectilePrefab;
         protected int projectileSpeed;
@@ -21,13 +20,13 @@ namespace Assets.Scripts.Weapons
         }
 
 
-        protected override void doAttack(GameObject parent, Vector3 attackDirection)
+        protected override void DoAttack(GameObject parent, Vector3 attackDirection)
         {
-            spawnPojectile(parent, attackDirection);
-            doKnockback(attackDirection);
+            SpawnPojectile(parent, attackDirection);
+            DoKnockback(attackDirection);
         }
 
-        private void spawnPojectile(GameObject parent, Vector3 attackDirection)
+        private void SpawnPojectile(GameObject parent, Vector3 attackDirection)
         {
             lastAttack = Time.time;
 
@@ -41,12 +40,12 @@ namespace Assets.Scripts.Weapons
 
         }
 
-        private void doKnockback(Vector3 attackDirection)
+        private void DoKnockback(Vector3 attackDirection)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             PlayerController pc = player.GetComponent<PlayerController>();
             //player.GetComponent<Rigidbody2D>().AddForce(-attackDirection.normalized * knockback, ForceMode2D.Impulse);
-            pc.doKnockback(-attackDirection.normalized * knockback);
+            pc.DoKnockback(-attackDirection.normalized * knockback);
         }
 
     }

@@ -40,15 +40,15 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         float targetDistance = getDistanceTo(target.transform.position);
         if (targetDistance < range)
         {
-            doAttack();
+            DoAttack();
         }
         else if (targetDistance < aggroDistance)
         {
             //Debug.Log("Target found: " + target.name);
-            moveTowards(target);
+            MoveTowards(target);
         }
     }
-    private void doAttack()
+    private void DoAttack()
     {
         float timeFromLastAttack = Time.time - attackTime;
         if(timeFromLastAttack <= coolDown) {
@@ -61,19 +61,19 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     }
 
 
-    private void moveTowards(GameObject target)
+    private void MoveTowards(GameObject target)
     {
         Vector3 targetPosition = target.transform.position;
         Debug.DrawLine(transform.position, targetPosition, Color.yellow);
         float xDif = targetPosition.x - transform.position.x;
-        if (shouldJump(targetPosition))
+        if (ShouldJump(targetPosition))
         {
             //Debug.Log("jump");
             this.animator.SetTrigger("doJump");
             this.rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
         }
 
-        updateAnimation(xDif);
+        UpdateAnimation(xDif);
         transform.position += transform.right * speed * Time.deltaTime;
     }
 
@@ -82,7 +82,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         return Vector2.Distance(transform.position, position);
     }
 
-    private bool shouldJump(Vector3 targetPosition)
+    private bool ShouldJump(Vector3 targetPosition)
     {
         if (!IsGrounded() || !canJump)
         {
@@ -92,10 +92,10 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         float targetHeight = GetComponent<SpriteRenderer>().sprite.bounds.size.y;
         float yDif = (targetPosition.y - targetHeight / 2) - (transform.position.y + this.size.y / 2);
         GameObject targetPlatform = target.GetComponent<PlayerController>().closestPlatform;
-        return (yDif > 0.5) && (canJumpToObject(target) || canJumpToObject(targetPlatform));
+        return (yDif > 0.5) && (CanJumpToObject(target) || CanJumpToObject(targetPlatform));
     }
 
-    private bool canJumpToObject(GameObject obj)
+    private bool CanJumpToObject(GameObject obj)
     {
         if (obj == null)
         {
@@ -107,9 +107,9 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         return yReachable && xReachable;
     }
 
-    protected override void onDamage(int damage)
+    protected override void OnDamage(int damage)
     {
-        base.onDamage(damage);
+        base.OnDamage(damage);
         StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
 }

@@ -27,7 +27,7 @@ public class ProjectileController : MonoBehaviour
         if (col.gameObject.tag == "Enemy")
         {
             //Destroy(col.gameObject);
-            col.gameObject.GetComponent<EnemySimpleBehaviour>().takeDamage(weapon.damage);
+            col.gameObject.GetComponent<EnemySimpleBehaviour>().TakeDamage(weapon.Damage);
             //add an explosion or something
             //destroy the projectile that just caused the trigger collision
             Destroy(gameObject);

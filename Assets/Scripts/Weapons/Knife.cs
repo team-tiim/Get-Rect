@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Assets.Scripts.Weapons
 {
-    class Knife : Weapon
+    class Knife : MeleeWeapon
     {
         public Knife()
         {
-            _damage = 10;
-            _idleAnimation = "weapon_sword_idle";
-            _swingLength = 1.2f;
-            _swingRadius = 0.2f;
+            damage = 10;
+            idleAnimation = "weapon_sword_idle";
+            swingLength = 1.2f;
+            swingRadius = 0.2f;
             attackCooldown = 0.5f;
         }
     }

@@ -19,6 +19,24 @@ public class PlayerController : CharacterBehaviourBase
     protected GameObject rightHand;
     protected GameObject leftHand;
 
+    private  Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
+
+    PlayerController()
+    {
+        keyActionMap.Add(KeyCode.Space, () => DoJump());
+        keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
+        keyActionMap.Add(KeyCode.M, () => DoPause());
+        //weapons
+        keyActionMap.Add(KeyCode.Alpha1, () => SelectWeapon(gameObject.AddComponent<Knife>()));
+        keyActionMap.Add(KeyCode.Alpha2, () => SelectWeapon(gameObject.AddComponent<Fish>()));
+        keyActionMap.Add(KeyCode.Alpha3, () => SelectWeapon(gameObject.AddComponent<Pistol>()));
+        keyActionMap.Add(KeyCode.Alpha4, () => SelectWeapon(gameObject.AddComponent<Uzi>()));
+        keyActionMap.Add(KeyCode.Alpha5, () => SelectWeapon(gameObject.AddComponent<Catapult>()));
+        keyActionMap.Add(KeyCode.Alpha6, () => SelectWeapon(gameObject.AddComponent<Tank>()));
+        keyActionMap.Add(KeyCode.Alpha7, () => SelectWeapon(gameObject.AddComponent<Holyhand>()));
+    }
+
+
     // Use this for initialization
     protected new void Start()
     {
@@ -26,32 +44,22 @@ public class PlayerController : CharacterBehaviourBase
         this.rightHand = gameObject.transform.GetChild(0).gameObject;
         this.leftHand = gameObject.transform.GetChild(1).gameObject;
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        Debug.Log(rb2d.transform.position.x);
-
-        selectWeapon(gameObject.AddComponent<Pistol>());
+        SelectWeapon(gameObject.AddComponent<Pistol>());
 		jumpsound = sounds [0];
-		bgm = sounds [1]; 
-        
+		bgm = sounds [1];         
     }
+
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.M)) {
 
-			if (bgm.isPlaying) {
-				bgm.Pause ();
-			} else { 
-				bgm.UnPause ();
-			}
-		}
 	}
-
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            exitGame();
+            ExitGame();
         }
 
         if (this.hp <= 0)
@@ -60,21 +68,6 @@ public class PlayerController : CharacterBehaviourBase
         }
 
         animator.SetBool("isGrounded", IsGrounded());
-
-        if (Input.GetKey(KeyCode.Space) && IsGrounded())
-        {
-            animator.SetTrigger("doJump");
-            rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
-
-			if (!jumpsound.isPlaying)
-			{
-				jumpsound.Play ();
-			} 
-				
-
-		
-        }
-
         float moveHorizontal = 0;
 
         if (Input.GetKey(KeyCode.A))
@@ -87,85 +80,13 @@ public class PlayerController : CharacterBehaviourBase
             moveHorizontal += speed;
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
+        foreach (KeyValuePair<KeyCode, Action> entry in keyActionMap)
         {
-            if (selectedWeapon)
-            {
-                GameObject.Destroy(selectedWeapon);
+            if (Input.GetKey(entry.Key)){
+                entry.Value();
             }
-            selectWeapon(gameObject.AddComponent<Knife>());
-        }
+        }       
 
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            if (selectedWeapon)
-            {
-                GameObject.Destroy(selectedWeapon);
-            }
-            selectWeapon(gameObject.AddComponent<Pistol>());
-        }
-
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            if (selectedWeapon)
-            {
-                GameObject.Destroy(selectedWeapon);
-            }
-            selectWeapon(gameObject.AddComponent<Fish>());
-        }
-
-        if (Input.GetKey(KeyCode.Alpha4))
-        {
-            if (selectedWeapon)
-            {
-                GameObject.Destroy(selectedWeapon);
-            }
-            selectWeapon(gameObject.AddComponent<Uzi>());
-        }
-
-        if (Input.GetKey(KeyCode.Alpha5))
-        {
-            if (selectedWeapon)
-            {
-                GameObject.Destroy(selectedWeapon);
-            }
-            selectWeapon(gameObject.AddComponent<Catapult>());
-        }
-
-        if (Input.GetKey(KeyCode.Alpha6))
-        {
-            if (selectedWeapon)
-            {
-                GameObject.Destroy(selectedWeapon);
-            }
-            selectWeapon(gameObject.AddComponent<Tank>());
-		}
-
-		if (Input.GetKey(KeyCode.Alpha7))
-		{
-			if (selectedWeapon)
-			{
-				GameObject.Destroy(selectedWeapon);
-			}
-			selectWeapon(gameObject.AddComponent<Holyhand>());
-        }
-
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pz.z = 0;
-            
-            Vector3 direction = pz - transform.position;
-            if (direction.x > 0 && flipped || direction.x <= 0 && !flipped)
-            {
-                this.leftHand.GetComponent<Animator>().SetTrigger("Attack");
-            } else
-            {
-                this.rightHand.GetComponent<Animator>().SetTrigger("Attack");
-            }
-            
-            Attack(direction);
-        }
         if (isInKnockback)
         {
             return;
@@ -176,31 +97,77 @@ public class PlayerController : CharacterBehaviourBase
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb2d.velocity = movement;
         //knockbackDirection = null;
-        updateAnimation(moveHorizontal);
+        UpdateAnimation(moveHorizontal);
     }
 
-    protected override void onDeath()
+
+    protected override void OnDeath()
     {
         GetComponent<Animator>().Play("player_death");
     }
 
-    protected override void onDamage(int damage)
+    protected override void OnDamage(int damage)
     {
-        base.onDamage(damage);
+        base.OnDamage(damage);
         StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
 
-    private void exitGame()
+    private void ExitGame()
     {
         Debug.Log("exitGame");
         SceneManager.LoadScene("menu");
     }
 
-    public override void selectWeapon(Weapon weapon)
+    private void DoPause()
     {
-        base.selectWeapon(weapon);
+        //TODO see peaks mängu pausima mitte mingi audio klipi?
+        if (bgm.isPlaying)
+        {
+            bgm.Pause();
+        }
+        else
+        {
+            bgm.UnPause();
+        }
+    }
 
-        this.rightHand.GetComponent<Animator>().Play(selectedWeapon.idleAnimation);
-        this.leftHand.GetComponent<Animator>().Play(selectedWeapon.idleAnimation);
+    private void DoJump()
+    {
+        if (!IsGrounded())
+        {
+            return;
+        }
+        animator.SetTrigger("doJump");
+        rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
+
+        if (!jumpsound.isPlaying)
+        {
+            jumpsound.Play();
+        }
+    }
+    private void DoAttack()
+    {
+        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pz.z = 0;
+
+        Vector3 direction = pz - transform.position;
+        if (direction.x > 0 && flipped || direction.x <= 0 && !flipped)
+        {
+            this.leftHand.GetComponent<Animator>().SetTrigger("Attack");
+        }
+        else
+        {
+            this.rightHand.GetComponent<Animator>().SetTrigger("Attack");
+        }
+
+        Attack(direction);
+    }
+
+    public override void SelectWeapon(Weapon weapon)
+    {
+        base.SelectWeapon(weapon);
+
+        this.rightHand.GetComponent<Animator>().Play(selectedWeapon.IdleAnimation);
+        this.leftHand.GetComponent<Animator>().Play(selectedWeapon.IdleAnimation);
     }
 }

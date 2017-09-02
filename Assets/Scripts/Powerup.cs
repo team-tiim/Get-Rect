@@ -15,7 +15,7 @@ public class Powerup : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         this.spawner.isEnabled = false;
-        createRandom();
+        CreateRandom();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -27,7 +27,7 @@ public class Powerup : MonoBehaviour {
         switch (this.type)
         {
             case PowerupType.WEAPON:
-                addWeapon(other);
+                AddWeapon(other);
                 break;
             case PowerupType.HEALTH:
                 other.GetComponent<CharacterBehaviourBase>().hp += this.value;
@@ -41,7 +41,7 @@ public class Powerup : MonoBehaviour {
         GameObject.Destroy(this.gameObject);
     }
 
-    private void createRandom()
+    private void CreateRandom()
     {
         switch (this.type)
         {
@@ -58,17 +58,17 @@ public class Powerup : MonoBehaviour {
     }
 
 
-    private void addWeapon(Collider2D other)
+    private void AddWeapon(Collider2D other)
     {
         PlayerController player = other.GetComponent<PlayerController>();
-        Weapon weapon = getWeapon(player);
+        Weapon weapon = GetWeapon(player);
         if (weapon != null)
         {
-            player.selectWeapon(weapon);
+            player.SelectWeapon(weapon);
         }
     }
 
-    private Weapon getWeapon(PlayerController player)
+    private Weapon GetWeapon(PlayerController player)
     {
         switch (this.value)
         {

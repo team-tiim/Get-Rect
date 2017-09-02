@@ -6,58 +6,39 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Weapon : MonoBehaviour
+    public abstract class Weapon : MonoBehaviour
     {
-        protected int _damage;
-        protected string _idleAnimation;
+        protected int damage;
+        protected float knockback;
+        protected int cooldown;
+        protected string idleAnimation;
         protected float attackCooldown = 1;
         protected float lastAttack;
-        protected float _swingLength;
-        protected float _swingRadius;
-
-
-        public GameObject projectilePrefab;
 
         public virtual void Attack(GameObject parent, Vector3 attackDirection)
         {
-            if (!canAttack())
+            if (!CanAttack())
             {
                 return;
             }
-            doAttack(parent, attackDirection);
+            DoAttack(parent, attackDirection);
         }
 
-        protected bool canAttack()
+        private bool CanAttack()
         {
             return (Time.time - lastAttack) > attackCooldown;
         }
 
-        protected virtual void doAttack(GameObject parent, Vector3 direction)
+        protected abstract void DoAttack(GameObject parent, Vector3 direction);
+
+        public int Damage
         {
-            Debug.Log("Regular weapon");
-            lastAttack = Time.time;
-
-            RaycastHit2D[] targets = Physics2D.CircleCastAll(parent.transform.position, _swingRadius, direction, _swingLength);
-            Debug.Log(targets.Length);
-            foreach (RaycastHit2D target in targets)
-            {
-                if (target.transform.CompareTag("Enemy"))
-                {
-                    Debug.Log("Hit: " + target.transform.gameObject.name);
-                    target.transform.gameObject.GetComponent<EnemySimpleBehaviour>().takeDamage(damage);
-                }
-
-            }
+            get { return damage; }
         }
 
-        public int damage
+        public string IdleAnimation
         {
-            get { return _damage; }
-        }
-
-        public string idleAnimation
-        {
-            get { return _idleAnimation; }
+            get { return idleAnimation; }
         }
     }
 }

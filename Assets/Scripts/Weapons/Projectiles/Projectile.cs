@@ -19,14 +19,12 @@ public class Projectile : MonoBehaviour {
     protected ProjectileWeapon weapon;
     protected Vector3 moveDirection;
 
-
     // Use this for initialization
     protected void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         //TODO võiks eraldi prefabis enne seada spraidi
         Sprite[] resources = Resources.LoadAll<Sprite>(spriteSheetName);
         GetComponent<SpriteRenderer>().sprite = resources[spriteIndex];
-        //Debug.Log("projectile start");
         GetComponent<BoxCollider2D>().size = GetComponent<SpriteRenderer>().bounds.size;
 
         //why do we have this animation name here?
@@ -55,7 +53,7 @@ public class Projectile : MonoBehaviour {
         if (col.gameObject.tag == "Enemy")
         {
             //Destroy(col.gameObject);
-            col.gameObject.GetComponent<EnemySimpleBehaviour>().takeDamage(weapon.damage);
+            col.gameObject.GetComponent<EnemySimpleBehaviour>().TakeDamage(weapon.Damage);
             //add an explosion or something
             //destroy the projectile that just caused the trigger collision
             Destroy(gameObject);
