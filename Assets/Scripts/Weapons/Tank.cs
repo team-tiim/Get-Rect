@@ -11,12 +11,7 @@ public class Tank : ProjectileWeapon
     {
         _damage = 100;
         _idleAnimation = "weapon_tank_idle";
-        projectileSprite = "weapons 1";
-        projectileSpriteIndex = 7;
-        projectileSpeed = 20;
-        projectileAnimation = "projectile_pistol";
         gravityScale = 0.1f;
         attackCooldown = 1;
-        _projectileExplosion = "explosion";
     }
 }

@@ -11,12 +11,9 @@ namespace Assets.Scripts.Weapons
         {
             _damage = 5;
             _idleAnimation = "weapon_pistol_idle";
-            projectileSprite = "weapons 1";
-            projectileSpriteIndex = 7;
-            projectileSpeed = 20;
-            projectileAnimation = "projectile_pistol";
             gravityScale = 0.5f;
             attackCooldown = 0.2f;
+            knockback = 30;
         }
     }
 }

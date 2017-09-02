@@ -18,25 +18,13 @@ namespace Assets.Scripts
 
         public GameObject projectilePrefab;
 
-        public virtual void Attack(GameObject parent, Vector3 direction)
+        public virtual void Attack(GameObject parent, Vector3 attackDirection)
         {
-            if (canAttack())
+            if (!canAttack())
             {
-                Debug.Log("Regular weapon");
-                lastAttack = Time.time;
-
-                RaycastHit2D[] targets = Physics2D.CircleCastAll(parent.transform.position, _swingRadius, direction, _swingLength);
-                Debug.Log(targets.Length);
-                foreach (RaycastHit2D target in targets)
-                {
-                    if (target.transform.CompareTag("Enemy"))
-                    {
-                        Debug.Log("Hit: " + target.transform.gameObject.name);
-                        target.transform.gameObject.GetComponent<EnemySimpleBehaviour>().takeDamage(damage);
-                    }
-                    
-                }
+                return;
             }
+            doAttack(parent, attackDirection);
         }
 
         protected bool canAttack()
@@ -44,9 +32,22 @@ namespace Assets.Scripts
             return (Time.time - lastAttack) > attackCooldown;
         }
 
-        public GameObject getProjectile(Transform parentTransform)
+        protected virtual void doAttack(GameObject parent, Vector3 direction)
         {
-            return Instantiate(projectilePrefab, parentTransform.position, Quaternion.identity);
+            Debug.Log("Regular weapon");
+            lastAttack = Time.time;
+
+            RaycastHit2D[] targets = Physics2D.CircleCastAll(parent.transform.position, _swingRadius, direction, _swingLength);
+            Debug.Log(targets.Length);
+            foreach (RaycastHit2D target in targets)
+            {
+                if (target.transform.CompareTag("Enemy"))
+                {
+                    Debug.Log("Hit: " + target.transform.gameObject.name);
+                    target.transform.gameObject.GetComponent<EnemySimpleBehaviour>().takeDamage(damage);
+                }
+
+            }
         }
 
         public int damage

@@ -33,17 +33,14 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     // Update is called once per frame
     void Update()
     {
+        if (isInKnockback)
+        {
+            return;
+        }
         float targetDistance = getDistanceTo(target.transform.position);
         if (targetDistance < range)
         {
-            float timeFromLastAttack = Time.time - attackTime;
-            if (timeFromLastAttack > coolDown)
-            {
-                Debug.Log("attacked player");
-                this.attackTime = Time.time;
-                Attack(target, damage);
-                amps_sound.Play();
-            }
+            doAttack();
         }
         else if (targetDistance < aggroDistance)
         {
@@ -51,6 +48,18 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             moveTowards(target);
         }
     }
+    private void doAttack()
+    {
+        float timeFromLastAttack = Time.time - attackTime;
+        if(timeFromLastAttack <= coolDown) {
+            return;
+        }
+        //Debug.Log("attacked player");
+        this.attackTime = Time.time;
+        Attack(target, damage);
+        amps_sound.Play();
+    }
+
 
     private void moveTowards(GameObject target)
     {

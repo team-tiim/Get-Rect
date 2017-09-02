@@ -8,43 +8,46 @@ namespace Assets.Scripts.Weapons
 {
     public class ProjectileWeapon : Weapon
     {
-        protected string projectileAnimation;
-        protected float projectileSpeed;
+        protected float knockback;
         protected float gravityScale;
-        protected Vector2 projectileSize;
-        protected string projectileSprite;
-        protected int projectileSpriteIndex;
-        protected string _projectileExplosion = "tiny_explosion";
+        protected GameObject projectilePrefab;
+        protected int projectileSpeed;
 
-
-        public override void Attack(GameObject parent, Vector3 direction)
+        // Use this for initialization
+        void Start()
         {
-            if (canAttack())
+            GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            projectilePrefab = gc.basicBulletPrefab;
+        }
+
+
+        protected override void doAttack(GameObject parent, Vector3 attackDirection)
+        {
+            spawnPojectile(parent, attackDirection);
+            doKnockback(attackDirection);
+        }
+
+        private void spawnPojectile(GameObject parent, Vector3 attackDirection)
+        {
+            lastAttack = Time.time;
+
+            Projectile p = Instantiate(projectilePrefab, parent.transform.position, Quaternion.identity).GetComponent<Projectile>();
+            p.SetVariables(parent, this, attackDirection);
+
+            if(projectileSpeed > 0)
             {
-                //Debug.Log("Projectile attack");
-                //Debug.Log(projectileSpeed);
-                lastAttack = Time.time;
-                GameObject projectile = GameObject.FindGameObjectWithTag("GameController").GetComponent<Weapon>().getProjectile(parent.transform);
-
-                Sprite[] resources = Resources.LoadAll<Sprite>(projectileSprite);
-                projectile.GetComponent<SpriteRenderer>().sprite = resources[projectileSpriteIndex];
-
-                projectile.name = "Bullet";
-                ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-                projectileController.origin = parent;
-                projectileController.weapon = this;
-
-                projectile.GetComponent<Animator>().Play(projectileAnimation);
-
-                Rigidbody2D projectileBody = projectile.GetComponent<Rigidbody2D>();
-                projectileBody.gravityScale = gravityScale;
-                projectileBody.AddForce(direction.normalized * projectileSpeed, ForceMode2D.Impulse);
+                p.Speed = projectileSpeed;
             }
+
         }
 
-        public string projectileExplosion
+        private void doKnockback(Vector3 attackDirection)
         {
-            get { return _projectileExplosion; }
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            PlayerController pc = player.GetComponent<PlayerController>();
+            //player.GetComponent<Rigidbody2D>().AddForce(-attackDirection.normalized * knockback, ForceMode2D.Impulse);
+            pc.doKnockback(-attackDirection.normalized * knockback);
         }
+
     }
 }

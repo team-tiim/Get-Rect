@@ -13,6 +13,9 @@ public class PlayerController : CharacterBehaviourBase
 	public AudioSource[] sounds;
 	public AudioSource bgm;
 
+    public Boolean isInKnocback;
+    public Vector3 knockbackDirection;
+
     protected GameObject rightHand;
     protected GameObject leftHand;
 
@@ -163,14 +166,16 @@ public class PlayerController : CharacterBehaviourBase
             
             Attack(direction);
         }
-
-
-
+        if (isInKnockback)
+        {
+            return;
+        }
 
         Vector2 movement = new Vector2(moveHorizontal, rb2d.velocity.y);
 
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb2d.velocity = movement;
+        //knockbackDirection = null;
         updateAnimation(moveHorizontal);
     }
 

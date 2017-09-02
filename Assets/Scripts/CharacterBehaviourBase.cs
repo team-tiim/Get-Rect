@@ -19,6 +19,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected Color origColor;
 
+    protected bool isInKnockback;
+
     // Use this for initialization
     protected void Start () {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
@@ -67,7 +69,12 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected void Attack(GameObject target, int damage)
     {
         this.animator.SetTrigger("doAttack");
-        target.GetComponent<CharacterBehaviourBase>().takeDamage(damage);
+
+        CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
+        cbb.takeDamage(damage);
+        Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
+        Debug.Log(knockBackDir);
+        cbb.doKnockback(knockBackDir * 20);
     }
 
     public void takeDamage(int damage)
@@ -94,5 +101,17 @@ public class CharacterBehaviourBase : MonoBehaviour {
     public virtual void selectWeapon(Weapon weapon)
     {
         this.selectedWeapon = weapon;
+    }
+
+    public virtual void doKnockback(Vector3 direction)
+    {
+        isInKnockback = true;
+        rb2d.AddForce(direction, ForceMode2D.Impulse);
+        Invoke("setKnockbackFalse", 1);
+    }
+
+    private void setKnockbackFalse()
+    {
+        isInKnockback = false;
     }
 }

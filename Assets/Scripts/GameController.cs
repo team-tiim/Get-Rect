@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public GameObject explosion;
+    public GameObject basicBulletPrefab;
+    public GameObject handBulletPrefab;
 
     public Text timerText;
     public Text healthText;

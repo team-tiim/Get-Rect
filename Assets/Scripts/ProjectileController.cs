@@ -35,7 +35,7 @@ public class ProjectileController : MonoBehaviour
         if (!col.gameObject.tag.Equals(origin.tag))
         {
             GameObject controller = GameObject.Find("GameControllers");
-            controller.GetComponent<GameController>().doExplosion(this.transform.position, weapon.projectileExplosion);
+            //controller.GetComponent<GameController>().doExplosion(this.transform.position, weapon.projectileExplosion);
             Destroy(gameObject);
         }
         
