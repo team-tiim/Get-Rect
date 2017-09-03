@@ -3027,6 +3027,21 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 61378016920642660, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 61378016920642660, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 61378016920642660, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2f8e2c085d34a8b44bc10b5ee00309f5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbfd8ada7a9d48e4b993e2a99ec9ec11, type: 2}
   m_IsPrefabParent: 0
