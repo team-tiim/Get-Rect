@@ -15,6 +15,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected GameObject selectedWeapon;
     protected AudioSource jumpsound;
     protected bool flipped;
+	// add health bar
 
     protected Color origColor;
     protected GameObject origWeapon;
