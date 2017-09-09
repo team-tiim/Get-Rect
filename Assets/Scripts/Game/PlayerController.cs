@@ -21,7 +21,8 @@ public class PlayerController : CharacterBehaviourBase
 
     private  Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
 
-    PlayerController()
+    //Called before Start, use as constructor
+    private void Awake()
     {
         keyActionMap.Add(KeyCode.Space, () => DoJump());
         keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
@@ -35,7 +36,6 @@ public class PlayerController : CharacterBehaviourBase
         keyActionMap.Add(KeyCode.Alpha6, () => SelectWeapon(gameObject.AddComponent<Tank>()));
         keyActionMap.Add(KeyCode.Alpha7, () => SelectWeapon(gameObject.AddComponent<Holyhand>()));
     }
-
 
     // Use this for initialization
     protected new void Start()
@@ -91,7 +91,15 @@ public class PlayerController : CharacterBehaviourBase
         {
             return;
         }
-
+        /*
+        Debug.Log(IsGrounded());
+        float yvel = 0;
+         if (!IsGrounded())
+        {
+        yvel = rb2d.velocity.y + Physics.gravity.y * Time.deltaTime;
+         }
+        */
+        
         Vector2 movement = new Vector2(moveHorizontal, rb2d.velocity.y);
 
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
@@ -99,7 +107,6 @@ public class PlayerController : CharacterBehaviourBase
         //knockbackDirection = null;
         UpdateAnimation(moveHorizontal);
     }
-
 
     protected override void OnDeath()
     {
