@@ -1,6 +1,4 @@
-﻿using Assets.Scripts;
-using Assets.Scripts.Weapons;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class PlayerController : CharacterBehaviourBase
 
 {
+    public GameObject[] weaponPrefabs;
+    public GameObject[] weapons;
+
     public GameObject closestPlatform;
 	public AudioSource[] sounds;
 	public AudioSource bgm;
@@ -24,17 +25,22 @@ public class PlayerController : CharacterBehaviourBase
     //Called before Start, use as constructor
     private void Awake()
     {
+        weapons = new GameObject[weaponPrefabs.Length];
+        for (int i = 0; i < weaponPrefabs.Length; ++i)
+        {
+            weapons[i] = Instantiate(weaponPrefabs[i]);
+        }
         keyActionMap.Add(KeyCode.Space, () => DoJump());
         keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
         keyActionMap.Add(KeyCode.M, () => DoPause());
         //weapons
-        keyActionMap.Add(KeyCode.Alpha1, () => SelectWeapon(gameObject.AddComponent<Knife>()));
-        keyActionMap.Add(KeyCode.Alpha2, () => SelectWeapon(gameObject.AddComponent<Fish>()));
-        keyActionMap.Add(KeyCode.Alpha3, () => SelectWeapon(gameObject.AddComponent<Pistol>()));
-        keyActionMap.Add(KeyCode.Alpha4, () => SelectWeapon(gameObject.AddComponent<Uzi>()));
-        keyActionMap.Add(KeyCode.Alpha5, () => SelectWeapon(gameObject.AddComponent<Catapult>()));
-        keyActionMap.Add(KeyCode.Alpha6, () => SelectWeapon(gameObject.AddComponent<Tank>()));
-        keyActionMap.Add(KeyCode.Alpha7, () => SelectWeapon(gameObject.AddComponent<Holyhand>()));
+        keyActionMap.Add(KeyCode.Alpha1, () => SelectWeapon(weapons[0]));
+        keyActionMap.Add(KeyCode.Alpha2, () => SelectWeapon(weapons[1]));
+        keyActionMap.Add(KeyCode.Alpha3, () => SelectWeapon(weapons[2]));
+        keyActionMap.Add(KeyCode.Alpha4, () => SelectWeapon(weapons[3]));
+        keyActionMap.Add(KeyCode.Alpha5, () => SelectWeapon(weapons[4]));
+        keyActionMap.Add(KeyCode.Alpha6, () => SelectWeapon(weapons[5]));
+        keyActionMap.Add(KeyCode.Alpha7, () => SelectWeapon(weapons[6]));
     }
 
     // Use this for initialization
@@ -44,7 +50,8 @@ public class PlayerController : CharacterBehaviourBase
         this.rightHand = gameObject.transform.GetChild(0).gameObject;
         this.leftHand = gameObject.transform.GetChild(1).gameObject;
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        SelectWeapon(gameObject.AddComponent<Pistol>());
+        origWeapon = weapons[2];
+        SelectWeapon(origWeapon);
 		jumpsound = sounds [0];
 		bgm = sounds [1];         
     }
@@ -170,11 +177,11 @@ public class PlayerController : CharacterBehaviourBase
         Attack(direction);
     }
 
-    public override void SelectWeapon(Weapon weapon)
+    public override void SelectWeapon(GameObject weapon)
     {
         base.SelectWeapon(weapon);
-
-        this.rightHand.GetComponent<Animator>().Play(selectedWeapon.IdleAnimation);
-        this.leftHand.GetComponent<Animator>().Play(selectedWeapon.IdleAnimation);
+        Weapon w = selectedWeapon.GetComponent<Weapon>();
+        this.rightHand.GetComponent<Animator>().Play(w.IdleAnimation);
+        this.leftHand.GetComponent<Animator>().Play(w.IdleAnimation);
     }
 }

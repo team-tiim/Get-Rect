@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4252738931442802}
   - component: {fileID: 212422738846019076}
-  - component: {fileID: 114054818218483740}
+  - component: {fileID: 114902504933059558}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114054818218483740
+--- !u!114 &114902504933059558
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,9 +49,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1355355090618460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba2f009079db5f44b85a5e263fa70371, type: 3}
+  m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  attackCooldown: 0.2
+  knockback: 30
+  idleAnimation: weapon_pistol_idle
+  gravityScale: 0
+  projectilePrefab: {fileID: 1408287409527776, guid: 1d67c465e90f6974f91b184dfc45bf37,
+    type: 2}
 --- !u!212 &212422738846019076
 SpriteRenderer:
   m_ObjectHideFlags: 1

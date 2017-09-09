@@ -4,41 +4,43 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts
+
+public abstract class Weapon : MonoBehaviour
 {
-    public abstract class Weapon : MonoBehaviour
+    public int damage = 1;
+    public float attackCooldown = 1;
+    public float knockback;
+    public string idleAnimation;
+    private float lastAttack = -1;
+
+    private TimedWeaponBehaviour timedBehaviour;
+
+    public virtual void Attack(GameObject parent, Vector3 attackDirection)
     {
-        protected int damage;
-        protected float knockback;
-        protected int cooldown;
-        protected string idleAnimation;
-        protected float attackCooldown = 1;
-        protected float lastAttack;
-
-        public virtual void Attack(GameObject parent, Vector3 attackDirection)
+        if (!CanAttack())
         {
-            if (!CanAttack())
-            {
-                return;
-            }
-            DoAttack(parent, attackDirection);
+            return;
         }
-
-        private bool CanAttack()
-        {
-            return (Time.time - lastAttack) > attackCooldown;
-        }
-
-        protected abstract void DoAttack(GameObject parent, Vector3 direction);
-
-        public int Damage
-        {
-            get { return damage; }
-        }
-
-        public string IdleAnimation
-        {
-            get { return idleAnimation; }
-        }
+        lastAttack = Time.time;
+        DoAttack(parent, attackDirection);
     }
+
+    private bool CanAttack()
+    {
+        return lastAttack == -1 || (Time.time - lastAttack) > attackCooldown;
+    }
+
+    protected abstract void DoAttack(GameObject parent, Vector3 direction);
+
+    public int Damage
+    {
+        get { return damage; }
+    }
+
+    public string IdleAnimation
+    {
+        get { return idleAnimation; }
+    }
+
 }
+

@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +12,12 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected SpriteRenderer spriteRenderer;
     protected Vector3 size;
     protected Animator animator;
-    protected Weapon selectedWeapon;
+    protected GameObject selectedWeapon;
     protected AudioSource jumpsound;
     protected bool flipped;
 
     protected Color origColor;
+    protected GameObject origWeapon;
 
     protected bool isInKnockback;
 
@@ -63,7 +63,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected void Attack(Vector3 direction)
     {
-        this.selectedWeapon.Attack(gameObject, direction);
+        Debug.Log(this.selectedWeapon.GetComponent<Weapon>());
+        this.selectedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
     }
 
     protected void Attack(GameObject target, int damage)
@@ -73,7 +74,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
         cbb.TakeDamage(damage);
         Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
-        Debug.Log(knockBackDir);
+        //Debug.Log(knockBackDir);
         cbb.DoKnockback(knockBackDir * 20);
     }
 
@@ -98,9 +99,14 @@ public class CharacterBehaviourBase : MonoBehaviour {
         this.hp -= damage;
     }
 
-    public virtual void SelectWeapon(Weapon weapon)
+    public virtual void SelectWeapon(GameObject weapon)
     {
         this.selectedWeapon = weapon;
+    }
+
+    public void ResetWeapon()
+    {
+        SelectWeapon(origWeapon);
     }
 
     public virtual void DoKnockback(Vector3 direction)

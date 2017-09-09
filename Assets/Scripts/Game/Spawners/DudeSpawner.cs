@@ -22,12 +22,6 @@ public class DudeSpawner : MonoBehaviour {
             GameObject newDude = Instantiate(prefabs[arrayIdx]);
             newDude.name = name;
             newDude.transform.position = this.transform.position;
-
-            Powerup powerup = newDude.GetComponent<Powerup>();
-            if (powerup != null)
-            {
-                powerup.spawner = this;
-            }
         }
     }
 }
