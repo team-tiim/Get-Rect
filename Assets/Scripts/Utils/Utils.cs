@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utils {
+public static class Utils {
 
     public static IEnumerator ChangeColor(SpriteRenderer renderer, Color origColor)
     {
@@ -15,5 +15,19 @@ public class Utils {
     public static bool IsNullOrEmpty(Array array)
     {
         return (array == null || array.Length == 0);
+    }
+
+    public static List<GameObject> FindChildObjects(this GameObject parent, string tag)
+    {
+        Component[] cs = parent.GetComponentsInChildren(typeof(Transform), true);
+        List<GameObject> result = new List<GameObject>();
+        foreach (Component c in cs)
+        {
+            if (c.CompareTag(tag))
+            {
+                result.Add(c.gameObject);
+            }
+        }
+        return result;
     }
 }
