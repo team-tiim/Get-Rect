@@ -12,13 +12,13 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected SpriteRenderer spriteRenderer;
     protected Vector3 size;
     protected Animator animator;
-    protected GameObject selectedWeapon;
     protected AudioSource jumpsound;
     protected bool flipped;
-	// add health bar
+    // add health bar
 
+    protected GameObject equippedWeapon;
     protected Color origColor;
-    protected GameObject origWeapon;
+    public GameObject origWeapon;
 
     protected bool isInKnockback;
 
@@ -64,8 +64,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected void Attack(Vector3 direction)
     {
-        Debug.Log(this.selectedWeapon.GetComponent<Weapon>());
-        this.selectedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
+        Debug.Log(this.equippedWeapon.GetComponent<Weapon>());
+        this.equippedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
     }
 
     protected void Attack(GameObject target, int damage)
@@ -100,14 +100,14 @@ public class CharacterBehaviourBase : MonoBehaviour {
         this.hp -= damage;
     }
 
-    public virtual void SelectWeapon(GameObject weapon)
+    public virtual void EquipWeapon(GameObject weapon)
     {
-        this.selectedWeapon = weapon;
+        this.equippedWeapon = weapon;
     }
 
     public void ResetWeapon()
     {
-        SelectWeapon(origWeapon);
+        EquipWeapon(origWeapon);
     }
 
     public virtual void DoKnockback(Vector3 direction)

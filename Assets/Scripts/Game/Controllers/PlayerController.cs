@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class PlayerController : CharacterBehaviourBase
 
 {
-    public GameObject[] weaponPrefabs;
-    public GameObject[] weapons;
 
     public GameObject closestPlatform;
 	public AudioSource[] sounds;
@@ -25,22 +23,8 @@ public class PlayerController : CharacterBehaviourBase
     //Called before Start, use as constructor
     private void Awake()
     {
-        weapons = new GameObject[weaponPrefabs.Length];
-        for (int i = 0; i < weaponPrefabs.Length; ++i)
-        {
-            weapons[i] = Instantiate(weaponPrefabs[i]);
-        }
         keyActionMap.Add(KeyCode.Space, () => DoJump());
         keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
-        keyActionMap.Add(KeyCode.M, () => DoPause());
-        //weapons
-        keyActionMap.Add(KeyCode.Alpha1, () => SelectWeapon(weapons[0]));
-        keyActionMap.Add(KeyCode.Alpha2, () => SelectWeapon(weapons[1]));
-        keyActionMap.Add(KeyCode.Alpha3, () => SelectWeapon(weapons[2]));
-        keyActionMap.Add(KeyCode.Alpha4, () => SelectWeapon(weapons[3]));
-        keyActionMap.Add(KeyCode.Alpha5, () => SelectWeapon(weapons[4]));
-        keyActionMap.Add(KeyCode.Alpha6, () => SelectWeapon(weapons[5]));
-        keyActionMap.Add(KeyCode.Alpha7, () => SelectWeapon(weapons[6]));
     }
 
     // Use this for initialization
@@ -50,8 +34,8 @@ public class PlayerController : CharacterBehaviourBase
         this.rightHand = gameObject.transform.GetChild(0).gameObject;
         this.leftHand = gameObject.transform.GetChild(1).gameObject;
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        origWeapon = weapons[2];
-        SelectWeapon(origWeapon);
+        origWeapon = Instantiate(origWeapon);
+        EquipWeapon(origWeapon);
 		jumpsound = sounds [0];
 		bgm = sounds [1];         
     }
@@ -64,11 +48,6 @@ public class PlayerController : CharacterBehaviourBase
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            ExitGame();
-        }
-
         if (this.hp <= 0)
         {
             return;
@@ -126,25 +105,6 @@ public class PlayerController : CharacterBehaviourBase
         StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
 
-    private void ExitGame()
-    {
-        Debug.Log("exitGame");
-        SceneManager.LoadScene("menu");
-    }
-
-    private void DoPause()
-    {
-        //TODO see peaks mängu pausima mitte mingi audio klipi?
-        if (bgm.isPlaying)
-        {
-            bgm.Pause();
-        }
-        else
-        {
-            bgm.UnPause();
-        }
-    }
-
     private void DoJump()
     {
         if (!IsGrounded())
@@ -177,10 +137,10 @@ public class PlayerController : CharacterBehaviourBase
         Attack(direction);
     }
 
-    public override void SelectWeapon(GameObject weapon)
+    public override void EquipWeapon(GameObject weapon)
     {
-        base.SelectWeapon(weapon);
-        Weapon w = selectedWeapon.GetComponent<Weapon>();
+        base.EquipWeapon(weapon);
+        Weapon w = equippedWeapon.GetComponent<Weapon>();
         this.rightHand.GetComponent<Animator>().Play(w.IdleAnimation);
         this.leftHand.GetComponent<Animator>().Play(w.IdleAnimation);
     }
