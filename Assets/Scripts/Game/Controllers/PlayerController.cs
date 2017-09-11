@@ -33,6 +33,7 @@ public class PlayerController : CharacterBehaviourBase
         base.Start();
         this.rightHand = gameObject.transform.GetChild(0).gameObject;
         this.leftHand = gameObject.transform.GetChild(1).gameObject;
+        this.armor = new Armor();
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         origWeapon = Instantiate(origWeapon);
         EquipWeapon(origWeapon);
