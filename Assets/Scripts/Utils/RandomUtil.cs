@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomUtil {
+public static class RandomUtil {
 
     public static int GetRandom(int max)
     {
