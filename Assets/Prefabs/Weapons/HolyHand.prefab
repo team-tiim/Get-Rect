@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4573105383371948}
   - component: {fileID: 212980172421373448}
-  - component: {fileID: 114232600659954270}
   m_Layer: 0
   m_Name: HolyHand
   m_TagString: Untagged
@@ -41,24 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114232600659954270
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1707724375543302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 15
-  attackCooldown: 0.2
-  knockback: 0
-  idleAnimation: weapon_holyhand_idle
-  gravityScale: 0.1
-  projectilePrefab: {fileID: 1793797247199408, guid: 7e9643478a45c0745882b6e02ea4237a,
-    type: 2}
 --- !u!212 &212980172421373448
 SpriteRenderer:
   m_ObjectHideFlags: 1
