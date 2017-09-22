@@ -19,6 +19,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected GameObject equippedWeapon;
     protected Color origColor;
     public GameObject origWeapon;
+    public Armor armor;
 
     protected bool isInKnockback;
 
@@ -97,12 +98,31 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected virtual void OnDamage(int damage)
     {
-        this.hp -= damage;
+        int hpDamage = armor == null ? damage : (int)(damage * armor.BlockPercentage);
+        this.hp -= hpDamage;
+        if (this.armor != null)
+        {
+            this.armor.Decrease(damage - hpDamage);
+            Debug.Log(this.armor.Value);
+        }
     }
 
     public virtual void EquipWeapon(GameObject weapon)
     {
         this.equippedWeapon = weapon;
+    }
+
+    public virtual void EquipArmor(Armor armor)
+    {
+        if(this.armor == null)
+        {
+            this.armor = armor;
+        }
+        else
+        {
+            this.armor.Increase(armor.Value);
+        }
+
     }
 
     public void ResetWeapon()
