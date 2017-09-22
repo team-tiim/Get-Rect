@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : CharacterBehaviourBase
@@ -12,6 +13,7 @@ public class PlayerController : CharacterBehaviourBase
     public GameObject closestPlatform;
 	public AudioSource[] sounds;
 	public AudioSource bgm;
+	public Slider healthslider;
 
     public Boolean isInKnocback;
     public Vector3 knockbackDirection;
@@ -51,6 +53,7 @@ public class PlayerController : CharacterBehaviourBase
 
 	void Update ()
 	{
+		healthslider.value = hp;
 
 	}
 
