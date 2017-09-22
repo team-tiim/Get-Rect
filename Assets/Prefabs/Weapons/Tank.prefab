@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4116342026616242}
   - component: {fileID: 212892499169398158}
-  - component: {fileID: 114813552187108664}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -41,23 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114813552187108664
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783873506928370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 100
-  attackCooldown: 1
-  knockback: 0
-  idleAnimation: weapon_tank_idle
-  gravityScale: 0.1
-  projectilePrefab: {fileID: 0}
 --- !u!212 &212892499169398158
 SpriteRenderer:
   m_ObjectHideFlags: 1
