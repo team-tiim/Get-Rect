@@ -18,6 +18,7 @@ public class InteractableWeaponCrate : BaseInteractable {
     }
     // Use this for initialization
     void Start () {
+
     }
 
 
@@ -30,7 +31,7 @@ public class InteractableWeaponCrate : BaseInteractable {
     {
         PlayerController player = other.GetComponent<PlayerController>();
         other.gameObject.AddComponent<TimedWeaponBehaviour>().duration = spawner.spawnTick;
-        GameObject go = Instantiate(RandomUtil.GetRandomFromArray(weaponPrefabs));
+        GameObject go = RandomUtil.GetRandomFromArray(weaponPrefabs);
         player.EquipWeapon(go);
     }
 }

@@ -89,6 +89,6 @@ public class DeveloperController : MonoBehaviour {
 
     private void EquipWeapon(GameObject weapon)
     {
-        player.EquipWeapon(Instantiate(weapon));
+        player.EquipWeapon(weapon);
     }
 }

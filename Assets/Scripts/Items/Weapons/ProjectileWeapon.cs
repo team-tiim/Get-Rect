@@ -9,6 +9,7 @@ public class ProjectileWeapon : Weapon
 {
     public float gravityScale;
     public GameObject projectilePrefab;
+    public Transform projectileSpawnPoint;
 
     // Use this for initialization
     void Start()
@@ -18,21 +19,26 @@ public class ProjectileWeapon : Weapon
         {
             projectilePrefab = gc.basicBulletPrefab;
         }
+        projectileSpawnPoint = transform.Find("projectileSpawnPoint");
+        if(projectileSpawnPoint == null)
+        {
+            projectileSpawnPoint = this.transform;
+        }
     }
 
 
     protected override void DoAttack(GameObject parent, Vector3 attackDirection)
     {
         Debug.Log("Projectile weapon attack");
-        SpawnPojectile(parent, attackDirection);
+        SpawnPojectile(attackDirection);
         DoKnockback(attackDirection);
     }
 
-    private void SpawnPojectile(GameObject parent, Vector3 attackDirection)
+    private void SpawnPojectile(Vector3 attackDirection)
     {
         Debug.Log("Spawning projectile " );
-        Projectile p = Instantiate(projectilePrefab, parent.transform.position, Quaternion.identity).GetComponent<Projectile>();
-        p.SetVariables(parent, this, attackDirection);
+        Projectile p = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
+        p.SetVariables(this, attackDirection);
     }
 
     private void DoKnockback(Vector3 attackDirection)
