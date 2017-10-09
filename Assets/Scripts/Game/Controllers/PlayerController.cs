@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : CharacterBehaviourBase
@@ -10,6 +11,7 @@ public class PlayerController : CharacterBehaviourBase
     public GameObject closestPlatform;
 	public AudioSource[] sounds;
 	public AudioSource bgm;
+	public Slider healthslider;
 
     public Boolean isInKnocback;
     public Vector3 knockbackDirection;
@@ -25,18 +27,22 @@ public class PlayerController : CharacterBehaviourBase
     //Called before Start, use as constructor
     private void Awake()
     {
+
         leftHandPoint = transform.Find("leftHandPoint");
         rightHandPoint = transform.Find("rightHandPoint");
         keyActionMap.Add(KeyCode.Space, () => DoJump());
         keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
+
     }
 
     // Use this for initialization
     protected new void Start()
     {
         base.Start();
+
         this.armor = new Armor();
         //Get and store a reference to the Rigidbody2D component so that we can access it.
+
         EquipWeapon(origWeapon);
 		jumpsound = sounds [0];
 		bgm = sounds [1];         
@@ -44,12 +50,14 @@ public class PlayerController : CharacterBehaviourBase
 
 	void Update ()
 	{
+		healthslider.value = hp;
 
 	}
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
+
         if (this.hp <= 0)
         {
             return;
@@ -107,6 +115,7 @@ public class PlayerController : CharacterBehaviourBase
         StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
 
+
     private void DoJump()
     {
         if (!IsGrounded())
@@ -136,10 +145,13 @@ public class PlayerController : CharacterBehaviourBase
             rightWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
         }
 
+
     }
+
 
     public override void EquipWeapon(GameObject weapon)
     {
+
         Destroy(leftWeapon);
         Destroy(rightWeapon);
         leftWeapon = GetWeaponInHand(weapon, transform.Find("leftHandPoint"), true);
