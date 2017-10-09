@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4047803940497848}
   - component: {fileID: 212661065425943358}
+  - component: {fileID: 114923587240634578}
   m_Layer: 0
   m_Name: Uzi
   m_TagString: Untagged
@@ -40,6 +41,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114923587240634578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300821910741698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackCooldown: 0.001
+  knockback: 0
+  idleAnimation: weapon_uzi_idle
+  gravityScale: 0
+  projectilePrefab: {fileID: 0}
 --- !u!212 &212661065425943358
 SpriteRenderer:
   m_ObjectHideFlags: 1

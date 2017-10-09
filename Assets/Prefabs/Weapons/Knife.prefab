@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4521899306534496}
   - component: {fileID: 212376355647633816}
+  - component: {fileID: 114145624784413306}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -40,6 +41,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114145624784413306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283563857669248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07cc71dfb491014494a1fdc489b9695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  attackCooldown: 0.5
+  knockback: 0
+  idleAnimation: weapon_sword_idle
+  swingLength: 1.2
+  swingRadius: 0.2
 --- !u!212 &212376355647633816
 SpriteRenderer:
   m_ObjectHideFlags: 1
