@@ -22,11 +22,8 @@ public class InteractableArmor : BaseInteractable {
 
     private void AddArmor(Collider2D other)
     {
-        Armor a = new Armor(2/3, 100);
-    
+        Armor a = new Armor(2/3, 100);    
         PlayerController player = other.GetComponent<PlayerController>();
-        other.gameObject.AddComponent<TimedWeaponBehaviour>().duration = spawner.spawnTick;
-        GameObject go = Instantiate(RandomUtil.GetRandomFromArray(weaponPrefabs));
-        player.EquipWeapon(go);
+        player.EquipArmor(a);
     }
 }

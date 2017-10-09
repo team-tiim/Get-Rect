@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        if (!isEnabled)
+        if (!isEnabled || !gameObject.activeSelf)
         {
             return;
         }

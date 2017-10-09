@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : CharacterBehaviourBase
-
 {
 
     public GameObject closestPlatform;
@@ -15,14 +14,19 @@ public class PlayerController : CharacterBehaviourBase
     public Boolean isInKnocback;
     public Vector3 knockbackDirection;
 
-    protected GameObject rightHand;
-    protected GameObject leftHand;
+    private GameObject leftWeapon;
+    private GameObject rightWeapon;
+
+    private Transform leftHandPoint;
+    private Transform rightHandPoint;
 
     private  Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
 
     //Called before Start, use as constructor
     private void Awake()
     {
+        leftHandPoint = transform.Find("leftHandPoint");
+        rightHandPoint = transform.Find("rightHandPoint");
         keyActionMap.Add(KeyCode.Space, () => DoJump());
         keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
     }
@@ -31,11 +35,8 @@ public class PlayerController : CharacterBehaviourBase
     protected new void Start()
     {
         base.Start();
-        this.rightHand = gameObject.transform.GetChild(0).gameObject;
-        this.leftHand = gameObject.transform.GetChild(1).gameObject;
         this.armor = new Armor();
         //Get and store a reference to the Rigidbody2D component so that we can access it.
-        origWeapon = Instantiate(origWeapon);
         EquipWeapon(origWeapon);
 		jumpsound = sounds [0];
 		bgm = sounds [1];         
@@ -128,21 +129,32 @@ public class PlayerController : CharacterBehaviourBase
         Vector3 direction = pz - transform.position;
         if (direction.x > 0 && flipped || direction.x <= 0 && !flipped)
         {
-            this.leftHand.GetComponent<Animator>().SetTrigger("Attack");
+            leftWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
         }
         else
         {
-            this.rightHand.GetComponent<Animator>().SetTrigger("Attack");
+            rightWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
         }
 
-        Attack(direction);
     }
 
     public override void EquipWeapon(GameObject weapon)
     {
-        base.EquipWeapon(weapon);
-        Weapon w = equippedWeapon.GetComponent<Weapon>();
-        this.rightHand.GetComponent<Animator>().Play(w.IdleAnimation);
-        this.leftHand.GetComponent<Animator>().Play(w.IdleAnimation);
+        Destroy(leftWeapon);
+        Destroy(rightWeapon);
+        leftWeapon = GetWeaponInHand(weapon, transform.Find("leftHandPoint"), true);
+        rightWeapon = GetWeaponInHand(weapon, transform.Find("rightHandPoint"), false);
+    }
+
+    private GameObject GetWeaponInHand(GameObject weapon, Transform handPoint, bool flip)
+    {
+        GameObject res = Instantiate(weapon);
+        int offset = flip ? 1 : -1;
+        Transform weaponHandP = weapon.transform.Find("handPoint");
+        Vector3 position = new Vector3(handPoint.position.x + weaponHandP.localPosition.x * offset, handPoint.position.y - weaponHandP.localPosition.y);
+        res.transform.position = position;
+        res.transform.rotation = handPoint.rotation;
+        res.transform.parent = transform;
+        return res;
     }
 }

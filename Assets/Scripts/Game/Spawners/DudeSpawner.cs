@@ -16,7 +16,7 @@ public class DudeSpawner : MonoBehaviour {
 
     public void MakeDude()
     {
-        if (isEnabled)
+        if (isEnabled && gameObject.activeSelf)
         {
             int arrayIdx = Random.Range(0, prefabs.Length);
             GameObject newDude = Instantiate(prefabs[arrayIdx]);

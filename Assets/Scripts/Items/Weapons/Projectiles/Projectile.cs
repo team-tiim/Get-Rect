@@ -14,7 +14,6 @@ public class Projectile : MonoBehaviour {
     protected Vector2 size;
 
     protected Rigidbody2D rb2d;
-    protected GameObject origin;
     protected ProjectileWeapon weapon;
     protected Vector3 moveDirection;
 
@@ -37,10 +36,9 @@ public class Projectile : MonoBehaviour {
 		
 	}
 
-    public void SetVariables(GameObject origin, ProjectileWeapon weapon, Vector3 moveDirection)
+    public void SetVariables(ProjectileWeapon weapon, Vector3 moveDirection)
     {
-        //Debug.Log("projectile spawn");
-        this.origin = origin;
+        Debug.Log("projectile spawn");
         this.weapon = weapon;
         this.moveDirection = moveDirection;
     }
@@ -57,13 +55,9 @@ public class Projectile : MonoBehaviour {
             //destroy the projectile that just caused the trigger collision
             Destroy(gameObject);
         }
-        if (!col.gameObject.tag.Equals(origin.tag))
-        {
-            GameObject controller = GameObject.Find("GameControllers");
-            controller.GetComponent<GameController>().doExplosion(this.transform.position, explosionName);
-            Destroy(gameObject);
-        }
-
+        GameObject controller = GameObject.Find("GameControllers");
+        controller.GetComponent<GameController>().doExplosion(this.transform.position, explosionName);
+        Destroy(gameObject);
     }
 
     public float Speed
