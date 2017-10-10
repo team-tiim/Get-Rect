@@ -21,18 +21,18 @@ public class PlayerController : CharacterBehaviourBase
 
     private Transform leftHandPoint;
     private Transform rightHandPoint;
+    private Transform handMovementPath;
 
     private  Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
 
     //Called before Start, use as constructor
     private void Awake()
     {
-
         leftHandPoint = transform.Find("leftHandPoint");
         rightHandPoint = transform.Find("rightHandPoint");
+        handMovementPath = transform.Find("handMovementPath");
         keyActionMap.Add(KeyCode.Space, () => DoJump());
         keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
-
     }
 
     // Use this for initialization
@@ -50,7 +50,7 @@ public class PlayerController : CharacterBehaviourBase
 
 	void Update ()
 	{
-		healthslider.value = hp;
+		//healthslider.value = hp;
 
 	}
 
@@ -62,6 +62,8 @@ public class PlayerController : CharacterBehaviourBase
         {
             return;
         }
+
+        MoveWeapon();
 
         animator.SetBool("isGrounded", IsGrounded());
         float moveHorizontal = 0;
@@ -148,25 +150,62 @@ public class PlayerController : CharacterBehaviourBase
 
     }
 
+    private void MoveWeapon()
+    {
+        CircleCollider2D col = handMovementPath.GetComponent<CircleCollider2D>();
+        Vector3 center = col.transform.position;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 centerToMouse = mousePos - center;
+        centerToMouse.z = 0;
+
+        //Vector3 closestPoint = col.bounds.ClosestPoint(shoulderToMouseDir);
+        float distance = centerToMouse.magnitude;
+        Vector3 direction = centerToMouse / distance;
+        Vector3 pointOnCircle = center + direction * col.radius;
+
+        Debug.DrawLine(center, pointOnCircle, Color.blue, 2);
+        Debug.DrawLine(pointOnCircle, pointOnCircle + direction, Color.red, 2);
+
+        if (centerToMouse.x > 0 && flipped || centerToMouse.x <= 0 && !flipped)
+        {
+            MoveWeaponToPoint(leftWeapon, pointOnCircle, leftHandPoint.rotation, true);
+            leftWeapon.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 180 - GetAngleTowards(centerToMouse)));
+            //TODO: teise relva aeglaselt tagasi liigutamine
+            MoveWeaponToPoint(rightWeapon, rightHandPoint.position, rightHandPoint.rotation, false);
+        }
+        else
+        {
+            MoveWeaponToPoint(rightWeapon, pointOnCircle, rightHandPoint.rotation, false);
+            rightWeapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, GetAngleTowards(centerToMouse)));
+            //TODO: teise relva aeglaselt tagasi liigutamine
+            MoveWeaponToPoint(leftWeapon, leftHandPoint.position, leftHandPoint.rotation, true);
+        }
+    }
 
     public override void EquipWeapon(GameObject weapon)
     {
 
         Destroy(leftWeapon);
         Destroy(rightWeapon);
-        leftWeapon = GetWeaponInHand(weapon, transform.Find("leftHandPoint"), true);
-        rightWeapon = GetWeaponInHand(weapon, transform.Find("rightHandPoint"), false);
+        leftWeapon = Instantiate(weapon);
+        leftWeapon.transform.parent = transform;
+        MoveWeaponToPoint(leftWeapon, leftHandPoint.position, leftHandPoint.rotation, true);
+        rightWeapon = Instantiate(weapon);
+        rightWeapon.transform.parent = transform;
+        MoveWeaponToPoint(rightWeapon, rightHandPoint.position, rightHandPoint.rotation, false);
     }
 
-    private GameObject GetWeaponInHand(GameObject weapon, Transform handPoint, bool flip)
+    private void MoveWeaponToPoint(GameObject weapon, Vector3 point, Quaternion rotation, bool flip)
     {
-        GameObject res = Instantiate(weapon);
         int offset = flip ? 1 : -1;
         Transform weaponHandP = weapon.transform.Find("handPoint");
-        Vector3 position = new Vector3(handPoint.position.x + weaponHandP.localPosition.x * offset, handPoint.position.y - weaponHandP.localPosition.y);
-        res.transform.position = position;
-        res.transform.rotation = handPoint.rotation;
-        res.transform.parent = transform;
-        return res;
+        Vector3 position = new Vector3(point.x + weaponHandP.localPosition.x * offset, point.y - weaponHandP.localPosition.y);
+        weapon.transform.position = position;
+        weapon.transform.rotation = rotation;
+    }
+
+    private float GetAngleTowards(Vector3 point)
+    {
+        return Mathf.Atan2(point.y, point.x) * Mathf.Rad2Deg;
     }
 }
