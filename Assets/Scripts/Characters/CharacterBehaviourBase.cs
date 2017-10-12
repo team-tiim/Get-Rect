@@ -11,9 +11,9 @@ public class CharacterBehaviourBase : MonoBehaviour {
     protected Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
     protected SpriteRenderer spriteRenderer;
     protected Vector3 size;
-    protected Animator animator;
+    protected List<Animator> animators = new List<Animator>();
+    protected Animator armorAnimator;
     protected AudioSource jumpsound;
-    protected bool flipped;
     // add health bar
 
     protected GameObject equippedWeapon;
@@ -25,11 +25,22 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     // Use this for initialization
     protected void Start () {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        Transform animObj = transform.Find("animationComponent");
+        if (animObj != null)
+        {
+            spriteRenderer = animObj.GetComponent<SpriteRenderer>();
+            animators.Add(animObj.GetComponent<Animator>());
+        } else {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            animators.Add(GetComponent<Animator>());
+        }
+        animObj = transform.Find("armorAnimationComponent");
+        if (animObj != null)
+        {
+            animators.Add(animObj.GetComponent<Animator>());
+        }
         rb2d = GetComponent<Rigidbody2D>();
-        size = GetComponent<SpriteRenderer>().sprite.bounds.size;
-        flipped = false;
+        size = spriteRenderer.sprite.bounds.size;
         origColor = spriteRenderer.color;
         GetComponent<BoxCollider2D>().size = size;
     }
@@ -45,21 +56,22 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected void UpdateAnimation(float moveHorizontal)
     {
-        if (moveHorizontal > 0)
+        foreach (Animator animator in animators)
         {
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            flipped = false;
-            animator.SetBool("isMove", true);
-        }
-        else if (moveHorizontal < 0)
-        {
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            flipped = true;
-            animator.SetBool("isMove", true);
-        }
-        else
-        {
-            animator.SetBool("isMove", false);
+            if (moveHorizontal > 0)
+            {
+                animator.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                animator.SetBool("isMove", true);
+            }
+            else if (moveHorizontal < 0)
+            {
+                animator.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                animator.SetBool("isMove", true);
+            }
+            else
+            {
+                animator.SetBool("isMove", false);
+            }
         }
     }
 
@@ -71,8 +83,10 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected void Attack(GameObject target, int damage)
     {
-        animator.SetTrigger("doAttack");
-
+        foreach (Animator animator in animators)
+        {
+            animator.SetTrigger("doAttack");
+        }
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
         cbb.TakeDamage(damage);
         Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
@@ -85,8 +99,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
         OnDamage(damage);
         if (hp <= 40)
         {
-            animator.SetLayerWeight(0, 0.0f);
-            animator.SetLayerWeight(1, 1.0f);
+            animators[0].SetLayerWeight(0, 0.0f);
+            animators[0].SetLayerWeight(1, 1.0f);
         }
         if (hp <= 0)
         {

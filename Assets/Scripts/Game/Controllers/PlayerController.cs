@@ -45,7 +45,7 @@ public class PlayerController : CharacterBehaviourBase
 
         EquipWeapon(origWeapon);
 		jumpsound = sounds [0];
-		bgm = sounds [1];         
+		bgm = sounds [1];
     }
 
 	void Update ()
@@ -64,8 +64,10 @@ public class PlayerController : CharacterBehaviourBase
         }
 
         MoveWeapon();
-
-        animator.SetBool("isGrounded", IsGrounded());
+        foreach (Animator animator in animators)
+        {
+            animator.SetBool("isGrounded", IsGrounded());
+        }
         float moveHorizontal = 0;
 
         if (Input.GetKey(KeyCode.A))
@@ -124,7 +126,10 @@ public class PlayerController : CharacterBehaviourBase
         {
             return;
         }
-        animator.SetTrigger("doJump");
+        foreach (Animator animator in animators)
+        {
+            animator.SetTrigger("doJump");
+        }
         rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
 
         if (!jumpsound.isPlaying)
@@ -138,7 +143,7 @@ public class PlayerController : CharacterBehaviourBase
         pz.z = 0;
 
         Vector3 direction = pz - transform.position;
-        if (direction.x > 0 && flipped || direction.x <= 0 && !flipped)
+        if (direction.x <= 0)
         {
             leftWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
         }
@@ -166,7 +171,7 @@ public class PlayerController : CharacterBehaviourBase
         Debug.DrawLine(center, pointOnCircle, Color.blue, 2);
         Debug.DrawLine(pointOnCircle, pointOnCircle + direction, Color.red, 2);
 
-        if (centerToMouse.x > 0 && flipped || centerToMouse.x <= 0 && !flipped)
+        if (centerToMouse.x <= 0)
         {
             MoveWeaponToPoint(leftWeapon, pointOnCircle, leftHandPoint.rotation, true);
             leftWeapon.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 180 - GetAngleTowards(centerToMouse)));
@@ -184,7 +189,6 @@ public class PlayerController : CharacterBehaviourBase
 
     public override void EquipWeapon(GameObject weapon)
     {
-
         Destroy(leftWeapon);
         Destroy(rightWeapon);
         leftWeapon = Instantiate(weapon);

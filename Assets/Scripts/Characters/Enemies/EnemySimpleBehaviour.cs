@@ -19,6 +19,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     private Vector2 startingPos;
     private float attackTime = 0;
     private AudioSource amps_sound;
+    private Animator animator;
 
 	// Use this for initialization
 	new void Start () {
