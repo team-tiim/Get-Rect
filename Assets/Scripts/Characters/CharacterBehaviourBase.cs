@@ -25,12 +25,12 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     // Use this for initialization
     protected void Start () {
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
-        this.animator = GetComponent<Animator>();
-        this.rb2d = GetComponent<Rigidbody2D>();
-        this.size = GetComponent<SpriteRenderer>().sprite.bounds.size;
-        this.flipped = false;
-        this.origColor = spriteRenderer.color;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D>();
+        size = GetComponent<SpriteRenderer>().sprite.bounds.size;
+        flipped = false;
+        origColor = spriteRenderer.color;
         GetComponent<BoxCollider2D>().size = size;
     }
 	
@@ -40,7 +40,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected bool IsGrounded()
     {
-        return this.rb2d.velocity.y == 0;
+        return rb2d.velocity.y == 0;
     }
 
     protected void UpdateAnimation(float moveHorizontal)
@@ -48,30 +48,30 @@ public class CharacterBehaviourBase : MonoBehaviour {
         if (moveHorizontal > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-            this.flipped = false;
-            this.animator.SetBool("isMove", true);
+            flipped = false;
+            animator.SetBool("isMove", true);
         }
         else if (moveHorizontal < 0)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
-            this.flipped = true;
-            this.animator.SetBool("isMove", true);
+            flipped = true;
+            animator.SetBool("isMove", true);
         }
         else
         {
-            this.animator.SetBool("isMove", false);
+            animator.SetBool("isMove", false);
         }
     }
 
     protected void Attack(Vector3 direction)
     {
-        Debug.Log(this.equippedWeapon.GetComponent<Weapon>());
-        this.equippedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
+        //Debug.Log(this.equippedWeapon.GetComponent<Weapon>());
+        equippedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
     }
 
     protected void Attack(GameObject target, int damage)
     {
-        this.animator.SetTrigger("doAttack");
+        animator.SetTrigger("doAttack");
 
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
         cbb.TakeDamage(damage);
@@ -83,7 +83,12 @@ public class CharacterBehaviourBase : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         OnDamage(damage);
-        if (this.hp <= 0)
+        if (hp <= 40)
+        {
+            animator.SetLayerWeight(0, 0.0f);
+            animator.SetLayerWeight(1, 1.0f);
+        }
+        if (hp <= 0)
         {
             OnDeath();
         }
@@ -98,18 +103,16 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected virtual void OnDamage(int damage)
     {
-        int hpDamage = armor == null ? damage : (int)(damage * armor.BlockPercentage);
-        this.hp -= hpDamage;
-        if (this.armor != null)
+        if(armor != null)
         {
-            this.armor.Decrease(damage - hpDamage);
-            Debug.Log(this.armor.Value);
+            damage = armor.BlockDamage(damage);
         }
+        hp -= damage;
     }
 
     public virtual void EquipWeapon(GameObject weapon)
     {
-        this.equippedWeapon = weapon;
+        equippedWeapon = weapon;
     }
 
     public virtual void EquipArmor(Armor armor)

@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
 
     public Text timerText;
     public Text healthText;
+    public Text armorText;
     public int levelTime = 60; // seconds
     public int timeoutTime = 10;
     private float startTime;
@@ -19,11 +20,15 @@ public class GameController : MonoBehaviour {
     private GameObject[] platforms;
     private bool isTimeout;
 
+    private PlayerController playerController;
+
     // Use this for initialization
     void Start () {
         timerText = GameObject.Find("Timer").GetComponent<Text>();
         healthText = GameObject.Find("Health").GetComponent<Text>();
+        armorText = GameObject.Find("Armor").GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         platforms = GameObject.FindGameObjectsWithTag("Platform");
         startTime = Time.time;
         updatePlayerClosestPlatform();
@@ -35,6 +40,7 @@ public class GameController : MonoBehaviour {
         updatePlayerClosestPlatform();
         updateTimer(timeLeft);
         updateHealth();
+        updateArmor();
         if (timeLeft < timeoutTime && !isTimeout)
         {
             setTimeoutAnimation();
@@ -58,11 +64,18 @@ public class GameController : MonoBehaviour {
 
     private void updateHealth()
     {
-		var controller = player.GetComponent<PlayerController> ();
-		if (controller.hp < 0) {
+		if (playerController.hp < 0) {
 			SceneManager.LoadScene ("menu");
 		}
-		healthText.text = controller.hp.ToString();
+		healthText.text = playerController.hp.ToString();
+    }
+
+    private void updateArmor()
+    {
+        if (playerController.armor != null)
+        {
+            armorText.text = playerController.armor.Value.ToString();
+        }
     }
 
     private void updatePlayerClosestPlatform()

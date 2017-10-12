@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Armor {
     private const int MAX_VALUE = 100;
-    private float blockPercentage = 2/3;
-    private int value = 50;
+    private float blockPercentage = 0.75f;
+    private int value = 10;
 
     public Armor()
     {
@@ -33,6 +34,13 @@ public class Armor {
         {
             value = 0;
         }
+    }
+
+    public int BlockDamage(int damage)
+    {
+        int blockDamage = Math.Min(value, (int) (damage * blockPercentage));
+        Decrease(blockDamage);
+        return damage - blockDamage;
     }
 
     public float BlockPercentage
