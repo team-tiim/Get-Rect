@@ -46,9 +46,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: yarnman
+    uniqueID: 214781901
+    locked: 0
   - name: Armor
     uniqueID: 3249130215
     locked: 0
   - name: Skin
     uniqueID: 2309773277
+    locked: 0
+  - name: mainguy
+    uniqueID: 3392346307
     locked: 0

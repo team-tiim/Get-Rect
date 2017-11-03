@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: pose
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: hip
+    localPosition: {x: -2.3316586, y: -1.6090256, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/body
+    localPosition: {x: 0.47002262, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/body/head
+    localPosition: {x: 1.0000379, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.44521654, w: 0.89542294}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/body/arm1
+    localPosition: {x: 0.70337397, y: 0.31700766, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.971497, w: 0.2370519}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/body/arm1/arm2
+    localPosition: {x: 1.0000004, y: -0.000000029802322, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.36027583, w: 0.93284583}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/body/backarm1
+    localPosition: {x: 0.8311201, y: -0.14666438, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.9858347, w: 0.16772003}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/body/backarm1/backarm2
+    localPosition: {x: 0.82514083, y: 0.00000017881393, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.5917052, w: 0.80615443}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/body/backarm1/backarm2/sword
+    localPosition: {x: 1.0000007, y: -0.00000017881393, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.6839303, w: 0.7295473}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/leg1
+    localPosition: {x: -0.014194937, y: 0.3501273, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.999229, w: 0.039260503}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/leg1/leg2
+    localPosition: {x: 0.5186637, y: -0.00000008940697, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/backleg1
+    localPosition: {x: -0.006535069, y: -0.14914389, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.99980164, w: 0.019916603}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: hip/backleg1/backleg2
+    localPosition: {x: 0.46000016, y: 0.000000037252903, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
