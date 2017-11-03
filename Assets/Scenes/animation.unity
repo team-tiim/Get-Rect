@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &239936948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 68ab0dc76149b964284544ea8fb20405, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Bones: []
@@ -850,8 +850,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1206751476}
   m_AABB:
-    m_Center: {x: 0.14713493, y: 0.02768989, z: 0}
-    m_Extent: {x: 0.39128014, y: 0.41916722, z: 0}
+    m_Center: {x: 0.19298066, y: 0.006865084, z: 0}
+    m_Extent: {x: 0.33378547, y: 0.33267677, z: 0}
   m_DirtyAABB: 0
 --- !u!114 &444734193
 MonoBehaviour:
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: e600aaa2c7c52904c9e74981467160e5, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 1
   m_Bones: []
@@ -902,9 +902,6 @@ GameObject:
   - component: {fileID: 471879732}
   - component: {fileID: 471879731}
   - component: {fileID: 471879730}
-  - component: {fileID: 471879734}
-  - component: {fileID: 471879735}
-  - component: {fileID: 471879733}
   m_Layer: 0
   m_Name: mainguy
   m_TagString: Untagged
@@ -961,69 +958,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &471879733
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 471879729}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!114 &471879734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 471879729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec17ceaa560940e9bf0dbeafc3a1971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpriteMesh: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Bones: []
-  m_BoneTransforms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!33 &471879735
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 471879729}
-  m_Mesh: {fileID: 0}
 --- !u!1 &486791166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1051,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 10319b54b6ee74d498427e90196ad4b9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 3
   m_Bones: []
@@ -1445,7 +1379,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1405888987155220, guid: 9c837a02e4f49e94a97d39a664110390, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 33054525147442324, guid: 9c837a02e4f49e94a97d39a664110390, type: 2}
@@ -1704,7 +1638,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 2e4d0429a04abf14c994a887346a74a5, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 1
   m_Bones: []
@@ -1880,8 +1814,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 241234809}
   m_AABB:
-    m_Center: {x: -0.06109652, y: 0.010632068, z: 0}
-    m_Extent: {x: 0.113603875, y: 0.15775819, z: 0}
+    m_Center: {x: -0.060023125, y: 0.010792226, z: 0}
+    m_Extent: {x: 0.1136038, y: 0.1577581, z: 0}
   m_DirtyAABB: 0
 --- !u!114 &834894664
 MonoBehaviour:
@@ -1897,7 +1831,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: f204c19c75793374d92018c605c18c64, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 2
   m_Bones: []
@@ -2115,8 +2049,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1016154067}
   - component: {fileID: 1016154070}
-  - component: {fileID: 1016154069}
   - component: {fileID: 1016154068}
+  - component: {fileID: 1016154069}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -2196,8 +2130,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1498604081}
   m_AABB:
-    m_Center: {x: 0.42383832, y: 0.23413122, z: 0}
-    m_Extent: {x: 0.1306206, y: 0.3585317, z: 0}
+    m_Center: {x: 0.42549723, y: 0.23629083, z: 0}
+    m_Extent: {x: 0.1326354, y: 0.35890394, z: 0}
   m_DirtyAABB: 0
 --- !u!114 &1016154070
 MonoBehaviour:
@@ -2213,7 +2147,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: a152e76e782653a4098076a8f66a1a3d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 2
   m_Bones: []
@@ -2811,7 +2745,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 518c72b88d6b1a9498fae908e0923add, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 3
   m_Bones: []
@@ -2970,7 +2904,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 4a8bef79806055745a19d484a8b99fe3, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 2
   m_Bones: []
@@ -3525,7 +3459,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 1862d2e5f34170f4ea5f86ec9bf1ad5b, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f371ef11cb18ebc40b4e006c75d5bd6d, type: 2}
   m_SortingLayerID: -902620989
   m_SortingOrder: 3
   m_Bones: []
