@@ -58,3 +58,9 @@ TagManager:
   - name: mainguy
     uniqueID: 3392346307
     locked: 0
+  - name: sockman
+    uniqueID: 749488391
+    locked: 0
+  - name: yarncat
+    uniqueID: 2383553027
+    locked: 0
