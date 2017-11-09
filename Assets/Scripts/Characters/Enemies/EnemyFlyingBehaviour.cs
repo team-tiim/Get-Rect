@@ -7,9 +7,10 @@ public class EnemyFlyingBehaviour : EnemySimpleBehaviour
 
     private Vector2 direction;
 
-	// Use this for initialization
-	void Start () {
-        base.Start();
+    // Use this for initialization
+    public override void Awake()
+    {
+        base.Awake();
         //move();
         direction = (new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f))).normalized;
         //transform.Rotate(direction);

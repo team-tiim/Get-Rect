@@ -11,7 +11,7 @@ public class DeveloperController : MonoBehaviour {
     private Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
 
     private bool isPaused;
-    private CharacterBehaviourBase player;
+    private PlayerBehaviour player;
     private GameObject spawners;
 
     //Called before Start, use as constructor
@@ -36,7 +36,7 @@ public class DeveloperController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterBehaviourBase>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
         spawners = GameObject.Find("spawners");
     }
 	

@@ -9,50 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1852145993479228}
+  m_RootGameObject: {fileID: 1195458933706016}
   m_IsPrefabParent: 1
---- !u!1 &1852145993479228
+--- !u!1 &1195458933706016
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4114200620926410}
-  - component: {fileID: 114778842703751392}
+  - component: {fileID: 4273921638708226}
+  - component: {fileID: 114677435210238694}
   m_Layer: 0
-  m_Name: WeaponSpawner
+  m_Name: fishhat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4114200620926410
+--- !u!4 &4273921638708226
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1852145993479228}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.41, y: -7.16, z: 0}
+  m_GameObject: {fileID: 1195458933706016}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114778842703751392
+--- !u!114 &114677435210238694
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1852145993479228}
+  m_GameObject: {fileID: 1195458933706016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e2f6b07466976745aa58844bc224465, type: 3}
+  m_Script: {fileID: 11500000, guid: d18907fb5fd4a4e4d9dc8a45610c5af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactablePrefab: {fileID: 1204318133807892, guid: d878c91b2054ebb4292c3ebb7072852c,
-    type: 2}
-  spawnTick: 5
-  locationChangeTick: 0
-  isEnabled: 1
+  mesh: {fileID: 11400000, guid: a152e76e782653a4098076a8f66a1a3d, type: 2}
+  armorValue: 5

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterBehaviourBase : MonoBehaviour {
@@ -7,12 +6,13 @@ public class CharacterBehaviourBase : MonoBehaviour {
     public float jumpPower;
     public float speed = 1;  //Floating point variable to store the player's movement speed.
     public int hp = 10;
+    protected Vector3 size;
 
+    public Transform animationsComponent;
     protected Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
     protected SpriteRenderer spriteRenderer;
-    protected Vector3 size;
-    protected List<Animator> animators = new List<Animator>();
-    protected Animator armorAnimator;
+    protected Animator animator;
+    
     protected AudioSource jumpsound;
     // add health bar
 
@@ -21,32 +21,31 @@ public class CharacterBehaviourBase : MonoBehaviour {
     public GameObject origWeapon;
     public Armor armor;
 
-    protected bool isInKnockback;
+    public bool isInKnockback;
 
-    // Use this for initialization
-    protected void Start () {
-        Transform animObj = transform.Find("animationComponent");
-        if (animObj != null)
-        {
-            spriteRenderer = animObj.GetComponent<SpriteRenderer>();
-            animators.Add(animObj.GetComponent<Animator>());
-        } else {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            animators.Add(GetComponent<Animator>());
-        }
-        animObj = transform.Find("armorAnimationComponent");
-        if (animObj != null)
-        {
-            animators.Add(animObj.GetComponent<Animator>());
-        }
+    public virtual void Awake()
+    {
+        animationsComponent = transform.Find("animations");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-        size = spriteRenderer.sprite.bounds.size;
-        origColor = spriteRenderer.color;
-        GetComponent<BoxCollider2D>().size = size;
+        //TODO old stuff, rework
+        if (spriteRenderer != null)
+        {
+            size = spriteRenderer.sprite.bounds.size;
+            origColor = spriteRenderer.color;
+            GetComponent<BoxCollider2D>().size = size;
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {		
+
+    public virtual void Start()
+    {
+
+    }
+
+
+    // Update is called once per frame
+    void Update () {		
 	}
 
     protected bool IsGrounded()
@@ -54,39 +53,31 @@ public class CharacterBehaviourBase : MonoBehaviour {
         return rb2d.velocity.y == 0;
     }
 
-    protected void UpdateAnimation(float moveHorizontal)
+    public void UpdateAnimation(float moveHorizontal)
     {
-        foreach (Animator animator in animators)
+        animator.SetBool("isMove", moveHorizontal != 0);
+        if(animationsComponent == null)
         {
-            if (moveHorizontal > 0)
-            {
-                animator.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                animator.SetBool("isMove", true);
-            }
-            else if (moveHorizontal < 0)
-            {
-                animator.transform.localRotation = Quaternion.Euler(0, 180, 0);
-                animator.SetBool("isMove", true);
-            }
-            else
-            {
-                animator.SetBool("isMove", false);
-            }
+            return;
+        }
+        if (moveHorizontal > 0)
+        {
+            animationsComponent.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            animationsComponent.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
     protected void Attack(Vector3 direction)
     {
-        //Debug.Log(this.equippedWeapon.GetComponent<Weapon>());
         equippedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
     }
 
     protected void Attack(GameObject target, int damage)
     {
-        foreach (Animator animator in animators)
-        {
-            animator.SetTrigger("doAttack");
-        }
+        animator.SetTrigger("doAttack");
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
         cbb.TakeDamage(damage);
         Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
@@ -99,8 +90,9 @@ public class CharacterBehaviourBase : MonoBehaviour {
         OnDamage(damage);
         if (hp <= 40)
         {
-            animators[0].SetLayerWeight(0, 0.0f);
-            animators[0].SetLayerWeight(1, 1.0f);
+            //TODO old stuff, rework
+            animator.SetLayerWeight(0, 0.0f);
+            animator.SetLayerWeight(1, 1.0f);
         }
         if (hp <= 0)
         {
@@ -124,37 +116,14 @@ public class CharacterBehaviourBase : MonoBehaviour {
         hp -= damage;
     }
 
-    public virtual void EquipWeapon(GameObject weapon)
-    {
-        equippedWeapon = weapon;
-    }
-
-    public virtual void EquipArmor(Armor armor)
-    {
-        if(this.armor == null)
-        {
-            this.armor = armor;
-        }
-        else
-        {
-            this.armor.Increase(armor.Value);
-        }
-
-    }
-
-    public void ResetWeapon()
-    {
-        EquipWeapon(origWeapon);
-    }
-
     public virtual void DoKnockback(Vector3 direction)
     {
         isInKnockback = true;
         rb2d.AddForce(direction, ForceMode2D.Impulse);
-        Invoke("setKnockbackFalse", 1);
+        Invoke("SetKnockbackFalse", 1);
     }
 
-    private void setKnockbackFalse()
+    private void SetKnockbackFalse()
     {
         isInKnockback = false;
     }

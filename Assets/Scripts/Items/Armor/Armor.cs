@@ -12,6 +12,11 @@ public class Armor {
     {
     }
 
+    public Armor(int value)
+    {
+        this.value = value;
+    }
+
     public Armor(float blockPercentage, int value)
     {
         this.blockPercentage = blockPercentage;

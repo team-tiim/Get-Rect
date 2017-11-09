@@ -29,14 +29,14 @@ public class ProjectileWeapon : Weapon
 
     protected override void DoAttack(GameObject parent, Vector3 attackDirection)
     {
-        Debug.Log("Projectile weapon attack");
+        //Debug.Log("Projectile weapon attack");
         SpawnPojectile(attackDirection);
         DoKnockback(attackDirection);
     }
 
     private void SpawnPojectile(Vector3 attackDirection)
     {
-        Debug.Log("Spawning projectile " );
+        //Debug.Log("Spawning projectile " );
         Projectile p = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
         p.SetVariables(this, attackDirection);
     }
@@ -44,7 +44,7 @@ public class ProjectileWeapon : Weapon
     private void DoKnockback(Vector3 attackDirection)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        PlayerController pc = player.GetComponent<PlayerController>();
+        PlayerBehaviour pc = player.GetComponent<PlayerBehaviour>();
         //player.GetComponent<Rigidbody2D>().AddForce(-attackDirection.normalized * knockback, ForceMode2D.Impulse);
         pc.DoKnockback(-attackDirection.normalized * knockback);
     }

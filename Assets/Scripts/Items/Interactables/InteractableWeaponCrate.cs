@@ -29,7 +29,7 @@ public class InteractableWeaponCrate : BaseInteractable {
 
     private void AddWeapon(Collider2D other)
     {
-        PlayerController player = other.GetComponent<PlayerController>();
+        PlayerBehaviour player = other.GetComponent<PlayerBehaviour>();
         other.gameObject.AddComponent<TimedWeaponBehaviour>().duration = spawner.spawnTick;
         GameObject go = RandomUtil.GetRandomFromArray(weaponPrefabs);
         player.EquipWeapon(go);

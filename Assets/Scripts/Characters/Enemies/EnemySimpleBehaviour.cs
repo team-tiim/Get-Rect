@@ -19,11 +19,10 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     private Vector2 startingPos;
     private float attackTime = 0;
     private AudioSource amps_sound;
-    private Animator animator;
 
-	// Use this for initialization
-	new void Start () {
-        base.Start();
+    // Use this for initialization
+    public override void Awake () {
+        base.Awake();
         animator = GetComponent<Animator>();
         this.target = GameObject.FindGameObjectWithTag("Player");
         this.startingPos = transform.position;
@@ -92,7 +91,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 
         float targetHeight = GetComponent<SpriteRenderer>().sprite.bounds.size.y;
         float yDif = (targetPosition.y - targetHeight / 2) - (transform.position.y + this.size.y / 2);
-        GameObject targetPlatform = target.GetComponent<PlayerController>().closestPlatform;
+        GameObject targetPlatform = target.GetComponent<PlayerBehaviour>().closestPlatform;
         return (yDif > 0.5) && (CanJumpToObject(target) || CanJumpToObject(targetPlatform));
     }
 

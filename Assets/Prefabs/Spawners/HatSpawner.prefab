@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4114200620926410}
   - component: {fileID: 114778842703751392}
   m_Layer: 0
-  m_Name: WeaponSpawner
+  m_Name: HatSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852145993479228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.41, y: -7.16, z: 0}
+  m_LocalPosition: {x: 2.17, y: -10.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2f6b07466976745aa58844bc224465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactablePrefab: {fileID: 1204318133807892, guid: d878c91b2054ebb4292c3ebb7072852c,
+  interactablePrefab: {fileID: 1204318133807892, guid: 7ab7e34f01524fd44bb4bf3cc4bf040b,
     type: 2}
-  spawnTick: 5
+  spawnTick: 2
   locationChangeTick: 0
   isEnabled: 1

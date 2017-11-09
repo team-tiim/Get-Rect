@@ -7,7 +7,7 @@ public class TimedWeaponBehaviour : TimedBehaviour {
     protected override void OnTimerEnd()
     {
         Debug.Log("Weapon timed out");
-        this.gameObject.GetComponent<CharacterBehaviourBase>().ResetWeapon();
+        this.gameObject.GetComponent<PlayerBehaviour>().ResetWeapon();
         Destroy(this);
     }
 }

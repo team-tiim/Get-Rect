@@ -16,19 +16,19 @@ public class GameController : MonoBehaviour {
     public int levelTime = 60; // seconds
     public int timeoutTime = 10;
     private float startTime;
-    private GameObject player;
+    private GameObject playerObject;
     private GameObject[] platforms;
     private bool isTimeout;
 
-    private PlayerController playerController;
+    private PlayerBehaviour player;
 
     // Use this for initialization
     void Start () {
         timerText = GameObject.Find("Timer").GetComponent<Text>();
         healthText = GameObject.Find("Health").GetComponent<Text>();
         armorText = GameObject.Find("Armor").GetComponent<Text>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+        player = playerObject.GetComponent<PlayerBehaviour>();
         platforms = GameObject.FindGameObjectsWithTag("Platform");
         startTime = Time.time;
         updatePlayerClosestPlatform();
@@ -64,17 +64,17 @@ public class GameController : MonoBehaviour {
 
     private void updateHealth()
     {
-		if (playerController.hp < 0) {
+		if (player.hp < 0) {
 			SceneManager.LoadScene ("menu");
 		}
-		healthText.text = playerController.hp.ToString();
+		healthText.text = player.hp.ToString();
     }
 
     private void updateArmor()
     {
-        if (playerController.armor != null)
+        if (player.armor != null)
         {
-            armorText.text = playerController.armor.Value.ToString();
+            armorText.text = player.armor.Value.ToString();
         }
     }
 
@@ -90,7 +90,7 @@ public class GameController : MonoBehaviour {
                 closest = platform;
             }
         }
-        player.GetComponent<PlayerController>().closestPlatform = closest;
+        player.GetComponent<PlayerBehaviour>().closestPlatform = closest;
     }
 
     private void setTimeoutAnimation()

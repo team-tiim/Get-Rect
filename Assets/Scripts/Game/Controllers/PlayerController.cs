@@ -1,83 +1,56 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class PlayerController : CharacterBehaviourBase
+public class PlayerController : MonoBehaviour
 {
 
-    public GameObject closestPlatform;
-	public AudioSource[] sounds;
-	public AudioSource bgm;
-	public Slider healthslider;
-
+    public Rigidbody2D rb2d;
     public Boolean isInKnocback;
     public Vector3 knockbackDirection;
-
-    private GameObject leftWeapon;
-    private GameObject rightWeapon;
-
-    private Transform leftHandPoint;
-    private Transform rightHandPoint;
-    private Transform handMovementPath;
+    public PlayerBehaviour player;
 
     private  Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
 
     //Called before Start, use as constructor
     private void Awake()
     {
-        leftHandPoint = transform.Find("leftHandPoint");
-        rightHandPoint = transform.Find("rightHandPoint");
-        handMovementPath = transform.Find("handMovementPath");
+        rb2d = GetComponent<Rigidbody2D>();
+        player = GetComponent<PlayerBehaviour>();
         keyActionMap.Add(KeyCode.Space, () => DoJump());
-        keyActionMap.Add(KeyCode.Mouse0, () => DoAttack());
+        keyActionMap.Add(KeyCode.Mouse0, () => player.DoAttack());
     }
 
     // Use this for initialization
-    protected new void Start()
+    private void Start()
     {
-        base.Start();
 
-        this.armor = new Armor();
-        //Get and store a reference to the Rigidbody2D component so that we can access it.
-
-        EquipWeapon(origWeapon);
-		jumpsound = sounds [0];
-		bgm = sounds [1];
     }
 
 	void Update ()
 	{
-		//healthslider.value = hp;
 
 	}
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
-
-        if (this.hp <= 0)
+        if (player.hp <= 0)
         {
             return;
         }
 
-        MoveWeapon();
-        foreach (Animator animator in animators)
-        {
-            animator.SetBool("isGrounded", IsGrounded());
-        }
+
         float moveHorizontal = 0;
 
         if (Input.GetKey(KeyCode.A))
         {
-            moveHorizontal -= speed;
+            moveHorizontal -= player.speed;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            moveHorizontal += speed;
+            moveHorizontal += player.speed;
         }
 
         foreach (KeyValuePair<KeyCode, Action> entry in keyActionMap)
@@ -87,7 +60,7 @@ public class PlayerController : CharacterBehaviourBase
             }
         }       
 
-        if (isInKnockback)
+        if (player.isInKnockback)
         {
             return;
         }
@@ -105,20 +78,8 @@ public class PlayerController : CharacterBehaviourBase
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb2d.velocity = movement;
         //knockbackDirection = null;
-        UpdateAnimation(moveHorizontal);
+        player.UpdateAnimation(moveHorizontal);
     }
-
-    protected override void OnDeath()
-    {
-        GetComponent<Animator>().Play("player_death");
-    }
-
-    protected override void OnDamage(int damage)
-    {
-        base.OnDamage(damage);
-        StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
-    }
-
 
     private void DoJump()
     {
@@ -126,90 +87,12 @@ public class PlayerController : CharacterBehaviourBase
         {
             return;
         }
-        foreach (Animator animator in animators)
-        {
-            animator.SetTrigger("doJump");
-        }
-        rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
-
-        if (!jumpsound.isPlaying)
-        {
-            jumpsound.Play();
-        }
-    }
-    private void DoAttack()
-    {
-        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        pz.z = 0;
-
-        Vector3 direction = pz - transform.position;
-        if (direction.x <= 0)
-        {
-            leftWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
-        }
-        else
-        {
-            rightWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
-        }
-
-
+        rb2d.AddForce(new Vector2(0, rb2d.mass * player.jumpPower), ForceMode2D.Impulse);
+        player.DoJump();
     }
 
-    private void MoveWeapon()
+    private bool IsGrounded()
     {
-        CircleCollider2D col = handMovementPath.GetComponent<CircleCollider2D>();
-        Vector3 center = col.transform.position;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 centerToMouse = mousePos - center;
-        centerToMouse.z = 0;
-
-        //Vector3 closestPoint = col.bounds.ClosestPoint(shoulderToMouseDir);
-        float distance = centerToMouse.magnitude;
-        Vector3 direction = centerToMouse / distance;
-        Vector3 pointOnCircle = center + direction * col.radius;
-
-        Debug.DrawLine(center, pointOnCircle, Color.blue, 2);
-        Debug.DrawLine(pointOnCircle, pointOnCircle + direction, Color.red, 2);
-
-        if (centerToMouse.x <= 0)
-        {
-            MoveWeaponToPoint(leftWeapon, pointOnCircle, leftHandPoint.rotation, true);
-            leftWeapon.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 180 - GetAngleTowards(centerToMouse)));
-            //TODO: teise relva aeglaselt tagasi liigutamine
-            MoveWeaponToPoint(rightWeapon, rightHandPoint.position, rightHandPoint.rotation, false);
-        }
-        else
-        {
-            MoveWeaponToPoint(rightWeapon, pointOnCircle, rightHandPoint.rotation, false);
-            rightWeapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, GetAngleTowards(centerToMouse)));
-            //TODO: teise relva aeglaselt tagasi liigutamine
-            MoveWeaponToPoint(leftWeapon, leftHandPoint.position, leftHandPoint.rotation, true);
-        }
-    }
-
-    public override void EquipWeapon(GameObject weapon)
-    {
-        Destroy(leftWeapon);
-        Destroy(rightWeapon);
-        leftWeapon = Instantiate(weapon);
-        leftWeapon.transform.parent = transform;
-        MoveWeaponToPoint(leftWeapon, leftHandPoint.position, leftHandPoint.rotation, true);
-        rightWeapon = Instantiate(weapon);
-        rightWeapon.transform.parent = transform;
-        MoveWeaponToPoint(rightWeapon, rightHandPoint.position, rightHandPoint.rotation, false);
-    }
-
-    private void MoveWeaponToPoint(GameObject weapon, Vector3 point, Quaternion rotation, bool flip)
-    {
-        int offset = flip ? 1 : -1;
-        Transform weaponHandP = weapon.transform.Find("handPoint");
-        Vector3 position = new Vector3(point.x + weaponHandP.localPosition.x * offset, point.y - weaponHandP.localPosition.y);
-        weapon.transform.position = position;
-        weapon.transform.rotation = rotation;
-    }
-
-    private float GetAngleTowards(Vector3 point)
-    {
-        return Mathf.Atan2(point.y, point.x) * Mathf.Rad2Deg;
+        return rb2d.velocity.y == 0;
     }
 }

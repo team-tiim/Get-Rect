@@ -7,9 +7,12 @@ public static class Utils {
 
     public static IEnumerator ChangeColor(SpriteRenderer renderer, Color origColor)
     {
-        renderer.color = Color.red;
-        yield return new WaitForSeconds(0.3f);
-        renderer.color = origColor;
+        if (renderer != null)
+        {
+            renderer.color = Color.red;
+            yield return new WaitForSeconds(0.3f);
+            renderer.color = origColor;
+        }
     }
 
     public static bool IsNullOrEmpty(Array array)

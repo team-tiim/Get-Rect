@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableArmor : BaseInteractable {
+public class InteractableHat : BaseInteractable {
 
     public GameObject[] prefabs;   
 
@@ -24,6 +24,6 @@ public class InteractableArmor : BaseInteractable {
     {
         PlayerBehaviour player = other.GetComponent<PlayerBehaviour>();
         GameObject pref = RandomUtil.GetRandomFromArray(prefabs);
-        player.EquipArmor(pref.GetComponent<ArmorHolder>());
+        player.EquipHat(pref.GetComponent<ArmorHolder>());
     }
 }

@@ -38,14 +38,14 @@ public class Projectile : MonoBehaviour {
 
     public void SetVariables(ProjectileWeapon weapon, Vector3 moveDirection)
     {
-        Debug.Log("projectile spawn");
+        //Debug.Log("projectile spawn");
         this.weapon = weapon;
         this.moveDirection = moveDirection;
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("bullet hit");
+        //Debug.Log("bullet hit");
         ////all projectile colliding game objects should be tagged "Enemy" or whatever in inspector but that tag must be reflected in the below if conditional
         if (col.gameObject.tag == "Enemy")
         {
