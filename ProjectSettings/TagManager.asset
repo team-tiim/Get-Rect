@@ -64,3 +64,6 @@ TagManager:
   - name: yarncat
     uniqueID: 2383553027
     locked: 0
+  - name: Pillowman
+    uniqueID: 1182581919
+    locked: 0
