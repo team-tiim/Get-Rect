@@ -20,9 +20,9 @@ public class PlayerBehaviour : CharacterBehaviourBase
     private Transform rightHandPoint;
     private Transform handMovementPath;
 
-    private SpriteMeshInstance bodyMesh;
-    private SpriteMeshInstance armorMesh;
-    private SpriteMeshInstance hatMesh;
+    private AnimationController animationController;
+
+
     //Called before Start, use as constructor
     public override void Awake()
     {
@@ -30,11 +30,7 @@ public class PlayerBehaviour : CharacterBehaviourBase
         leftHandPoint = transform.Find("leftHandPoint");
         rightHandPoint = transform.Find("rightHandPoint");
         handMovementPath = transform.Find("handMovementPath");
-
-        animator = animationsComponent.GetComponent<Animator>();
-        bodyMesh = animationsComponent.Find("body").GetComponent<SpriteMeshInstance>();
-        armorMesh = animationsComponent.Find("armor").GetComponent<SpriteMeshInstance>();
-        hatMesh = animationsComponent.Find("hat").GetComponent<SpriteMeshInstance>();
+        animationController = animationsComponent.GetComponent<AnimationController>();
     }
 
     // Use this for initialization
@@ -49,7 +45,7 @@ public class PlayerBehaviour : CharacterBehaviourBase
     void Update()
     {
         MoveWeapon();
-        animator.SetBool("isGrounded", IsGrounded());
+        animationController.animator.SetBool("isGrounded", IsGrounded());
 
         //healthslider.value = hp;
         //UpdateAnimation(moveHorizontal);
@@ -74,7 +70,7 @@ public class PlayerBehaviour : CharacterBehaviourBase
 
     public void DoJump()
     {
-        animator.SetTrigger("doJump");
+        animationController.animator.SetTrigger("doJump");
 
         if (jumpsound != null && !jumpsound.isPlaying)
         {
@@ -145,13 +141,13 @@ public class PlayerBehaviour : CharacterBehaviourBase
     public void EquipArmor(ArmorHolder armorHolder)
     {
         AddArmor(armorHolder);
-        armorMesh.spriteMesh = armorHolder.mesh;
+        animationController.ChangeAnimation(armorHolder);
     }
 
     public void EquipHat(ArmorHolder armorHolder)
     {
         AddArmor(armorHolder);
-        hatMesh.spriteMesh = armorHolder.mesh;
+        animationController.ChangeAnimation(armorHolder);
     }
 
     private void AddArmor(ArmorHolder armorHolder)
@@ -164,6 +160,15 @@ public class PlayerBehaviour : CharacterBehaviourBase
         {
             armor.Increase(armorHolder.armorValue);
         }
+    }
+
+    public void UpdateAnimation(MovementType movementType)
+    {
+        if (animationController == null)
+        {
+            return;
+        }
+        animationController.UpdateMoveAnimations(movementType);
     }
 
     public void ResetWeapon()

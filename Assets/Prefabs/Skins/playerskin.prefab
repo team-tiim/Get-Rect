@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4273921638708226}
-  - component: {fileID: 114677435210238694}
+  - component: {fileID: 114956957928914406}
   m_Layer: 0
-  m_Name: hornhat
+  m_Name: playerskin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114677435210238694
+--- !u!114 &114956957928914406
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,10 +48,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1195458933706016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18907fb5fd4a4e4d9dc8a45610c5af8, type: 3}
+  m_Script: {fileID: 11500000, guid: 22cc7067dfee6b942b65232d349f6135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  front: {fileID: 11400000, guid: 88ec44bae09a2434a915aa4abca547e1, type: 2}
-  side: {fileID: 11400000, guid: 4271b79542fef7643b95ba16b86f9675, type: 2}
-  animationType: 2
-  armorValue: 10
+  front: {fileID: 11400000, guid: 68ab0dc76149b964284544ea8fb20405, type: 2}
+  side: {fileID: 11400000, guid: 2e4d0429a04abf14c994a887346a74a5, type: 2}
+  animationType: 0

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Anima2D;
 
-public class ArmorHolder : MonoBehaviour {
+public class ArmorHolder : AnimationHolder {
 
-    public SpriteMesh mesh;
     public int armorValue;
 
 }

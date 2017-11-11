@@ -80,8 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
   prefabs:
-  - {fileID: 1072136381330446, guid: dc9dda5b7be8b2141bd142088cc0dee9, type: 2}
   - {fileID: 1195458933706016, guid: 994df769c0b7ff24d9ed4438d91f4c16, type: 2}
+  - {fileID: 1072136381330446, guid: dc9dda5b7be8b2141bd142088cc0dee9, type: 2}
 --- !u!212 &212181063046830374
 SpriteRenderer:
   m_ObjectHideFlags: 1

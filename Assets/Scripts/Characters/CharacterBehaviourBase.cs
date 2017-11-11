@@ -53,7 +53,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
         return rb2d.velocity.y == 0;
     }
 
-    public void UpdateAnimation(float moveHorizontal)
+    public virtual void UpdateAnimation(float moveHorizontal)
     {
         animator.SetBool("isMove", moveHorizontal != 0);
         if(animationsComponent == null)

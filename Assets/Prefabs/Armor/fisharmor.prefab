@@ -51,5 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18907fb5fd4a4e4d9dc8a45610c5af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 11400000, guid: 49118b05c504a1e4c92e0ce1f898d521, type: 2}
+  front: {fileID: 11400000, guid: 49118b05c504a1e4c92e0ce1f898d521, type: 2}
+  side: {fileID: 11400000, guid: 7b9b3c1061c54c44a9554318ec8510d0, type: 2}
+  animationType: 1
   armorValue: 30

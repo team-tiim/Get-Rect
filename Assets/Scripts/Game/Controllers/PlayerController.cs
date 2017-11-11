@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 knockbackDirection;
     public PlayerBehaviour player;
 
-    private  Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
+    private Dictionary<KeyCode, Action> keyActionMap = new Dictionary<KeyCode, Action>();
 
     //Called before Start, use as constructor
     private void Awake()
@@ -27,10 +27,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
-	void Update ()
-	{
+    void Update()
+    {
 
-	}
+    }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
@@ -55,10 +55,11 @@ public class PlayerController : MonoBehaviour
 
         foreach (KeyValuePair<KeyCode, Action> entry in keyActionMap)
         {
-            if (Input.GetKey(entry.Key)){
+            if (Input.GetKey(entry.Key))
+            {
                 entry.Value();
             }
-        }       
+        }
 
         if (player.isInKnockback)
         {
@@ -72,13 +73,13 @@ public class PlayerController : MonoBehaviour
         yvel = rb2d.velocity.y + Physics.gravity.y * Time.deltaTime;
          }
         */
-        
+
         Vector2 movement = new Vector2(moveHorizontal, rb2d.velocity.y);
 
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb2d.velocity = movement;
         //knockbackDirection = null;
-        player.UpdateAnimation(moveHorizontal);
+        player.UpdateAnimation(GetMovementType(moveHorizontal));
     }
 
     private void DoJump()
@@ -94,5 +95,18 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         return rb2d.velocity.y == 0;
+    }
+
+    private MovementType GetMovementType(float moveHorizontal)
+    {
+        if (moveHorizontal == 0)
+        {
+            return MovementType.IDLE;
+        }
+        if (moveHorizontal > 0)
+        {
+            return MovementType.WALK_RIGHT;
+        }
+        return MovementType.WALK_LEFT;
     }
 }
