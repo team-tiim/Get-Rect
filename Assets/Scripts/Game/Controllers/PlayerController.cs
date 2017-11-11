@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb2d.velocity = movement;
         //knockbackDirection = null;
-        player.UpdateAnimation(GetMovementType(moveHorizontal));
+        player.UpdateAnimation(Utils.GetMovementType(moveHorizontal));
     }
 
     private void DoJump()
@@ -95,18 +95,5 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         return rb2d.velocity.y == 0;
-    }
-
-    private MovementType GetMovementType(float moveHorizontal)
-    {
-        if (moveHorizontal == 0)
-        {
-            return MovementType.IDLE;
-        }
-        if (moveHorizontal > 0)
-        {
-            return MovementType.WALK_RIGHT;
-        }
-        return MovementType.WALK_LEFT;
     }
 }

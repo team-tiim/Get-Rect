@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour
+public class AnimationController : BasicAnimationController
 {
 
     private Dictionary<AnimationType, AnimationHolder> animationHolders = new Dictionary<AnimationType, AnimationHolder>();
@@ -12,15 +12,13 @@ public class AnimationController : MonoBehaviour
     public GameObject origBody;
     public GameObject origHat;
 
-    public Animator animator;
-    private MovementType currentMovement;
 
-    private void Awake()
+    public override void Awake()
     {
-        animator = GetComponent<Animator>();
-        spriteMeshes.Add(AnimationType.ARMOR, this.gameObject.transform.Find("armor").GetComponent<SpriteMeshInstance>());
-        spriteMeshes.Add(AnimationType.BODY, this.gameObject.transform.Find("body").GetComponent<SpriteMeshInstance>());
-        spriteMeshes.Add(AnimationType.HAT, this.gameObject.transform.Find("hat").GetComponent<SpriteMeshInstance>());
+        base.Awake();
+        AddSpriteMesh(AnimationType.ARMOR, "armor");
+        AddSpriteMesh(AnimationType.BODY, "body");
+        AddSpriteMesh(AnimationType.HAT, "hat");
 
         AddAnimationHolder(origArmor);
         AddAnimationHolder(origBody);
@@ -47,32 +45,33 @@ public class AnimationController : MonoBehaviour
             Debug.Log("Animation type change not implemented:" + type.ToString());
             return;
         }
-        Debug.Log("Animation type:" + type.ToString());
-        Debug.Log("Animation type:" + animationHolder.front.ToString());
         animationHolders[animationHolder.animationType] = animationHolder;
         spriteMeshes[animationHolder.animationType].spriteMesh = animationHolder.front;
     }
 
-    public void UpdateMoveAnimations(MovementType movementType)
+    public override void UpdateMoveAnimations(MovementType movementType)
     {
         if (currentMovement == movementType)
         {
             return;
         }
-        bool isMoving = movementType != MovementType.IDLE;
         foreach (KeyValuePair<AnimationType, SpriteMeshInstance> entry in spriteMeshes)
         {
-            entry.Value.spriteMesh = isMoving ? animationHolders[entry.Key].side : animationHolders[entry.Key].front;
+            entry.Value.spriteMesh = movementType != MovementType.IDLE ? animationHolders[entry.Key].side : animationHolders[entry.Key].front;
         }
-        UpdateRotation(movementType);
-        animator.SetBool("isMove", isMoving);
-        currentMovement = movementType;
+        base.UpdateMoveAnimations(movementType);
+
     }
 
-    private void UpdateRotation(MovementType movementType)
+    private void AddSpriteMesh(AnimationType type, string name)
     {
-        float rotation = movementType == MovementType.WALK_RIGHT || movementType == MovementType.IDLE  && currentMovement == MovementType.WALK_RIGHT ? 180 : 0;
-        this.gameObject.transform.localRotation = Quaternion.Euler(0, rotation, 0);
+        Transform spriteTransform = this.gameObject.transform.Find(name);
+
+        if (spriteTransform == null || spriteTransform.GetComponent<SpriteMeshInstance>() == null)
+        {
+            return;
+        }
+        spriteMeshes.Add(type, spriteTransform.GetComponent<SpriteMeshInstance>());
     }
 
     private void AddAnimationHolder(GameObject go)

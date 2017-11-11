@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterBehaviourBase : MonoBehaviour {
+public abstract class CharacterBehaviourBase : MonoBehaviour
+{
 
     public float jumpPower;
     public float speed = 1;  //Floating point variable to store the player's movement speed.
@@ -10,9 +11,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     public Transform animationsComponent;
     protected Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
-    protected SpriteRenderer spriteRenderer;
-    protected Animator animator;
-    
+
     protected AudioSource jumpsound;
     // add health bar
 
@@ -23,19 +22,13 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     public bool isInKnockback;
 
+    protected BasicAnimationController animationController;
+
     public virtual void Awake()
     {
         animationsComponent = transform.Find("animations");
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-        //TODO old stuff, rework
-        if (spriteRenderer != null)
-        {
-            size = spriteRenderer.sprite.bounds.size;
-            origColor = spriteRenderer.color;
-            GetComponent<BoxCollider2D>().size = size;
-        }
+        animationController = animationsComponent.GetComponent<BasicAnimationController>();
     }
 
     public virtual void Start()
@@ -45,29 +38,18 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {		
-	}
+    void Update()
+    {
+    }
 
     protected bool IsGrounded()
     {
         return rb2d.velocity.y == 0;
     }
 
-    public virtual void UpdateAnimation(float moveHorizontal)
+    public virtual void UpdateAnimation(MovementType movementType)
     {
-        animator.SetBool("isMove", moveHorizontal != 0);
-        if(animationsComponent == null)
-        {
-            return;
-        }
-        if (moveHorizontal > 0)
-        {
-            animationsComponent.localRotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            animationsComponent.localRotation = Quaternion.Euler(0, 0, 0);
-        }
+        animationController.UpdateMoveAnimations(movementType);
     }
 
     protected void Attack(Vector3 direction)
@@ -77,7 +59,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected void Attack(GameObject target, int damage)
     {
-        animator.SetTrigger("doAttack");
+        animationController.animator.SetTrigger("doAttack");
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
         cbb.TakeDamage(damage);
         Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
@@ -91,8 +73,8 @@ public class CharacterBehaviourBase : MonoBehaviour {
         if (hp <= 40)
         {
             //TODO old stuff, rework
-            animator.SetLayerWeight(0, 0.0f);
-            animator.SetLayerWeight(1, 1.0f);
+            animationController.animator.SetLayerWeight(0, 0.0f);
+            animationController.animator.SetLayerWeight(1, 1.0f);
         }
         if (hp <= 0)
         {
@@ -109,7 +91,7 @@ public class CharacterBehaviourBase : MonoBehaviour {
 
     protected virtual void OnDamage(int damage)
     {
-        if(armor != null)
+        if (armor != null)
         {
             damage = armor.BlockDamage(damage);
         }

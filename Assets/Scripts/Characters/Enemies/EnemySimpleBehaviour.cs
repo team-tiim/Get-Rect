@@ -23,7 +23,6 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     // Use this for initialization
     public override void Awake () {
         base.Awake();
-        animator = GetComponent<Animator>();
         this.target = GameObject.FindGameObjectWithTag("Player");
         this.startingPos = transform.position;
         amps_sound = GetComponent<AudioSource>();
@@ -44,10 +43,11 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         }
         else if (targetDistance < aggroDistance)
         {
-            //Debug.Log("Target found: " + target.name);
+            Debug.Log("Target found: " + target.name);
             MoveTowards(target);
         }
     }
+
     private void DoAttack()
     {
         float timeFromLastAttack = Time.time - attackTime;
@@ -69,12 +69,14 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         if (ShouldJump(targetPosition))
         {
             //Debug.Log("jump");
-            this.animator.SetTrigger("doJump");
+            this.animationController.animator.SetTrigger("doJump");
             this.rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
         }
 
-        UpdateAnimation(xDif);
-        transform.position += transform.right * speed * Time.deltaTime;
+        MovementType type = Utils.GetMovementType(xDif);
+        UpdateAnimation(type);
+        Vector2 movement = new Vector2(xDif, rb2d.velocity.y);
+        rb2d.velocity = movement;
     }
 
     private float getDistanceTo(Vector3 position)
@@ -89,7 +91,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             return false;
         }
 
-        float targetHeight = GetComponent<SpriteRenderer>().sprite.bounds.size.y;
+        float targetHeight = GetComponent<BoxCollider2D>().bounds.size.y;
         float yDif = (targetPosition.y - targetHeight / 2) - (transform.position.y + this.size.y / 2);
         GameObject targetPlatform = target.GetComponent<PlayerBehaviour>().closestPlatform;
         return (yDif > 0.5) && (CanJumpToObject(target) || CanJumpToObject(targetPlatform));
@@ -110,6 +112,6 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     protected override void OnDamage(int damage)
     {
         base.OnDamage(damage);
-        StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
+        //StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
 }

@@ -33,4 +33,17 @@ public static class Utils {
         }
         return result;
     }
+
+    public static MovementType GetMovementType(float moveHorizontal)
+    {
+        if (moveHorizontal == 0)
+        {
+            return MovementType.IDLE;
+        }
+        if (moveHorizontal > 0)
+        {
+            return MovementType.WALK_RIGHT;
+        }
+        return MovementType.WALK_LEFT;
+    }
 }

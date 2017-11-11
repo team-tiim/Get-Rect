@@ -948,10 +948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf77fa48a9755c84fb865c33de1fc11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   origArmor: {fileID: 1195458933706016, guid: 994df769c0b7ff24d9ed4438d91f4c16, type: 2}
   origBody: {fileID: 1195458933706016, guid: a5ee202e25c575b4ea627c69e96689ec, type: 2}
   origHat: {fileID: 1195458933706016, guid: 3090b85795c37544e9d56f85f3c889da, type: 2}
-  animator: {fileID: 0}
 --- !u!114 &114643951616095352
 MonoBehaviour:
   m_ObjectHideFlags: 1

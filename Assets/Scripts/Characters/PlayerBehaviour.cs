@@ -20,8 +20,6 @@ public class PlayerBehaviour : CharacterBehaviourBase
     private Transform rightHandPoint;
     private Transform handMovementPath;
 
-    private AnimationController animationController;
-
 
     //Called before Start, use as constructor
     public override void Awake()
@@ -30,7 +28,6 @@ public class PlayerBehaviour : CharacterBehaviourBase
         leftHandPoint = transform.Find("leftHandPoint");
         rightHandPoint = transform.Find("rightHandPoint");
         handMovementPath = transform.Find("handMovementPath");
-        animationController = animationsComponent.GetComponent<AnimationController>();
     }
 
     // Use this for initialization
@@ -65,7 +62,7 @@ public class PlayerBehaviour : CharacterBehaviourBase
     protected override void OnDamage(int damage)
     {
         base.OnDamage(damage);
-        StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
+        //StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
 
     public void DoJump()
@@ -141,13 +138,13 @@ public class PlayerBehaviour : CharacterBehaviourBase
     public void EquipArmor(ArmorHolder armorHolder)
     {
         AddArmor(armorHolder);
-        animationController.ChangeAnimation(armorHolder);
+        ((AnimationController)animationController).ChangeAnimation(armorHolder);
     }
 
     public void EquipHat(ArmorHolder armorHolder)
     {
         AddArmor(armorHolder);
-        animationController.ChangeAnimation(armorHolder);
+        ((AnimationController)animationController).ChangeAnimation(armorHolder);
     }
 
     private void AddArmor(ArmorHolder armorHolder)
@@ -162,7 +159,7 @@ public class PlayerBehaviour : CharacterBehaviourBase
         }
     }
 
-    public void UpdateAnimation(MovementType movementType)
+    public override void UpdateAnimation(MovementType movementType)
     {
         if (animationController == null)
         {
