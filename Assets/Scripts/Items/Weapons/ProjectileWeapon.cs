@@ -14,9 +14,9 @@ public class ProjectileWeapon : Weapon
     // Use this for initialization
     void Start()
     {
-        GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         if (projectilePrefab == null)
         {
+            GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
             projectilePrefab = gc.basicBulletPrefab;
         }
         projectileSpawnPoint = transform.Find("projectileSpawnPoint");
