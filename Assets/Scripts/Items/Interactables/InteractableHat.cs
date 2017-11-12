@@ -4,16 +4,7 @@ using UnityEngine;
 
 public class InteractableHat : BaseInteractable {
 
-    public GameObject[] prefabs;   
-
-    void Awake()
-    {
-
-    }
-    // Use this for initialization
-    void Start () {
-    }
-
+    public GameObject[] prefabs;
 
     protected override void OnPlayerPickup(Collider2D player)
     {
@@ -25,5 +16,6 @@ public class InteractableHat : BaseInteractable {
         PlayerBehaviour player = other.GetComponent<PlayerBehaviour>();
         GameObject pref = RandomUtil.GetRandomFromArray(prefabs);
         player.EquipHat(pref.GetComponent<ArmorHolder>());
+        Destroy(gameObject);
     }
 }

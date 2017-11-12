@@ -6,15 +6,6 @@ public class InteractableArmor : BaseInteractable {
 
     public GameObject[] prefabs;   
 
-    void Awake()
-    {
-
-    }
-    // Use this for initialization
-    void Start () {
-    }
-
-
     protected override void OnPlayerPickup(Collider2D player)
     {
         AddArmor(player);
@@ -25,5 +16,6 @@ public class InteractableArmor : BaseInteractable {
         PlayerBehaviour player = other.GetComponent<PlayerBehaviour>();
         GameObject pref = RandomUtil.GetRandomFromArray(prefabs);
         player.EquipArmor(pref.GetComponent<ArmorHolder>());
+        Destroy(gameObject);
     }
 }

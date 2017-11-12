@@ -775,6 +775,16 @@ Prefab:
       propertyPath: m_LocalRotation.z
       value: 0.45760238
       objectReference: {fileID: 0}
+    - target: {fileID: 61013988358541940, guid: 4e47ea1e51807c2479495e0d13986bb1,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 4.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 61013988358541940, guid: 4e47ea1e51807c2479495e0d13986bb1,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.66
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e47ea1e51807c2479495e0d13986bb1, type: 2}
   m_IsPrefabParent: 0
@@ -1395,11 +1405,23 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114635777177016468, guid: e3888fd650238a446ad074bce6fc5e24,
+    - target: {fileID: 137903993397487974, guid: e3888fd650238a446ad074bce6fc5e24,
         type: 2}
-      propertyPath: origHat
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1195458933706016, guid: 52803210d443e8a43b72c610202bc797,
+      objectReference: {fileID: 21382440805895856, guid: df41aa25546655c4cad7a26e71694324,
+        type: 2}
+    - target: {fileID: 137184320382646832, guid: e3888fd650238a446ad074bce6fc5e24,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21748505445979232, guid: 8324b8bc519ffef4abf51bb59449cdf6,
+        type: 2}
+    - target: {fileID: 137118177451782174, guid: e3888fd650238a446ad074bce6fc5e24,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21745315496567908, guid: 7065f7d022c203a4f9b35565fa416237,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3888fd650238a446ad074bce6fc5e24, type: 2}
@@ -4016,7 +4038,7 @@ Prefab:
     - target: {fileID: 114654486192907652, guid: b2b254d8856864f45b0a76bdf8de2293,
         type: 2}
       propertyPath: range
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114654486192907652, guid: b2b254d8856864f45b0a76bdf8de2293,
         type: 2}
