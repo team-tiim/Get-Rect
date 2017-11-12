@@ -57,7 +57,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         //Debug.Log("attacked player");
         this.attackTime = Time.time;
         Attack(target, damage);
-        amps_sound.Play();
+       // amps_sound.Play();
     }
 
 

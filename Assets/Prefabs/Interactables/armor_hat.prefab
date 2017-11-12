@@ -82,6 +82,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 1195458933706016, guid: 3090b85795c37544e9d56f85f3c889da, type: 2}
   - {fileID: 1195458933706016, guid: 3da141b89907b15478cbb5dfe9de695e, type: 2}
+  - {fileID: 1195458933706016, guid: 52803210d443e8a43b72c610202bc797, type: 2}
 --- !u!212 &212181063046830374
 SpriteRenderer:
   m_ObjectHideFlags: 1

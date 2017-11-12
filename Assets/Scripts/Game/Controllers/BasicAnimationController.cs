@@ -13,15 +13,21 @@ public class BasicAnimationController : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 
-    public virtual void UpdateMoveAnimations(MovementType movementType)
+    public virtual void UpdateMoveAnimations(MovementType type)
     {
-        if (currentMovement == movementType)
+        if (currentMovement == type)
         {
             return;
         }
-        UpdateRotation(movementType);
-        animator.SetBool("isMove", movementType != MovementType.IDLE);
-        currentMovement = movementType;
+        UpdateRotation(type);
+        animator.SetBool("isMove", type != MovementType.IDLE);
+        currentMovement = type;
+    }
+
+    public void UpdateAttackAnimations(AttackType type)
+    {
+        animator.SetInteger("attackType", (int)type);
+        animator.SetTrigger("doAttack");
     }
 
     private void UpdateRotation(MovementType movementType)

@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4273921638708226}
-  - component: {fileID: 114956957928914406}
+  - component: {fileID: 114677435210238694}
   m_Layer: 0
-  m_Name: playerskin
+  m_Name: snowhat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114956957928914406
+--- !u!114 &114677435210238694
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,9 +48,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1195458933706016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cc7067dfee6b942b65232d349f6135, type: 3}
+  m_Script: {fileID: 11500000, guid: d18907fb5fd4a4e4d9dc8a45610c5af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  front: {fileID: 11400000, guid: df41aa25546655c4cad7a26e71694324, type: 2}
-  side: {fileID: 11400000, guid: df41aa25546655c4cad7a26e71694324, type: 2}
-  animationType: 0
+  front: {fileID: 11400000, guid: 7065f7d022c203a4f9b35565fa416237, type: 2}
+  side: {fileID: 11400000, guid: 7065f7d022c203a4f9b35565fa416237, type: 2}
+  animationType: 2
+  armorValue: 10

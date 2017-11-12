@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class CharacterBehaviourBase : MonoBehaviour
@@ -58,8 +60,9 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
     }
 
     protected void Attack(GameObject target, int damage)
-    {
-        animationController.animator.SetTrigger("doAttack");
+    {        
+        AttackType type = (RandomUtil.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
+        animationController.UpdateAttackAnimations(type);
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
         cbb.TakeDamage(damage);
         Vector2 knockBackDir = (target.transform.position - transform.position).normalized;

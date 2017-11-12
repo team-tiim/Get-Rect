@@ -8,8 +8,12 @@ AnimatorOverrideController:
   m_Name: yarncat
   m_Controller: {fileID: 9100000, guid: 9871019db11023349b0d13d4c5d8c2cf, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: a76b288c5c4a77c45b5adc01d07b033d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d6ed3d4898e66b247b9a9f4b1daf47c3, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 3d912b3cf3308fb4ca06baf3ce1ce8e1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9102895fe83c4f2439c27136c3605b1d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9102895fe83c4f2439c27136c3605b1d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c6f90a2c81348714db2227c0acc1eb71, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c6f90a2c81348714db2227c0acc1eb71, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: eaee97fdbd4780c4ba76e5f3cc9fb01b, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: def8e5ac7b002cc41876cdf5c7b69f50, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 5a2c9f2132ccbb345babea3ae0dccf5a, type: 2}

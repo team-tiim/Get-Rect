@@ -60,7 +60,6 @@ public class AnimationController : BasicAnimationController
             entry.Value.spriteMesh = movementType != MovementType.IDLE ? animationHolders[entry.Key].side : animationHolders[entry.Key].front;
         }
         base.UpdateMoveAnimations(movementType);
-
     }
 
     private void AddSpriteMesh(AnimationType type, string name)
