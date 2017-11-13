@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: yarnmanoverrrider
+  m_Controller: {fileID: 9100000, guid: 9871019db11023349b0d13d4c5d8c2cf, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: eaee97fdbd4780c4ba76e5f3cc9fb01b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 03654eb5c57b5ce4c933aef82975cc0e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d6ed3d4898e66b247b9a9f4b1daf47c3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d8b49fa9b73645d4fb4da846d8940b90, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5a2c9f2132ccbb345babea3ae0dccf5a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6502eb57c033a024aaa6ca293e98e3ad, type: 2}
