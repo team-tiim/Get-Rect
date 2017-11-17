@@ -2418,34 +2418,6 @@ Transform:
   m_Father: {fileID: 1316208920}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &352541619
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 352541620}
-  m_Layer: 0
-  m_Name: groundcheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &352541620
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 352541619}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.36, y: -2.67, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1954164665}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361920744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,7 +3398,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1382947695}
   m_AABB:
-    m_Center: {x: 0.023370862, y: -0.03357336, z: 0}
+    m_Center: {x: 0.023370862, y: 0.03357336, z: 0}
     m_Extent: {x: 0.2501672, y: 0.3105438, z: 0}
   m_DirtyAABB: 0
 --- !u!114 &549080629
@@ -3525,11 +3497,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4345943805377378, guid: 9c837a02e4f49e94a97d39a664110390, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.0676162
+      value: 3.11
       objectReference: {fileID: 0}
     - target: {fileID: 4345943805377378, guid: 9c837a02e4f49e94a97d39a664110390, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.27
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 4345943805377378, guid: 9c837a02e4f49e94a97d39a664110390, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3910,6 +3882,16 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayerID
       value: 214781901
+      objectReference: {fileID: 0}
+    - target: {fileID: 137468219001376392, guid: 9c837a02e4f49e94a97d39a664110390,
+        type: 2}
+      propertyPath: m_AABB.m_Center.y
+      value: 0.01364481
+      objectReference: {fileID: 0}
+    - target: {fileID: 137987513330268844, guid: 9c837a02e4f49e94a97d39a664110390,
+        type: 2}
+      propertyPath: m_AABB.m_Center.y
+      value: 0.03357336
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 33054525147442324, guid: 9c837a02e4f49e94a97d39a664110390, type: 2}
@@ -5211,7 +5193,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.62783617, y: 0.25134668, z: 1}
-  m_Center: {x: 0.3058192, y: -0.0017269831, z: 0}
+  m_Center: {x: 0.3058192, y: 0, z: 0}
 --- !u!1 &835948469
 GameObject:
   m_ObjectHideFlags: 0
@@ -8839,7 +8821,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 283986715}
   m_AABB:
-    m_Center: {x: 1.0662003, y: -0.0136448145, z: 0}
+    m_Center: {x: 1.0662003, y: 0.01364481, z: 0}
     m_Extent: {x: 1.2845311, y: 0.17379615, z: 0}
   m_DirtyAABB: 0
 --- !u!114 &1446338825
@@ -11096,7 +11078,7 @@ Transform:
   m_PrefabInternal: {fileID: 553747875}
   m_GameObject: {fileID: 1954164664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.0676162, y: -0.27, z: 0}
+  m_LocalPosition: {x: 3.11, y: -0.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1377805519}
@@ -11109,7 +11091,6 @@ Transform:
   - {fileID: 549080627}
   - {fileID: 1446338823}
   - {fileID: 642887379}
-  - {fileID: 352541620}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
