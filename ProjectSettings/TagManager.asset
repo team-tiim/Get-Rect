@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Enemy
   - Health
+  - HUD
   layers:
   - Default
   - TransparentFX

@@ -10,9 +10,6 @@ public class GameController : MonoBehaviour {
     public GameObject basicBulletPrefab;
     public GameObject handBulletPrefab;
 
-    public Text timerText;
-    public Text healthText;
-    public Text armorText;
     public int levelTime = 60; // seconds
     public int timeoutTime = 10;
     private float startTime;
@@ -24,9 +21,6 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        timerText = GameObject.Find("Timer").GetComponent<Text>();
-        healthText = GameObject.Find("Health").GetComponent<Text>();
-        armorText = GameObject.Find("Armor").GetComponent<Text>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
         player = playerObject.GetComponent<PlayerBehaviour>();
         platforms = GameObject.FindGameObjectsWithTag("Platform");
@@ -38,9 +32,7 @@ public class GameController : MonoBehaviour {
 	void Update () {
         float timeLeft = levelTime - (Time.time - startTime);
         updatePlayerClosestPlatform();
-        updateTimer(timeLeft);
         updateHealth();
-        updateArmor();
         if (timeLeft < timeoutTime && !isTimeout)
         {
             setTimeoutAnimation();
@@ -55,27 +47,11 @@ public class GameController : MonoBehaviour {
         Destroy(expl, expl.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
 
-    private void updateTimer(float timeLeft)
-    {
-        float minutes = Mathf.Floor(timeLeft / 60);
-        float seconds = (timeLeft % 60);
-        timerText.text = string.Format("{0}:{1}", minutes.ToString("0"), seconds.ToString("00"));
-    }
-
     private void updateHealth()
     {
 		if (player.hp < 0) {
 			SceneManager.LoadScene ("menu");
 		}
-		healthText.text = player.hp.ToString();
-    }
-
-    private void updateArmor()
-    {
-        if (player.armor != null)
-        {
-            armorText.text = player.armor.Value.ToString();
-        }
     }
 
     private void updatePlayerClosestPlatform()

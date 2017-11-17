@@ -9,11 +9,9 @@ public class AnimationHolder : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		if(side == null)
+        {
+            side = front;
+        }
 	}
 }
