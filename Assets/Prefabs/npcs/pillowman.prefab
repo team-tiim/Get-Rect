@@ -635,7 +635,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427469943415410}
-  m_LocalRotation: {x: 0, y: 0, z: 0.52773595, w: 0.8494085}
+  m_LocalRotation: {x: 0, y: 0, z: 0.5277365, w: 0.84940815}
   m_LocalPosition: {x: -1.0358336, y: 1.7909609, z: 0}
   m_LocalScale: {x: 1.0000014, y: 1.0000014, z: 1}
   m_Children:
@@ -738,8 +738,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1832362640745958}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.985216, y: 2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.18, y: 2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4441298562945142}
@@ -1153,7 +1153,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1936843140137186}
-  m_LocalRotation: {x: 0, y: 0, z: 0.1557996, w: 0.9877887}
+  m_LocalRotation: {x: 0, y: 0, z: 0.15579808, w: 0.9877889}
   m_LocalPosition: {x: 1.405007, y: -0.00000023841825, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1192,7 +1192,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.76, y: -0.87}
+  m_Offset: {x: 0.76, y: -0.66}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1203,7 +1203,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.49, y: 4.59}
+  m_Size: {x: 1.49, y: 4.32}
   m_EdgeRadius: 0
 --- !u!95 &95134075440525850
 Animator:
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 599d48b0f3d89924d9c66bbcbc119fbd, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 1182581919
   m_SortingOrder: 2
   m_Bones: []
@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: ab4fcbb02e1eddd4aad6f403203cf014, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 1182581919
   m_SortingOrder: 3
   m_Bones: []
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.067515
+  m_Length: 1.0675148
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4184030568063028}
   m_AttachedIK: {fileID: 0}
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 9953359bcff85084895c380fd4006b74, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 1182581919
   m_SortingOrder: 5
   m_Bones: []
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 575027c8bc798b94eb5084f77577d5e8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 1182581919
   m_SortingOrder: 4
   m_Bones: []
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   aggroDistance: 10
   patrolDistance: 5
   range: 4
-  damage: 1
+  damage: 4
   coolDown: 4
 --- !u!114 &114500836675210160
 MonoBehaviour:
@@ -1746,7 +1746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Length: 1.4050074
+  m_Length: 1.4050075
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4901306977344208}
   m_AttachedIK: {fileID: 114501221689352680}
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 2c429fbc9f1c2c94293c05b15a115062, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 1182581919
   m_SortingOrder: 0
   m_Bones: []
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 9b387f539cf56cf47a93df8b523965c7, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 1182581919
   m_SortingOrder: 0
   m_Bones: []
@@ -1896,7 +1896,7 @@ MonoBehaviour:
   m_SpriteMesh: {fileID: 11400000, guid: 7ffd7ea8eae89984287f5808bdb43c2b, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_SortingLayerID: 1182581919
   m_SortingOrder: 5
   m_Bones: []

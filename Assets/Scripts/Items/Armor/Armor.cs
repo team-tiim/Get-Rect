@@ -43,7 +43,8 @@ public class Armor {
 
     public int BlockDamage(int damage)
     {
-        int blockDamage = Math.Min(value, (int) (damage * blockPercentage));
+        int blockDamage = Math.Min(value, (int)Math.Ceiling(damage * blockPercentage));
+        Debug.Log("Blocked damage: " + blockDamage);
         Decrease(blockDamage);
         return damage - blockDamage;
     }

@@ -33,22 +33,13 @@ public class DeveloperHUDController : MonoBehaviour
 
     private void UpdateHealth(DeveloperPlayerHUD hud)
     {
-        if (hud == null)
-        {
-            return;
-        }
-
-        hud.health.text = hud.player.hp.ToString();
+        hud.health.text = hud != null ? hud.player.hp.ToString() : "0";
     }
 
     private void UpdateArmor(DeveloperPlayerHUD hud)
     {
-        if (hud == null || hud.player.armor == null)
-        {
-            return;
-        }
-
-        hud.armor.text = hud.player.armor.Value.ToString();
+        bool hasArmor = hud != null && hud.player.armor != null;
+        hud.armor.text= hasArmor ? hud.player.armor.Value.ToString() : "0";
     }
 
     private DeveloperPlayerHUD InitPlayerHUD(GameObject player, Transform playerHUDHolder)
