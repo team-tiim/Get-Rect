@@ -9,13 +9,14 @@ public class HUDController : MonoBehaviour
     private PlayerHUD player1;
     private PlayerHUD player2;
 
-    private Image utilityP1;
-    //private BossBehavivour boss;
-
+    private BossBehaviourBase boss;
+    private Image bossImage;
     // Use this for initialization
     void Start()
     {
         player1 = InitPlayerHUD(GameObject.FindGameObjectWithTag("Player"), transform.Find("Player1"));
+        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviourBase>(); 
+        bossImage = transform.Find("Boss").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class HUDController : MonoBehaviour
     {
         UpdatePlayerInfo(player1);
         UpdatePlayerInfo(player2);
+        UpdateBossInfo();
     }
 
     public void ToggleHUD()
@@ -38,6 +40,11 @@ public class HUDController : MonoBehaviour
         }
         playerHUD.healthSlider.value = playerHUD.player.hp;
         playerHUD.armorSlider.value = playerHUD.player.armor.Value;
+    }
+
+    private void UpdateBossInfo()
+    {
+        bossImage.sprite = boss.GetCurrentImage();
     }
 
     private PlayerHUD InitPlayerHUD(GameObject player, Transform playerHUDHolder)

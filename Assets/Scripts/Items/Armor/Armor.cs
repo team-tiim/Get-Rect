@@ -6,11 +6,7 @@ using UnityEngine;
 public class Armor {
     private const int MAX_VALUE = 100;
     private float blockPercentage = 0.75f;
-    private int value = 10;
-
-    public Armor()
-    {
-    }
+    private int value;
 
     public Armor(int value)
     {

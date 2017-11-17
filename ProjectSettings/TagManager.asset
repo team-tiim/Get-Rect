@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Health
   - HUD
+  - Boss
   layers:
   - Default
   - TransparentFX

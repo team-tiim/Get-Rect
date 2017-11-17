@@ -18,26 +18,26 @@ public class GameController : MonoBehaviour {
     private bool isTimeout;
 
     private PlayerBehaviour player;
+    private BossBehaviourBase boss;
 
     // Use this for initialization
     void Start () {
         playerObject = GameObject.FindGameObjectWithTag("Player");
         player = playerObject.GetComponent<PlayerBehaviour>();
+        boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviourBase>();
+
         platforms = GameObject.FindGameObjectsWithTag("Platform");
         startTime = Time.time;
-        updatePlayerClosestPlatform();
+        UpdatePlayerClosestPlatform();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        float timeLeft = levelTime - (Time.time - startTime);
-        updatePlayerClosestPlatform();
-        updateHealth();
-        if (timeLeft < timeoutTime && !isTimeout)
-        {
-            setTimeoutAnimation();
-        }
-	}
+        UpdatePlayerClosestPlatform();
+        UpdateHealth();
+        UpdateTimer();
+
+    }
 
     public void doExplosion(Vector3 location, string animation = "explosion")
     {
@@ -47,14 +47,27 @@ public class GameController : MonoBehaviour {
         Destroy(expl, expl.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
 
-    private void updateHealth()
+    private void UpdateTimer()
+    {
+        float timeLeft = levelTime - (Time.time - startTime);
+        if(boss != null && timeLeft  > 0)
+        {
+            boss.angerLevel = boss.maxAnger - (int)timeLeft / 10;
+        }
+        if (timeLeft < timeoutTime && !isTimeout)
+        {
+            setTimeoutAnimation();
+        }
+    }
+
+    private void UpdateHealth()
     {
 		if (player.hp < 0) {
 			SceneManager.LoadScene ("menu");
 		}
     }
 
-    private void updatePlayerClosestPlatform()
+    private void UpdatePlayerClosestPlatform()
     {
         GameObject closest = platforms[0];
         var bestDist = Vector3.Distance(player.transform.position, platforms[0].transform.position);

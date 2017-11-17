@@ -34,7 +34,7 @@ public class PlayerBehaviour : CharacterBehaviourBase
     public override void Start()
     {
         base.Start();
-        this.armor = new Armor();
+        this.armor = new Armor(10);
 
         EquipWeapon(origWeapon);
     }
@@ -44,7 +44,6 @@ public class PlayerBehaviour : CharacterBehaviourBase
         MoveWeapon();
         animationController.animator.SetBool("isGrounded", IsGrounded());
 
-        //healthslider.value = hp;
         //UpdateAnimation(moveHorizontal);
     }
 
