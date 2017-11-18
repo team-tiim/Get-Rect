@@ -3904,11 +3904,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114902504933059558, guid: bd16f05c0e0aae943966d138d705baae,
-        type: 2}
-      propertyPath: recoilResetMultiplier
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd16f05c0e0aae943966d138d705baae, type: 2}
   m_IsPrefabParent: 0
@@ -6360,11 +6355,6 @@ Prefab:
     - target: {fileID: 4047803940497848, guid: 4e88d53a950172944b19b322c8a9e34d, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114923587240634578, guid: 4e88d53a950172944b19b322c8a9e34d,
-        type: 2}
-      propertyPath: recoilResetMultiplier
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e88d53a950172944b19b322c8a9e34d, type: 2}
