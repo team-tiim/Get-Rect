@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    public GameObject origWeapon;
     private WeaponHand left;
     private WeaponHand right;
 
@@ -11,6 +12,7 @@ public class WeaponController : MonoBehaviour
     {
         left = new WeaponHand(transform.Find("leftHandWeapon"), true);
         right = new WeaponHand(transform.Find("rightHandWeapon"), false);
+        EquipWeapon(origWeapon);
     }
 
     // Update is called once per frame
@@ -41,6 +43,11 @@ public class WeaponController : MonoBehaviour
 
         EquipWeaponInHand(left, weapon);
         EquipWeaponInHand(right, weapon);
+    }
+
+    public void ResetWeapon()
+    {
+        EquipWeapon(origWeapon);
     }
 
     private void EquipWeaponInHand(WeaponHand weaponHand, GameObject weapon)

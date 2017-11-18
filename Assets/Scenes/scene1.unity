@@ -1170,6 +1170,12 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114950167247486844, guid: e3888fd650238a446ad074bce6fc5e24,
+        type: 2}
+      propertyPath: origWeapon
+      value: 
+      objectReference: {fileID: 1355355090618460, guid: bd16f05c0e0aae943966d138d705baae,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3888fd650238a446ad074bce6fc5e24, type: 2}
   m_IsPrefabParent: 0
@@ -7465,7 +7471,6 @@ MonoBehaviour:
   speed: 2
   hp: 10
   animationsComponent: {fileID: 0}
-  origWeapon: {fileID: 0}
   isInKnockback: 0
   target: {fileID: 0}
   canJump: 0
@@ -7474,6 +7479,7 @@ MonoBehaviour:
   patrolDistance: 5
   range: 4
   damage: 4
+  coolDown: 1
 --- !u!61 &1922356321
 BoxCollider2D:
   m_ObjectHideFlags: 0

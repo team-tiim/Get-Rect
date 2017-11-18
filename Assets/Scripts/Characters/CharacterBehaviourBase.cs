@@ -19,7 +19,6 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
 
     protected GameObject equippedWeapon;
     protected Color origColor;
-    public GameObject origWeapon;
     public Armor armor;
 
     public bool isInKnockback;

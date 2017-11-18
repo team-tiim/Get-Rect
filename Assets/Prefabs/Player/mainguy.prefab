@@ -716,7 +716,6 @@ MonoBehaviour:
   speed: 10
   hp: 100
   animationsComponent: {fileID: 0}
-  origWeapon: {fileID: 1355355090618460, guid: bd16f05c0e0aae943966d138d705baae, type: 2}
   isInKnockback: 0
   sounds: []
   bgm: {fileID: 0}
@@ -970,6 +969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78eb022c07b53b4ca16f5c47c26f24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origWeapon: {fileID: 0}
 --- !u!114 &114992196470403546
 MonoBehaviour:
   m_ObjectHideFlags: 1

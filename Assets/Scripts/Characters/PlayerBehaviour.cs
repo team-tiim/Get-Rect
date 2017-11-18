@@ -26,8 +26,6 @@ public class PlayerBehaviour : CharacterBehaviourBase
     {
         base.Start();
         this.armor = new Armor(10);
-
-        weaponController.EquipWeapon(origWeapon);
     }
 
     void Update()
@@ -100,11 +98,6 @@ public class PlayerBehaviour : CharacterBehaviourBase
             return;
         }
         animationController.UpdateMoveAnimations(movementType);
-    }
-
-    public void ResetWeapon()
-    {
-        weaponController.EquipWeapon(origWeapon);
     }
 
 }
