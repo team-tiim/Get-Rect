@@ -10,17 +10,19 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     public GameObject target;
     public bool canJump = false;
 
-    public int turnSpeed = 1;
-    public int aggroDistance = 1;
-    public int patrolDistance = 5;
-    public int range = 5;
+    public float turnSpeed = 1;
+    public float aggroDistance = 1;
+    public float patrolDistance = 5;
+    public float range = 5;
     public int damage = 1;
+    public float coolDown = 1;
 
-    private float _coolDown;
+    
     private Vector2 _startingPos;
     private AudioSource _amps_sound;
     private float _lastAttackTime;
-    private double _targetDistance;
+    private float _lastHitTime;
+    private float _attackAniDuration;
 
     // Use this for initialization
     public override void Awake()
@@ -29,9 +31,8 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         target = GameObject.FindGameObjectWithTag("Player");
         _startingPos = transform.position;
         _amps_sound = GetComponent<AudioSource>();
-        _targetDistance = getDistanceTo(target.transform.position);
-        _lastAttackTime = -_coolDown;
-        _coolDown = 0;
+        _lastAttackTime = -(_attackAniDuration+coolDown);
+        _attackAniDuration = 0;
     }
 
     // Update is called once per frame
@@ -42,15 +43,16 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             return;
         }
 
-        _targetDistance = getDistanceTo(target.transform.position);
+        var _targetDistance = getDistanceTo(target.transform.position);
 
-        if (range > _targetDistance && !IsCooldown())
+        if (range > _targetDistance && !IsAttackCooldown())
         {
             //Debug.Log("Attacking: " + target.name + " Target distance: " + _targetDistance +
             //          " range :" + range + " Last attack time: " + _lastAttackTime);
             DoAttack();
         }
-        else if (_targetDistance < aggroDistance && range < _targetDistance)
+        else if (_targetDistance < aggroDistance && 
+                range < _targetDistance)
         {
             //Debug.Log("Moving to: " + target.name + " Target distance: " + _targetDistance +
             //          " range :" + range + " Last attack time: " + _lastAttackTime);
@@ -66,9 +68,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 
     private void DoAttack()
     {
-        _lastAttackTime = Time.time;
         Attack(target, damage);
-        Debug.Log(_coolDown);
         //amps_sound.Play();
     }
 
@@ -130,16 +130,29 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 
     protected override void Attack(GameObject target, int damage)
     {
+        _lastAttackTime = Time.time;
         AttackType type = (RandomUtil.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
-        var cbb = target.GetComponent<CharacterBehaviourBase>();
-        cbb.TakeDamage(damage);
-        _coolDown = animationController.UpdateAttackAnimations(type);
+        _attackAniDuration = animationController.UpdateAttackAnimations(type);
     }
 
-    private bool IsCooldown()
+    private bool IsAttackCooldown()
     {
-        return Time.time - _lastAttackTime <= _coolDown;
+        return Time.time - _lastAttackTime <= _attackAniDuration+coolDown;
     }
 
+    private bool IsHitCooldown()
+    {
+        return Time.time - _lastHitTime < _attackAniDuration;
+    }
 
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject == target && !IsHitCooldown()) {
+            var cbb = target.GetComponent<CharacterBehaviourBase>();
+            cbb.TakeDamage(damage);
+            Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
+            cbb.DoKnockback(knockBackDir * 20);
+            _lastHitTime = Time.time;
+        }
+    }
 }
