@@ -31,8 +31,9 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         target = GameObject.FindGameObjectWithTag("Player");
         _startingPos = transform.position;
         _amps_sound = GetComponent<AudioSource>();
-        _lastAttackTime = -(_attackAniDuration+coolDown);
+        _lastAttackTime = 0;
         _attackAniDuration = 0;
+        _lastHitTime = 0;
     }
 
     // Update is called once per frame
