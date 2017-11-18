@@ -88,6 +88,6 @@ public class DeveloperController : MonoBehaviour {
 
     private void EquipWeapon(GameObject weapon)
     {
-        player.EquipWeapon(weapon);
+        player.GetComponent<WeaponController>().EquipWeapon(weapon);
     }
 }
