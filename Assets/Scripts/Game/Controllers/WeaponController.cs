@@ -7,7 +7,6 @@ public class WeaponController : MonoBehaviour
     private WeaponHand left;
     private WeaponHand right;
 
-    // Use this for initialization
     void Start()
     {
         left = new WeaponHand(transform.Find("leftHandWeapon"), true);
@@ -15,7 +14,6 @@ public class WeaponController : MonoBehaviour
         EquipWeapon(origWeapon);
     }
 
-    // Update is called once per frame
     void Update()
     {
         MoveWeapon();
@@ -30,44 +28,28 @@ public class WeaponController : MonoBehaviour
         if (direction.x <= 0)
         {
             left.weapon.GetComponent<Weapon>().Attack(gameObject, direction);
+            left.ResetRecoil();
         }
         else
         {
             right.weapon.GetComponent<Weapon>().Attack(gameObject, direction);
+            right.ResetRecoil();
         }
+
     }
 
-    public void EquipWeapon(GameObject weapon)
+    public void EquipWeapon(GameObject weaponGO)
     {
         StopAllCoroutines();
 
-        EquipWeaponInHand(left, weapon);
-        EquipWeaponInHand(right, weapon);
+        left.ReplaceWeapon(weaponGO);
+        right.ReplaceWeapon(weaponGO);
     }
 
     public void ResetWeapon()
     {
         EquipWeapon(origWeapon);
     }
-
-    private void EquipWeaponInHand(WeaponHand weaponHand, GameObject weapon)
-    {
-        Destroy(weaponHand.weapon);
-        weaponHand.weapon = Instantiate(weapon);
-        MoveWeaponToPoint(weaponHand);
-    }
-
-    private void MoveWeaponToPoint(WeaponHand weaponHand)
-    {
-        int offset = weaponHand.flipped ? 1 : -1;
-        Transform weaponHandP = weaponHand.weapon.transform.Find("handPoint");
-        Vector3 equipHandPoint = weaponHand.gunDefaultPoint;
-        Vector3 position = new Vector3(equipHandPoint.x + weaponHandP.localPosition.x * offset, equipHandPoint.y + weaponHandP.localPosition.y * offset);
-        weaponHand.weapon.transform.position = position;
-        weaponHand.weapon.transform.rotation = weaponHand.hand.Find("handPoint").rotation;
-        weaponHand.weapon.transform.parent = weaponHand.hand;
-    }
-
 
     private void MoveWeapon()
     {
@@ -76,20 +58,19 @@ public class WeaponController : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (mousePosition.x <= transform.position.x)
         {
-            RotateTowards(left.hand, mousePosition, true);
-            StartCoroutine(MoveToIdlePosition(right, false));
+            RotateTowards(left, mousePosition);
+            StartCoroutine(MoveToIdlePosition(right));
         }
         else
         {
-            RotateTowards(right.hand, mousePosition, false);
-            StartCoroutine(MoveToIdlePosition(left, true));
+            RotateTowards(right, mousePosition);
+            StartCoroutine(MoveToIdlePosition(left));
         }
     }
 
-    private void RotateTowards(Transform transform, Vector3 mousePosition, bool fipped)
+    private void RotateTowards(WeaponHand weaponHand, Vector3 mousePosition)
     {
-        Quaternion q = GetRotationTowards(transform, mousePosition, fipped);
-        transform.rotation = GetRotationTowards(transform, mousePosition, fipped);
+        weaponHand.GetHand().transform.rotation = GetRotationTowards(weaponHand.GetHand(), mousePosition, weaponHand.IsFlipped());
     }
 
     private Quaternion GetRotationTowards(Transform transform, Vector3 toPosition, bool flipped)
@@ -100,36 +81,15 @@ public class WeaponController : MonoBehaviour
         return Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    private IEnumerator MoveToIdlePosition(WeaponHand weaponHand, bool fipped)
+    private IEnumerator MoveToIdlePosition(WeaponHand weaponHand)
     {
-        Vector3 idlePosition = weaponHand.GetGunDefaultPointGlobal();
-        while (Vector3.Distance(weaponHand.hand.position, idlePosition) > 0)
+        Vector3 idlePosition = weaponHand.GetDefaultHandPointGlobal();
+        Transform hand = weaponHand.GetHand();
+        while (Vector3.Distance(weaponHand.GetHand().position, idlePosition) > 0)
         {
-            Quaternion q = GetRotationTowards(weaponHand.hand, idlePosition, fipped);
-            weaponHand.hand.rotation = Quaternion.Slerp(weaponHand.hand.rotation, q, Time.deltaTime * 10f);
+            Quaternion q = GetRotationTowards(hand, idlePosition, weaponHand.IsFlipped());
+            hand.rotation = Quaternion.Slerp(hand.rotation, q, Time.deltaTime * 10f);
             yield return null;
-        }
-    }
-
-
-    private class WeaponHand
-    {
-        public GameObject weapon;
-        public Transform hand;
-        public Vector3 gunDefaultPoint;
-        public bool flipped;
-
-        public WeaponHand(Transform hand, bool flipped)
-        {
-            this.hand = hand;
-            this.gunDefaultPoint = hand.Find("handPoint").localPosition;
-            gunDefaultPoint.z = 0;
-            this.flipped = flipped;
-        }
-
-        public Vector3 GetGunDefaultPointGlobal()
-        {
-            return hand.position + gunDefaultPoint;
         }
     }
 }

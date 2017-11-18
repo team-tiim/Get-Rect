@@ -26,6 +26,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1137063773770848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4114188389529576}
+  m_Layer: 0
+  m_Name: projectileStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1300821910741698
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,14 +80,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300821910741698}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.477, y: 3.3489726, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.349962, y: -3.217008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4779713356251840}
   - {fileID: 4550354579908830}
+  - {fileID: 4114188389529576}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4114188389529576
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1137063773770848}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.24, y: 0.373, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4047803940497848}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4550354579908830
 Transform:
@@ -128,12 +157,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handPoint: {fileID: 4779713356251840}
   damage: 1
-  attackCooldown: 0.001
+  attackCooldown: 0.1
   knockback: 0
+  maxRecoilRotation: 10
+  recoilResetMultiplier: 0.5
   gravityScale: 0
-  projectilePrefab: {fileID: 0}
-  projectileSpawnPoint: {fileID: 0}
+  projectilePrefab: {fileID: 1408287409527776, guid: 1d67c465e90f6974f91b184dfc45bf37,
+    type: 2}
+  projectileSpawnPoint: {fileID: 4550354579908830}
+  projectileStartPoint: {fileID: 4114188389529576}
+  originalRotation: {x: -0, y: -0, z: -0, w: 1}
 --- !u!212 &212661065425943358
 SpriteRenderer:
   m_ObjectHideFlags: 1

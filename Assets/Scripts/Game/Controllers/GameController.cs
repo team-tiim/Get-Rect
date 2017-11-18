@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour {
     private void setTimeoutAnimation()
     {
         Animator anim = player.GetComponent<Animator>();
-        anim.runtimeAnimatorController = Resources.Load("Animations/player_timeout") as RuntimeAnimatorController;
+        //anim.runtimeAnimatorController = Resources.Load("Animations/player_timeout") as RuntimeAnimatorController;
         isTimeout = true;
     }
 }

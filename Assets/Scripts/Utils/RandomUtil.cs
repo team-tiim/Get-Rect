@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public static class RandomUtil {
 
-    public static int GetRandom(int max)
+    public static int GetRandom(int min, int max)
     {
-        return UnityEngine.Random.Range(0, max);
+        return UnityEngine.Random.Range(min, max);
     }
 
+    public static int GetRandom(int max)
+    {
+        return GetRandom(0, max);
+    }
 
     public static T GetRandomFromArray<T>(T[] array)
     {

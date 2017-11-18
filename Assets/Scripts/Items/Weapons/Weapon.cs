@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public abstract class Weapon : MonoBehaviour
 {
+    public Transform handPoint;
 
     public int damage = 1;
     public float attackCooldown = 1;
@@ -18,6 +15,7 @@ public abstract class Weapon : MonoBehaviour
 
     public void Awake()
     {
+        handPoint = transform.Find("handPoint");
         //this.gameObject.GetComponent<Animator>().Play();
     }
 
