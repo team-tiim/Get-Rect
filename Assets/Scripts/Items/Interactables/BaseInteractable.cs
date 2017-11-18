@@ -1,32 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public abstract class BaseInteractable : MonoBehaviour
-{
+public abstract class BaseInteractable : MonoBehaviour {
 
-    protected Spawner spawner;
-    protected bool isTriggered = false;
+    public Spawner spawner;
+    private bool isTriggered = false;
+
+    // Use this for initialization
+    void Start () {
+        this.spawner.isEnabled = false;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (isTriggered || other.tag != "Player")
+        if(isTriggered || other.tag != "Player")
         {
             return;
         }
         isTriggered = true;
         OnPlayerPickup(other);
-        this.spawner.Enable();
+        this.spawner.isEnabled = true;
         GameObject.Destroy(this.gameObject);
     }
 
     protected abstract void OnPlayerPickup(Collider2D player);
-
-    protected PlayerBehaviour GetPlayerBehaviour(Collider2D player)
-    {
-        return player.GetComponent<PlayerBehaviour>();
-    }
-
-    public void SetSpawner(Spawner spawner)
-    {
-        this.spawner = spawner;
-    }
 }
