@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySimpleBehaviour : CharacterBehaviourBase
@@ -12,21 +13,25 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     public int turnSpeed = 1;
     public int aggroDistance = 1;
     public int patrolDistance = 5;
-    public int range = 1;
+    public int range = 5;
     public int damage = 1;
-    public int coolDown = 5;
 
-    private Vector2 startingPos;
-    private float attackTime = 0;
-    private AudioSource amps_sound;
+    private float _coolDown;
+    private Vector2 _startingPos;
+    private AudioSource _amps_sound;
+    private float _lastAttackTime;
+    private double _targetDistance;
 
     // Use this for initialization
-    public override void Awake () {
+    public override void Awake()
+    {
         base.Awake();
-        this.target = GameObject.FindGameObjectWithTag("Player");
-        this.startingPos = transform.position;
-        amps_sound = GetComponent<AudioSource>();
-        //Debug.Log("Target found: "+ target.name);
+        target = GameObject.FindGameObjectWithTag("Player");
+        _startingPos = transform.position;
+        _amps_sound = GetComponent<AudioSource>();
+        _targetDistance = getDistanceTo(target.transform.position);
+        _lastAttackTime = -_coolDown;
+        _coolDown = 0;
     }
 
     // Update is called once per frame
@@ -36,28 +41,35 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         {
             return;
         }
-        float targetDistance = getDistanceTo(target.transform.position);
-        if (targetDistance < range)
+
+        _targetDistance = getDistanceTo(target.transform.position);
+
+        if (range > _targetDistance && !IsCooldown())
         {
+            //Debug.Log("Attacking: " + target.name + " Target distance: " + _targetDistance +
+            //          " range :" + range + " Last attack time: " + _lastAttackTime);
             DoAttack();
         }
-        else if (targetDistance < aggroDistance)
+        else if (_targetDistance < aggroDistance && range < _targetDistance)
         {
-            Debug.Log("Target found: " + target.name);
+            //Debug.Log("Moving to: " + target.name + " Target distance: " + _targetDistance +
+            //          " range :" + range + " Last attack time: " + _lastAttackTime);
             MoveTowards(target);
+        }
+        else
+        {
+            UpdateAnimation(MovementType.IDLE);
+            //Debug.Log("Idling: " + target.name + " Target distance: " + _targetDistance +
+            //          " range :" + range +  " Last attack time: " + _lastAttackTime);
         }
     }
 
     private void DoAttack()
     {
-        float timeFromLastAttack = Time.time - attackTime;
-        if(timeFromLastAttack <= coolDown) {
-            return;
-        }
-        //Debug.Log("attacked player");
-        this.attackTime = Time.time;
+        _lastAttackTime = Time.time;
         Attack(target, damage);
-       // amps_sound.Play();
+        Debug.Log(_coolDown);
+        //amps_sound.Play();
     }
 
 
@@ -86,15 +98,16 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 
     private bool ShouldJump(Vector3 targetPosition)
     {
-        if (!IsGrounded() || !canJump)
-        {
-            return false;
-        }
+        //if (!IsGrounded() || !canJump)
+        //{
+        //    return false;
+        //}
 
-        float targetHeight = GetComponent<BoxCollider2D>().bounds.size.y;
-        float yDif = (targetPosition.y - targetHeight / 2) - (transform.position.y + this.size.y / 2);
-        GameObject targetPlatform = target.GetComponent<PlayerBehaviour>().closestPlatform;
-        return (yDif > 0.5) && (CanJumpToObject(target) || CanJumpToObject(targetPlatform));
+        //float targetHeight = GetComponent<CompositeCollider2D>().bounds.size.y;
+        //float yDif = (targetPosition.y - targetHeight / 2) - (transform.position.y + this.size.y / 2);
+        //GameObject targetPlatform = target.GetComponent<PlayerBehaviour>().closestPlatform;
+        //return (yDif > 0.5) && (CanJumpToObject(target) || CanJumpToObject(targetPlatform));
+        return false;
     }
 
     private bool CanJumpToObject(GameObject obj)
@@ -114,4 +127,19 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         base.OnDamage(damage);
         //StartCoroutine(Utils.ChangeColor(this.spriteRenderer, this.origColor));
     }
+
+    protected override void Attack(GameObject target, int damage)
+    {
+        AttackType type = (RandomUtil.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
+        var cbb = target.GetComponent<CharacterBehaviourBase>();
+        cbb.TakeDamage(damage);
+        _coolDown = animationController.UpdateAttackAnimations(type);
+    }
+
+    private bool IsCooldown()
+    {
+        return Time.time - _lastAttackTime <= _coolDown;
+    }
+
+
 }

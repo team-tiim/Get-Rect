@@ -59,7 +59,7 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
         equippedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
     }
 
-    protected void Attack(GameObject target, int damage)
+    protected virtual void Attack(GameObject target, int damage)
     {        
         AttackType type = (RandomUtil.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
         animationController.UpdateAttackAnimations(type);

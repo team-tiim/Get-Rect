@@ -24,10 +24,11 @@ public class BasicAnimationController : MonoBehaviour {
         currentMovement = type;
     }
 
-    public void UpdateAttackAnimations(AttackType type)
+    public float UpdateAttackAnimations(AttackType type)
     {
         animator.SetInteger("attackType", (int)type);
         animator.SetTrigger("doAttack");
+        return animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
     private void UpdateRotation(MovementType movementType)
