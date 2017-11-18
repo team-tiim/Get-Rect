@@ -1,19 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject interactablePrefab;
     public int spawnTick = 15; //seconds
     public int locationChangeTick; //count
-    public bool isEnabled = true;
+    private bool isEnabled = true;
     private int curCounter = 0;
     private int counter = 0;
 
     void Start()
     {
-        interactablePrefab.GetComponent<BaseInteractable>().spawner = this;
         InvokeRepeating("Spawn", 2, spawnTick);
     }
 
@@ -23,9 +20,11 @@ public class Spawner : MonoBehaviour
         {
             return;
         }
+        Disable();
         curCounter++;
         counter++;
         GameObject go = Instantiate(interactablePrefab);
+        go.GetComponent<BaseInteractable>().SetSpawner(this);
         go.transform.position = this.transform.position;
     }
 
@@ -37,5 +36,15 @@ public class Spawner : MonoBehaviour
     public void ResetCurrentCounter()
     {
         this.curCounter = 0;
+    }
+
+    public void Enable()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+    public void Disable()
+    {
+        this.gameObject.SetActive(false);
     }
 }
