@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InteractableHat : BaseInteractable {
 
@@ -8,14 +6,9 @@ public class InteractableHat : BaseInteractable {
 
     protected override void OnPlayerPickup(Collider2D player)
     {
-        AddArmor(player);
-    }
-
-    private void AddArmor(Collider2D other)
-    {
-        PlayerBehaviour player = other.GetComponent<PlayerBehaviour>();
         GameObject pref = RandomUtil.GetRandomFromArray(prefabs);
-        player.EquipHat(pref.GetComponent<ArmorHolder>());
+        GetPlayerBehaviour(player).EquipHat(pref.GetComponent<ArmorHolder>());
         Destroy(gameObject);
     }
+
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InteractableWeaponCrate : BaseInteractable {
 
@@ -16,22 +14,12 @@ public class InteractableWeaponCrate : BaseInteractable {
             }
         }
     }
-    // Use this for initialization
-    void Start () {
-
-    }
-
 
     protected override void OnPlayerPickup(Collider2D player)
     {
-        AddWeapon(player);
-    }
-
-    private void AddWeapon(Collider2D other)
-    {
-        PlayerBehaviour player = other.GetComponent<PlayerBehaviour>();
-        other.gameObject.AddComponent<TimedWeaponBehaviour>().duration = spawner.spawnTick;
+        PlayerBehaviour playerBehaviour = GetPlayerBehaviour(player);
+        player.gameObject.AddComponent<TimedWeaponBehaviour>().duration = spawner.spawnTick;
         GameObject go = RandomUtil.GetRandomFromArray(weaponPrefabs);
-        player.EquipWeapon(go);
+        playerBehaviour.EquipWeapon(go);
     }
 }
