@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212376355647633816}
   - component: {fileID: 114145624784413306}
   - component: {fileID: 95251435375776390}
+  - component: {fileID: 61182435674394396}
   m_Layer: 0
   m_Name: FireSword
   m_TagString: Untagged
@@ -51,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904166740134992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.441, y: -0.35, z: 0}
+  m_LocalPosition: {x: 0.65, y: -0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4521899306534496}
@@ -64,13 +65,38 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283563857669248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.16, y: 3.27, z: 0}
+  m_LocalPosition: {x: -22.61, y: 1.5629917, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4234431486689854}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61182435674394396
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283563857669248}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 2.68, y: -0.28}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 1, y: 0.5}
+    oldSize: {x: 4.2, y: 1.5}
+    newSize: {x: 0.29, y: 0.41}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.93, y: 0.2}
+  m_EdgeRadius: 0
 --- !u!95 &95251435375776390
 Animator:
   serializedVersion: 3
@@ -99,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07cc71dfb491014494a1fdc489b9695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handPoint: {fileID: 0}
+  isVertical: 1
   damage: 10
   attackCooldown: 0.5
   knockback: 0
@@ -138,7 +166,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 55319308ff54c514bb7642dcd1bce51c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.29, y: 0.41}

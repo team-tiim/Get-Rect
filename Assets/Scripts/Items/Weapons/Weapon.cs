@@ -5,6 +5,8 @@ public abstract class Weapon : MonoBehaviour
 {
     public Transform handPoint;
 
+
+    public bool isVertical;
     public int damage = 1;
     public float attackCooldown = 1;
     public float knockback;

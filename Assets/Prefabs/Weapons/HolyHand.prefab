@@ -65,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707724375543302}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7384408, y: 3.3489726, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.579962, y: -5.167008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4979106551034572}
@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1475710736030756}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.089, y: -0.12, z: 0}
+  m_LocalPosition: {x: 0.089, y: 0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4573105383371948}
@@ -94,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1709023974648858}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.387, y: -0.316, z: 0}
+  m_LocalPosition: {x: -0.18, y: -0.316, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4573105383371948}
@@ -128,13 +128,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handPoint: {fileID: 0}
   damage: 15
   attackCooldown: 0.2
   knockback: 0
+  maxRecoilRotation: 10
+  recoilResetMultiplier: 50
   gravityScale: 0.1
   projectilePrefab: {fileID: 1793797247199408, guid: 7e9643478a45c0745882b6e02ea4237a,
     type: 2}
   projectileSpawnPoint: {fileID: 0}
+  projectileStartPoint: {fileID: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!212 &212980172421373448
 SpriteRenderer:
   m_ObjectHideFlags: 1

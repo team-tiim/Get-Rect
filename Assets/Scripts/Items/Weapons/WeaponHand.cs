@@ -56,10 +56,10 @@ public class WeaponHand {
     {
         GameObject.Destroy(weapon);
         weapon = GameObject.Instantiate(weaponGO);
-        MoveWeaponToPoint();
+        MoveWeaponToDefaultPoint();
     }
 
-    private void MoveWeaponToPoint()
+    private void MoveWeaponToDefaultPoint()
     {
         int offset = IsFlipped() ? 1 : -1;
         Transform weaponHandle = GetWeaponHandle();

@@ -63,8 +63,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283563857669248}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.16, y: 3.3489726, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.689962, y: 6.302992, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4234431486689854}
@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07cc71dfb491014494a1fdc489b9695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handPoint: {fileID: 0}
   damage: 10
   attackCooldown: 0.5
   knockback: 0
-  idleAnimation: weapon_sword_idle
   swingLength: 1.2
   swingRadius: 0.2
 --- !u!212 &212376355647633816
