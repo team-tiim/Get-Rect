@@ -7,6 +7,9 @@ public class WeaponController : MonoBehaviour
     private WeaponHand left;
     private WeaponHand right;
 
+    private WeaponHand currentWeaponHand;
+    private Coroutine currentIdleCoroutine;
+
     void Start()
     {
         left = new WeaponHand(transform.Find("leftHandWeapon"), true);
@@ -16,31 +19,25 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        MoveWeapon();
+        AimWeapon();
     }
 
     public void DoAttack()
     {
-        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        pz.z = 0;
+        Vector3 mousePosition = GetMousePosition();
+        MoveMeleeWeapon(mousePosition);
 
-        Vector3 direction = pz - transform.position;
-        if (direction.x <= 0)
-        {
-            left.weapon.GetComponent<Weapon>().Attack(gameObject, direction);
-            left.ResetRecoil();
-        }
-        else
-        {
-            right.weapon.GetComponent<Weapon>().Attack(gameObject, direction);
-            right.ResetRecoil();
-        }
-
+        Vector3 direction = mousePosition - transform.position;
+        WeaponHand hand = GetUsedWeaponHand(mousePosition);
+        hand.GetWeapon().Attack(gameObject, direction);
     }
 
     public void EquipWeapon(GameObject weaponGO)
     {
-        StopAllCoroutines();
+        if (currentIdleCoroutine != null)
+        {
+            StopCoroutine(currentIdleCoroutine);
+        }
 
         left.ReplaceWeapon(weaponGO);
         right.ReplaceWeapon(weaponGO);
@@ -51,45 +48,62 @@ public class WeaponController : MonoBehaviour
         EquipWeapon(origWeapon);
     }
 
-    private void MoveWeapon()
+    private void AimWeapon()
     {
-        StopAllCoroutines();
-
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePosition.x <= transform.position.x)
+        Vector3 mousePosition = GetMousePosition();
+        WeaponHand weaponHand = GetUsedWeaponHand(mousePosition);
+        if (weaponHand.IsMelee())
         {
-            RotateTowards(left, mousePosition);
-            StartCoroutine(MoveToIdlePosition(right));
+            return;
         }
-        else
+
+        if (weaponHand != currentWeaponHand)
         {
-            RotateTowards(right, mousePosition);
-            StartCoroutine(MoveToIdlePosition(left));
+            if (currentIdleCoroutine != null)
+            {
+                StopCoroutine(currentIdleCoroutine);
+            }
+            currentIdleCoroutine = MoveToIdlePosition(GetIdleWeaponHand(mousePosition));
         }
+
+        MovementUtils.Instance.RotateTowards(weaponHand.GetHand(), mousePosition);
+        currentWeaponHand = weaponHand;
     }
 
-    private void RotateTowards(WeaponHand weaponHand, Vector3 mousePosition)
+    private void MoveMeleeWeapon(Vector3 mousePosition)
     {
-        weaponHand.GetHand().transform.rotation = GetRotationTowards(weaponHand.GetHand(), mousePosition, weaponHand.IsFlipped());
+        WeaponHand hand = GetUsedWeaponHand(mousePosition);
+        if (!hand.IsMelee() || !hand.GetWeapon().CanAttack())
+        {
+            return;
+        }
+
+        float attackCooldown = hand.GetWeapon().attackCooldown;
+        MovementUtils.Instance.RotateTowardsAndBack(hand.GetHand().transform, mousePosition, attackCooldown * 1 / 3, attackCooldown * 2 / 3);
     }
 
-    private Quaternion GetRotationTowards(Transform transform, Vector3 toPosition, bool flipped)
-    {
-        int flip = flipped ? -1 : 1;
-        Vector3 vectorToTarget = new Vector3(flip * (toPosition.x - transform.position.x), flip * (toPosition.y - transform.position.y), 0);
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        return Quaternion.AngleAxis(angle, Vector3.forward);
-    }
-
-    private IEnumerator MoveToIdlePosition(WeaponHand weaponHand)
+    private Coroutine MoveToIdlePosition(WeaponHand weaponHand)
     {
         Vector3 idlePosition = weaponHand.GetDefaultHandPointGlobal();
-        Transform hand = weaponHand.GetHand();
-        while (Vector3.Distance(weaponHand.GetHand().position, idlePosition) > 0)
-        {
-            Quaternion q = GetRotationTowards(hand, idlePosition, weaponHand.IsFlipped());
-            hand.rotation = Quaternion.Slerp(hand.rotation, q, Time.deltaTime * 10f);
-            yield return null;
-        }
+        return MovementUtils.Instance.RotateTowards(weaponHand.GetHand(), weaponHand.GetDefaultHandPointGlobal(), 1f);
+    }
+
+    private WeaponHand GetUsedWeaponHand(Vector3 mousePosition)
+    {
+        bool isUsingLeft = mousePosition.x <= transform.position.x;
+        return isUsingLeft ? left : right;
+    }
+
+    private WeaponHand GetIdleWeaponHand(Vector3 mousePosition)
+    {
+        bool isUsingLeft = mousePosition.x <= transform.position.x;
+        return !isUsingLeft ? left : right;
+    }
+
+    private Vector3 GetMousePosition()
+    {
+        Vector3 res = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        res.z = 0;
+        return res;
     }
 }

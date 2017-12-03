@@ -2,25 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossBehaviourBase : MonoBehaviour {
+public class BossBehaviourBase : MonoBehaviour
+{
 
 
     public Sprite[] portraitFrames;
     public int maxAnger;
     public int angerLevel;
 
-	void Awake () {
+    void Awake()
+    {
         maxAnger = portraitFrames.Length - 1;
         angerLevel = 0;
     }
-	
 
-	void Update () {
-		
-	}
+
+    void Update()
+    {
+
+    }
 
     public Sprite GetCurrentImage()
     {
-        return portraitFrames[angerLevel];
+        if (angerLevel < maxAnger)
+        {
+            return portraitFrames[angerLevel];
+        }
+        return portraitFrames[maxAnger];
     }
 }

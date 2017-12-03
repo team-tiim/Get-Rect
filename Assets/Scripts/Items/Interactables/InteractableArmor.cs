@@ -14,7 +14,7 @@ public class InteractableArmor : BaseInteractable {
     private void AddArmor(Collider2D other)
     {
         PlayerBehaviour player = other.GetComponent<PlayerBehaviour>();
-        GameObject pref = RandomUtil.GetRandomFromArray(prefabs);
+        GameObject pref = RandomUtils.GetRandomFromArray(prefabs);
         player.EquipArmor(pref.GetComponent<ArmorHolder>());
         Destroy(gameObject);
     }

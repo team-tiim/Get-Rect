@@ -61,30 +61,8 @@ public class ProjectileWeapon : Weapon
 
     private void SimulateRecoil()
     {
-        float angle = RandomUtil.GetRandom(-maxRecoilRotation, maxRecoilRotation);
-        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-       // Debug.Log(angle);
-       // Debug.Log(q);
-        //transform.rotation *= q;
-        transform.RotateAround(transform.position, Vector3.forward, angle);
-
-        //transform.rotation = Quaternion.Lerp(transform.rotation, q, 1);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, q, attackCooldown/2);        
-        //transform.position -= (transform.rotation * handPoint.position);
-        //transform.RotateAround(Vector3.zero, Vector3.forward, angle);
-    }
-
-    public void ResetRecoil(Quaternion q)
-    {
-        StopAllCoroutines();
-        StartCoroutine(ResetRecoilCoroutine(q));
-    }
-
-    private IEnumerator ResetRecoilCoroutine(Quaternion q)
-    {
-        yield return new WaitForSeconds(attackCooldown/2);
-        Debug.Log("resetting recoil");
-        transform.rotation = Quaternion.Lerp(transform.rotation, q, 1);
+        float angle = RandomUtils.GetRandom(-maxRecoilRotation, maxRecoilRotation);
+        Rotate(angle);
     }
 
 }

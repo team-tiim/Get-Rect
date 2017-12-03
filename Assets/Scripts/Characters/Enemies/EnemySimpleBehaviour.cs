@@ -132,7 +132,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     protected override void Attack(GameObject target, int damage)
     {
         _lastAttackTime = Time.time;
-        AttackType type = (RandomUtil.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
+        AttackType type = (RandomUtils.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
         _attackAniDuration = animationController.UpdateAttackAnimations(type);
     }
 

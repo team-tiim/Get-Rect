@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
 public abstract class Weapon : MonoBehaviour
 {
-    public Transform handPoint;
-
-
+    public Transform handlePoint;
     public bool isVertical;
     public int damage = 1;
     public float attackCooldown = 1;
@@ -14,16 +13,17 @@ public abstract class Weapon : MonoBehaviour
     private float lastAttack = -1;
 
     private TimedWeaponBehaviour timedBehaviour;
+    private Quaternion previousRotation;
 
-    public void Awake()
+    public virtual void Awake()
     {
-        handPoint = transform.Find("handPoint");
+        handlePoint = transform.Find("handle");
         //this.gameObject.GetComponent<Animator>().Play();
     }
 
     public virtual void Attack(GameObject parent, Vector3 attackDirection)
     {
-        Debug.Log("weapon attack");
+        //Debug.Log("weapon attack");
         if (!CanAttack())
         {
             return;
@@ -33,7 +33,7 @@ public abstract class Weapon : MonoBehaviour
         DoAttack(parent, attackDirection);
     }
 
-    private bool CanAttack()
+    public bool CanAttack()
     {
         return lastAttack == -1 || (Time.time - lastAttack) > attackCooldown;
     }
@@ -44,6 +44,32 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected abstract void DoAttack(GameObject parent, Vector3 direction);
+
+    public void ResetRotation(Quaternion q)
+    {
+        StopAllCoroutines();
+        StartCoroutine(DoResetRotation(q));
+    }
+
+    protected void Rotate(float angle)
+    {
+        Debug.Log(angle);
+        transform.RotateAround(handlePoint.position, Vector3.forward, angle);
+    }
+
+    private IEnumerator DoResetRotation(Quaternion q)
+    {
+        yield return new WaitForSeconds(attackCooldown * 2/3);
+        float angle = Quaternion.Angle(q, transform.rotation);
+        Debug.Log(angle);
+        transform.RotateAround(handlePoint.position, Vector3.forward, angle);
+    }
+
+    private IEnumerator DoRotation(float angle)
+    {
+        yield return new WaitForSeconds(attackCooldown / 2);
+
+    }
 
     public int Damage
     {

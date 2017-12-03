@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponHand {
+public class WeaponHand
+{
+    private static float MELEE_ARC_ANGLE = -120;
 
     public GameObject weapon;
     private Transform hand;
-    private Vector3 defaultHandPoint;
-    private bool flipped;
+    private Transform defaultHandPoint;
+    private Transform defaultHandPointMelee;
+    private Quaternion defaultRotation;
+    private Quaternion defaultHandPointRotation;
+    private bool isFlipped;
+    private bool isMelee;
 
-    public WeaponHand(Transform hand, bool flipped)
+    public WeaponHand(Transform hand, bool isFlipped)
     {
         this.hand = hand;
-        this.defaultHandPoint = hand.Find("handPoint").localPosition;
-        defaultHandPoint.z = 0;
-        this.flipped = flipped;
+        defaultRotation = hand.rotation;
+        defaultHandPoint = hand.Find("handPoint");
+        defaultHandPointMelee = hand.Find("meleeHandPoint");
+        this.isFlipped = isFlipped;
     }
 
     public Transform GetHand()
@@ -24,48 +31,69 @@ public class WeaponHand {
 
     public Vector3 GetDefaultHandPointGlobal()
     {
-        return hand.position + defaultHandPoint;
+        int flip = isFlipped ? -1 : 1;
+        return hand.position + GetDefaultHandPoint().localPosition * flip;
+    }
+
+    public Weapon GetWeapon()
+    {
+        return weapon.GetComponent<Weapon>();
     }
 
     public Transform GetWeaponHandle()
     {
-        return weapon.transform.Find("handPoint");
+        return weapon.GetComponent<Weapon>().handlePoint;
     }
 
-    public Quaternion GetHandPointRotation()
+    public Quaternion GetDefaultHandPointRotation()
     {
-        return hand.Find("handPoint").rotation;
+        return GetDefaultHandPoint().rotation;
     }
 
     public bool IsFlipped()
     {
-        return flipped;
+        return isFlipped;
     }
 
-    public void ResetRecoil()
+    public bool IsMelee()
     {
-        ProjectileWeapon pw = weapon.GetComponent<ProjectileWeapon>();
-        if (pw == null)
-        {
-            return;
-        }
-        pw.ResetRecoil(GetHandPointRotation());
+        return weapon.GetComponent<MeleeWeapon>() != null;
+    }
+
+    public void ResetWeaponRotation()
+    {
+       GetDefaultHandPoint().rotation = defaultHandPointRotation;
+       weapon.GetComponent<Weapon>().ResetRotation(defaultHandPointRotation);
     }
 
     public void ReplaceWeapon(GameObject weaponGO)
     {
+        isMelee = weaponGO.GetComponent<MeleeWeapon>() != null;
+
+        hand.rotation = defaultRotation;
         GameObject.Destroy(weapon);
         weapon = GameObject.Instantiate(weaponGO);
+        defaultHandPointRotation = GetDefaultHandPoint().rotation;
         MoveWeaponToDefaultPoint();
     }
 
     private void MoveWeaponToDefaultPoint()
     {
-        int offset = IsFlipped() ? 1 : -1;
         Transform weaponHandle = GetWeaponHandle();
-        weapon.transform.rotation = GetHandPointRotation();
-        weapon.transform.parent = hand;
-        Vector3 position = new Vector3(defaultHandPoint.x + weaponHandle.localPosition.x * offset, defaultHandPoint.y - weaponHandle.localPosition.y);
+        Transform defaultHandpoint = GetDefaultHandPoint();
+
+        defaultHandpoint.rotation = Quaternion.identity;
+        weapon.transform.rotation = Quaternion.identity;
+        weapon.transform.parent = defaultHandpoint;
+
+        Vector3 position = new Vector3(-weaponHandle.localPosition.x, -weaponHandle.localPosition.y);
         weapon.transform.localPosition = position;
+        defaultHandpoint.rotation = defaultHandPointRotation;
     }
+
+    private Transform GetDefaultHandPoint()
+    {
+        return isMelee ? defaultHandPointMelee : defaultHandPoint;
+    }
+
 }

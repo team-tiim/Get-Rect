@@ -60,7 +60,7 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
 
     protected virtual void Attack(GameObject target, int damage)
     {        
-        AttackType type = (RandomUtil.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
+        AttackType type = (RandomUtils.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));
         animationController.UpdateAttackAnimations(type);
         CharacterBehaviourBase cbb = target.GetComponent<CharacterBehaviourBase>();
         cbb.TakeDamage(damage);

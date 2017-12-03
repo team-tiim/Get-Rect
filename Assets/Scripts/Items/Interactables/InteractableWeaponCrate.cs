@@ -18,7 +18,7 @@ public class InteractableWeaponCrate : BaseInteractable {
     protected override void OnPlayerPickup(Collider2D player)
     {
         player.gameObject.AddComponent<TimedWeaponBehaviour>().duration = spawner.spawnTick;
-        GameObject go = RandomUtil.GetRandomFromArray(weaponPrefabs);
+        GameObject go = RandomUtils.GetRandomFromArray(weaponPrefabs);
         player.GetComponent<WeaponController>().EquipWeapon(go);
     }
 }
