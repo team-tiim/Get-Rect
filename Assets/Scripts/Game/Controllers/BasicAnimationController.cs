@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicAnimationController : MonoBehaviour {
-
     public Animator animator;
     protected MovementType currentMovement;
 
@@ -29,6 +28,12 @@ public class BasicAnimationController : MonoBehaviour {
         animator.SetInteger("attackType", (int)type);
         animator.SetTrigger("doAttack");
         return animator.GetCurrentAnimatorStateInfo(0).length;
+    }
+
+    public int GetStringHash(string s)
+    {
+        int hash = Animator.StringToHash(s);
+        return hash;
     }
 
     private void UpdateRotation(MovementType movementType)

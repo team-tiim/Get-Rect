@@ -10,7 +10,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     public GameObject target;
     public bool canJump = false;
 
-    public float turnSpeed = 1;
+    public float acceleration = 15;
     public float aggroDistance = 1;
     public float patrolDistance = 5;
     public float range = 5;
@@ -23,6 +23,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     private float _lastAttackTime;
     private float _lastHitTime;
     private float _attackAniDuration;
+    private float targetDistance;
 
     // Use this for initialization
     public override void Awake()
@@ -43,20 +44,27 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         {
             return;
         }
-
-        var _targetDistance = getDistanceTo(target.transform.position);
-
-        if (range > _targetDistance && !IsAttackCooldown())
+        if (range > targetDistance && !IsAttackCooldown())
         {
             //Debug.Log("Attacking: " + target.name + " Target distance: " + _targetDistance +
             //          " range :" + range + " Last attack time: " + _lastAttackTime);
             DoAttack();
         }
-        else if (_targetDistance < aggroDistance && 
-                range < _targetDistance)
+    }
+
+    void FixedUpdate ()
+    {
+        targetDistance = getDistanceTo(target.transform.position);
+
+        if (isInKnockback)
         {
-            //Debug.Log("Moving to: " + target.name + " Target distance: " + _targetDistance +
-            //          " range :" + range + " Last attack time: " + _lastAttackTime);
+            return;
+        }
+        if (targetDistance < aggroDistance &&
+                range < targetDistance)
+        {
+            //Debug.Log("Moving to: " + target.name + " Target distance: " + targetDistance +
+            //          " range :" + range + " Last attack time: " + _lastAttackTime + "My x speed is:" + rb2d.velocity.x);
             MoveTowards(target);
         }
         else
@@ -65,6 +73,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             //Debug.Log("Idling: " + target.name + " Target distance: " + _targetDistance +
             //          " range :" + range +  " Last attack time: " + _lastAttackTime);
         }
+
     }
 
     private void DoAttack()
@@ -73,23 +82,30 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         //amps_sound.Play();
     }
 
+    private void TryMove(GameObject target)
+    {
+        if (IsGrounded()) MoveTowards(target);
+
+        //TODO pathing
+
+        //TODO jumping
+
+        //TODO platform end
+
+    }
+
 
     private void MoveTowards(GameObject target)
     {
-        Vector3 targetPosition = target.transform.position;
+        var targetPosition = target.transform.position;
         Debug.DrawLine(transform.position, targetPosition, Color.yellow);
-        float xDif = targetPosition.x - transform.position.x;
-        if (ShouldJump(targetPosition))
-        {
-            //Debug.Log("jump");
-            this.animationController.animator.SetTrigger("doJump");
-            this.rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
-        }
-
-        MovementType type = Utils.GetMovementType(xDif);
+        var direction = (targetPosition.x - transform.position.x) < 0 ? -1 : 1;
+        MovementType type = Utils.GetMovementType(direction);
         UpdateAnimation(type);
-        Vector2 movement = new Vector2(xDif, rb2d.velocity.y);
-        rb2d.velocity = movement;
+        var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
+        if (Math.Abs(rb2d.velocity.x) < speed || 
+            rb2d.velocity.x == 0 || 
+            (rb2d.velocity.x < 0 != direction < 0)) rb2d.AddForce(movement, ForceMode2D.Force);
     }
 
     private float getDistanceTo(Vector3 position)
