@@ -35,6 +35,8 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         _lastAttackTime = 0;
         _attackAniDuration = 0;
         _lastHitTime = 0;
+        var movement = new Vector2(-1 * acceleration * rb2d.mass, 0);
+        rb2d.AddForce(movement, ForceMode2D.Force);
     }
 
     // Update is called once per frame
