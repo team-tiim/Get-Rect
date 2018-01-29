@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Length: 1.4050083
+  m_Length: 1.4050082
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 368857276}
   m_AttachedIK: {fileID: 1574619122}
@@ -1112,30 +1112,6 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 137184320382646832, guid: e3888fd650238a446ad074bce6fc5e24,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 21748505445979232, guid: 8324b8bc519ffef4abf51bb59449cdf6,
-        type: 2}
-    - target: {fileID: 137118177451782174, guid: e3888fd650238a446ad074bce6fc5e24,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 21745315496567908, guid: 7065f7d022c203a4f9b35565fa416237,
-        type: 2}
-    - target: {fileID: 137903993397487974, guid: e3888fd650238a446ad074bce6fc5e24,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 21382440805895856, guid: df41aa25546655c4cad7a26e71694324,
-        type: 2}
-    - target: {fileID: 137924659622007836, guid: e3888fd650238a446ad074bce6fc5e24,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 21922212171218404, guid: 2fd21ced330d84c48b504e7c4c9e7b4b,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3888fd650238a446ad074bce6fc5e24, type: 2}
   m_IsPrefabParent: 0
@@ -4314,7 +4290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Length: 1.5195379
+  m_Length: 1.5195378
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 758475611}
   m_AttachedIK: {fileID: 1522241488}
@@ -5801,11 +5777,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4818069964496010, guid: b2b254d8856864f45b0a76bdf8de2293, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09566195
+      value: 0.095661834
       objectReference: {fileID: 0}
     - target: {fileID: 4766643499477048, guid: b2b254d8856864f45b0a76bdf8de2293, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.15000221
+      value: 0.15000191
       objectReference: {fileID: 0}
     - target: {fileID: 4531299466369520, guid: b2b254d8856864f45b0a76bdf8de2293, type: 2}
       propertyPath: m_LocalRotation.w
@@ -5817,7 +5793,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4766643499477048, guid: b2b254d8856864f45b0a76bdf8de2293, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.98868567
+      value: 0.9886857
       objectReference: {fileID: 0}
     - target: {fileID: 4531299466369520, guid: b2b254d8856864f45b0a76bdf8de2293, type: 2}
       propertyPath: m_LocalRotation.z
@@ -6675,7 +6651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Length: 1.9558601
+  m_Length: 1.95586
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 669059814}
   m_AttachedIK: {fileID: 1182715275}
@@ -6832,7 +6808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Length: 1.4633003
+  m_Length: 1.4633002
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 1830465220}
   m_AttachedIK: {fileID: 1488063376}
@@ -7043,7 +7019,7 @@ MonoBehaviour:
   isInKnockback: 0
   target: {fileID: 0}
   canJump: 0
-  acceleration: 15
+  turnSpeed: 1
   aggroDistance: 10
   patrolDistance: 5
   range: 4

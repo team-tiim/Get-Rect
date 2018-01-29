@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 55319308ff54c514bb7642dcd1bce51c
-timeCreated: 1513084280
+timeCreated: 1504975344
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -33,11 +33,6 @@ TextureImporter:
     21300052: firesword_26
     21300054: firesword_27
     21300056: firesword_28
-    21300058: firesword_29
-    21300060: firesword_30
-    21300062: firesword_31
-    21300064: firesword_32
-    21300066: firesword_33
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -112,10 +107,10 @@ TextureImporter:
       name: firesword_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 204
-        width: 436
-        height: 133
+        x: 74
+        y: 164
+        width: 420
+        height: 150
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,10 +121,10 @@ TextureImporter:
       name: firesword_1
       rect:
         serializedVersion: 2
-        x: 476
-        y: 203
-        width: 433
-        height: 134
+        x: 502
+        y: 164
+        width: 420
+        height: 150
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +135,10 @@ TextureImporter:
       name: firesword_2
       rect:
         serializedVersion: 2
-        x: 923
-        y: 204
-        width: 422
-        height: 133
+        x: 925
+        y: 164
+        width: 420
+        height: 150
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,9 +150,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1351
-        y: 204
-        width: 421
-        height: 133
+        y: 164
+        width: 422
+        height: 150
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +163,10 @@ TextureImporter:
       name: firesword_4
       rect:
         serializedVersion: 2
-        x: 41
+        x: 27
         y: 43
-        width: 421
-        height: 148
+        width: 435
+        height: 115
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +177,10 @@ TextureImporter:
       name: firesword_5
       rect:
         serializedVersion: 2
-        x: 486
-        y: 43
-        width: 422
-        height: 148
+        x: 474
+        y: 29
+        width: 435
+        height: 115
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +191,10 @@ TextureImporter:
       name: firesword_6
       rect:
         serializedVersion: 2
-        x: 924
-        y: 43
-        width: 421
-        height: 148
+        x: 910
+        y: 18
+        width: 435
+        height: 115
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +205,10 @@ TextureImporter:
       name: firesword_7
       rect:
         serializedVersion: 2
-        x: 1352
-        y: 43
-        width: 421
-        height: 148
+        x: 1349
+        y: 13
+        width: 422
+        height: 115
       alignment: 5
       pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
