@@ -8,16 +8,18 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 {
 
     public GameObject target;
+    public Rigidbody2D targetRb2d;
     public bool canJump = false;
 
     public float acceleration = 15;
-    public float aggroDistance = 1;
+    public float aggroDistance = 20;
     public float patrolDistance = 5;
     public float range = 5;
     public int damage = 1;
     public float coolDown = 1;
 
-    
+
+    private LayerMask _layerMask;
     private Vector2 _startingPos;
     private AudioSource _amps_sound;
     private float _lastAttackTime;
@@ -30,6 +32,8 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     {
         base.Awake();
         target = GameObject.FindGameObjectWithTag("Player");
+        _layerMask = SetMask();
+        targetRb2d = target.GetComponent<Rigidbody2D>();
         _startingPos = transform.position;
         _amps_sound = GetComponent<AudioSource>();
         _lastAttackTime = 0;
@@ -39,9 +43,18 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         rb2d.AddForce(movement, ForceMode2D.Force);
     }
 
+    LayerMask SetMask()
+    {
+        var mask = new LayerMask();
+        var thisLayer = this.gameObject.layer;
+        mask = 1 << thisLayer;
+        return ~mask;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(CanSeePlayer());
         if (isInKnockback)
         {
             return;
@@ -173,5 +186,15 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             cbb.DoKnockback(knockBackDir * 20);
             _lastHitTime = Time.time;
         }
+    }
+
+    public bool CanSeePlayer()
+    {
+        if (aggroDistance > targetDistance)
+        {
+            var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position,aggroDistance,_layerMask);
+            if (ray.collider.CompareTag("Player")) return true;
+        }
+        return false;
     }
 }
