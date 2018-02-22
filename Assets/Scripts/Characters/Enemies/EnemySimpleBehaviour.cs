@@ -118,9 +118,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         MovementType type = Utils.GetMovementType(direction);
         UpdateAnimation(type);
         var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
-        if (Math.Abs(rb2d.velocity.x) < speed || 
-            rb2d.velocity.x == 0 || 
-            (rb2d.velocity.x < 0 != direction < 0)) rb2d.AddForce(movement, ForceMode2D.Force);
+        if (Math.Abs(rb2d.velocity.x) < speed) rb2d.AddForce(movement, ForceMode2D.Force);
     }
 
     private float getDistanceTo(Vector3 position)
