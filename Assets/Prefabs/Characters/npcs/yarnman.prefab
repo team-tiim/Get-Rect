@@ -1051,11 +1051,11 @@ MonoBehaviour:
   speed: 1
   hp: 10
   animationsComponent: {fileID: 0}
-  origWeapon: {fileID: 0}
   isInKnockback: 0
   target: {fileID: 0}
+  targetRb2d: {fileID: 0}
   canJump: 0
-  turnSpeed: 1
+  acceleration: 15
   aggroDistance: 1
   patrolDistance: 5
   range: 4
