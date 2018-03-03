@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 114940725667657766}
   - component: {fileID: 212151970998234470}
   - component: {fileID: 61088644395633072}
-  - component: {fileID: 95265469453068130}
   - component: {fileID: 50139990300143146}
   - component: {fileID: 82269176461605436}
+  - component: {fileID: 95236503199395764}
   m_Layer: 0
   m_Name: BasicBulletProjectile
   m_TagString: Untagged
@@ -80,10 +80,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.17, y: 0.18}
+    newSize: {x: 0.17, y: 0.18}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -171,7 +171,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95265469453068130
+--- !u!95 &95236503199395764
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -180,7 +180,7 @@ Animator:
   m_GameObject: {fileID: 1408287409527776}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f5145ba2e8b882142adc2f55be9c6cc6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 47f92df327d90864b824427ccb25560e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500d36492880fc746a4f896f8b9675a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyAnimation: {fileID: 0}
 --- !u!212 &212151970998234470
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -231,13 +232,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300014, guid: a2043ee729a020044a7433f5fdb9b23a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.17, y: 0.18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0

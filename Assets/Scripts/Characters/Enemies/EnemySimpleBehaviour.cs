@@ -215,7 +215,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         if (aggroDistance > targetDistance)
         {
             var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position,aggroDistance,_layerMask);
-            if (ray.collider.CompareTag("Player")) return true;
+            if (ray.collider != null && ray.collider.CompareTag("Player")) return true;
         }
         return false;
     }

@@ -33,6 +33,11 @@ public abstract class Weapon : MonoBehaviour
         DoAttack(parent, attackDirection);
     }
 
+    public virtual void StopAttack()
+    {
+        //NOOP
+    }
+
     public bool CanAttack()
     {
         return lastAttack == -1 || (Time.time - lastAttack) > attackCooldown;
@@ -53,7 +58,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected void Rotate(float angle)
     {
-        Debug.Log(angle);
+        //Debug.Log(angle);
         transform.RotateAround(handlePoint.position, Vector3.forward, angle);
     }
 

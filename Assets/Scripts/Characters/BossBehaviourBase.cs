@@ -24,7 +24,7 @@ public class BossBehaviourBase : MonoBehaviour
 
     public Sprite GetCurrentImage()
     {
-        if (angerLevel < maxAnger)
+        if (angerLevel < maxAnger - 1)
         {
             return portraitFrames[angerLevel];
         }
