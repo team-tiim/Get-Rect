@@ -36,10 +36,15 @@ public class BasicAnimationController : MonoBehaviour {
         return hash;
     }
 
-    private void UpdateRotation(MovementType movementType)
+    public void UpdateRotation(MovementType movementType)
     {
         float rotation = movementType == MovementType.WALK_RIGHT || movementType == MovementType.IDLE && currentMovement == MovementType.WALK_RIGHT ? 180 : 0;
         this.gameObject.transform.localRotation = Quaternion.Euler(0, rotation, 0);
+    }
+
+    public int GetCurrentDirection()
+    {
+        return this.gameObject.transform.localRotation.Equals(Quaternion.Euler(0, 0, 0)) ? -1 : 1;
     }
 
 }

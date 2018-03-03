@@ -54,7 +54,6 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CanSeePlayer());
         if (isInKnockback)
         {
             return;
@@ -75,12 +74,12 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         {
             return;
         }
-        if (targetDistance < aggroDistance &&
+        if (CanSeePlayer() &&
                 range < targetDistance)
         {
             //Debug.Log("Moving to: " + target.name + " Target distance: " + targetDistance +
             //          " range :" + range + " Last attack time: " + _lastAttackTime + "My x speed is:" + rb2d.velocity.x);
-            MoveTowards(target);
+            TryMove(target);
         }
         else
         {
@@ -113,12 +112,37 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     private void MoveTowards(GameObject target)
     {
         var targetPosition = target.transform.position;
-        Debug.DrawLine(transform.position, targetPosition, Color.yellow);
         var direction = (targetPosition.x - transform.position.x) < 0 ? -1 : 1;
         MovementType type = Utils.GetMovementType(direction);
-        UpdateAnimation(type);
-        var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
-        if (Math.Abs(rb2d.velocity.x) < speed) rb2d.AddForce(movement, ForceMode2D.Force);
+        animationController.UpdateRotation(type);
+        if (!IsEdgeNear())
+        {
+            Debug.DrawLine(transform.position, targetPosition, Color.yellow);
+            UpdateAnimation(type);
+            var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
+            if (Math.Abs(rb2d.velocity.x) < speed) rb2d.AddForce(movement, ForceMode2D.Force);
+        }
+        else
+        {
+            Debug.Log("Jumping");
+            rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
+            //StopMoving();
+        }
+
+    }
+
+    private void StopMoving()
+    {
+        Debug.Log("trying to stop");
+        var currentSpeed = Math.Abs(rb2d.velocity.x);
+        if (currentSpeed > (0.1))
+        {
+            var direction = -1*animationController.GetCurrentDirection();
+            var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
+            rb2d.AddForce(movement, ForceMode2D.Force);
+        }
+        if(currentSpeed == 0) UpdateAnimation(MovementType.IDLE);
+
     }
 
     private float getDistanceTo(Vector3 position)
@@ -195,4 +219,56 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         }
         return false;
     }
+
+    public bool IsEdgeNear()
+    {
+        var bounds = GetCurrentPlatformBounds();
+        if(bounds != null)
+        {
+            var direction = -animationController.GetCurrentDirection();
+            var xPos = rb2d.position.x;
+            var edgeDistance = bounds.extents.x - (direction == 1 ? bounds.center.x - xPos : xPos - bounds.center.x);
+            var delta = speed / 4;
+            
+            if (edgeDistance<delta) return true;
+        }
+
+        return false;
+    }
+
+    public bool IsEdgeNear_old()
+    {
+        var capsule = rb2d.GetComponent<CapsuleCollider2D>();
+        var rayheight = capsule.size.y/2;
+        var position = new Vector2(capsule.transform.position.x, capsule.transform.position.y) + capsule.offset;
+        var length = speed/4;
+        var direction = animationController.GetCurrentDirection();
+        var angle = new Vector2(length * direction, -rayheight);
+        var distance = (float)Math.Sqrt(length * length + rayheight * rayheight) + 1;
+        var ray = Physics2D.Raycast(position, angle, distance, _layerMask);
+       
+        Debug.DrawRay(position, angle, Color.red);
+        if (ray)return false;
+        //Debug.Log(position + " " + distance);
+        return true;
+    }
+
+    public Bounds GetCurrentPlatformBounds()
+    {
+        var bounds = new Bounds();
+        var capsule = rb2d.GetComponent<CapsuleCollider2D>();
+        var rayheight = capsule.size.y / 2;
+        var position = new Vector2(capsule.transform.position.x, capsule.transform.position.y) + capsule.offset;
+
+        var ray = Physics2D.Raycast(position, new Vector2(0,-1), rayheight+0.1f, _layerMask);
+
+        if (ray)
+        {
+            if(ray.collider.CompareTag("Platform"))return ray.collider.bounds;
+        }
+
+        return bounds;
+    }
+
+    
 }
