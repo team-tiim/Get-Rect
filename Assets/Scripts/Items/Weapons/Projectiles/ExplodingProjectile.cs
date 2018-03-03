@@ -10,7 +10,7 @@ public class ExplodingProjectile : Projectile {
 
     public override void Awake()
     {
-        speed = 10;
+        speed = 20;
         gravityScale = 1f;
         base.Awake();
     }
@@ -25,13 +25,14 @@ public class ExplodingProjectile : Projectile {
     {
         yield return new WaitForSeconds(detonationTime);
         //TODO change layer on enemies
-        int layer = LayerMask.NameToLayer("Enemy");
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, radius, layer);
+        //int layer = LayerMask.NameToLayer("Enemy");
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, radius);
         foreach (Collider2D col in colliders)
         {
+            //Debug.Log("projectile hit: " + col.gameObject.tag);
             if (col.gameObject.tag == "Enemy")
             {
-                Debug.Log("projectile hit: " + col.gameObject.name);
+                col.gameObject.GetComponent<EnemySimpleBehaviour>().TakeDamage(weapon.Damage);
             }
         }
 

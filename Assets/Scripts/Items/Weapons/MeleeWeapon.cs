@@ -16,7 +16,7 @@ public class MeleeWeapon : Weapon
         tipPoint = transform.Find("tip");
     }
 
-    protected override void DoAttack(GameObject parent, Vector3 direction)
+    protected override void DoAttack(GameObject parent, Vector3 direction, float chargeTime)
     {
         Debug.Log("Player melee attack");
         DoSwing();

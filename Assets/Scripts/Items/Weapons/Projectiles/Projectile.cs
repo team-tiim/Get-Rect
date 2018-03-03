@@ -43,4 +43,9 @@ public abstract class Projectile : MonoBehaviour {
     {
         set { speed = value; }
     }
+
+    public void ApplySpeedMultiplier(float mult)
+    {
+        speed = speed * mult;
+    }
 }

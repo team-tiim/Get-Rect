@@ -28,7 +28,7 @@ public class FlamethrowerWeapon : Weapon
         originalRotation = transform.localRotation;
     }
 
-    protected override void DoAttack(GameObject parent, Vector3 direction)
+    protected override void DoAttack(GameObject parent, Vector3 direction, float chargeTime)
     {
         RaycastHit2D[] hits = Physics2D.CircleCastAll(projectileSpawnPoint.position, radius, direction, length);
         Debug.DrawRay(projectileSpawnPoint.position, direction.normalized * length, Color.red);
@@ -38,11 +38,5 @@ public class FlamethrowerWeapon : Weapon
             Debug.Log(hit.collider.tag);
         }
 
-    }
-
-    public override void StopAttack()
-    {
-        Debug.Log("Player flamethrower attack stopped");
-        isAttacking = false;
     }
 }

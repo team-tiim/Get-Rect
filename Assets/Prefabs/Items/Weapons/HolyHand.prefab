@@ -35,8 +35,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4573105383371948}
   - component: {fileID: 212980172421373448}
-  - component: {fileID: 114232600659954270}
   - component: {fileID: 95533778261594222}
+  - component: {fileID: 114063610528738760}
   m_Layer: 0
   m_Name: HolyHand
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114232600659954270
+--- !u!114 &114063610528738760
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -125,22 +125,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1707724375543302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
+  m_Script: {fileID: 11500000, guid: cb6b50d8a13660c479f77a395b5313b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isChargedWeapon: 1
   handlePoint: {fileID: 0}
-  isVertical: 0
-  damage: 15
-  attackCooldown: 0.2
+  damage: 1
+  attackCooldown: 1
   knockback: 0
-  maxRecoilRotation: 10
-  recoilResetMultiplier: 50
-  gravityScale: 0.1
+  minChargeTime: 0
+  maxChargeTime: 3
+  maxRecoilRotation: 0
+  recoilResetMultiplier: 0
+  gravityScale: 0
   projectilePrefab: {fileID: 1793797247199408, guid: 7e9643478a45c0745882b6e02ea4237a,
     type: 2}
   projectileSpawnPoint: {fileID: 0}
-  projectileStartPoint: {fileID: 0}
-  originalRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!212 &212980172421373448
 SpriteRenderer:
   m_ObjectHideFlags: 1
