@@ -28,7 +28,6 @@ namespace Assets.Scripts.Game.Controllers
             UpdateCameraBounds();
             UpdateBackgroundBounds();
             _spriteWidthHalf = _backgrounds.First().GetComponentInChildren<SpriteRenderer>().size.x / 2;
-            Debug.Log( _playerCamera.orthographicSize + " " + _cameraXmin +" " +_cameraXmax+ "," +_backgroundXmin + " " + _backgroundXmax);
         }
 
         private void Update()

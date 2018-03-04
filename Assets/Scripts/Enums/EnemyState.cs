@@ -8,8 +8,6 @@ namespace Assets.Scripts.Enums
     public enum EnemyState
     {
         Patrolling,
-        Persuing,
-        LastTargetPosition,
-        RandomSearch
+        KillerMode
     }
 }

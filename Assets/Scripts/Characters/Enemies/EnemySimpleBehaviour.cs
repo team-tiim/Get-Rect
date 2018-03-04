@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,33 +15,45 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     public float acceleration = 15;
     public float aggroDistance = 20;
     public float patrolDistance = 5;
+    public float patrolTime = 1;
     public float range = 5;
     public int damage = 1;
     public float coolDown = 1;
+    public EnemyState state = EnemyState.Patrolling;
 
-
-    private LayerMask _layerMask;
+ 
+    private LayerMask _platformMask;
+    private LayerMask _buddyMask;
     private Vector2 _startingPos;
     private AudioSource _amps_sound;
     private float _lastAttackTime;
     private float _lastHitTime;
     private float _attackAniDuration;
     private float targetDistance;
+    private Vector2 patrolPointMin;
+    private Vector2 patrolPointMax;
+    private float _lastPatrolTime;
+    private bool waiting;
 
     // Use this for initialization
     public override void Awake()
     {
         base.Awake();
         target = GameObject.FindGameObjectWithTag("Player");
-        _layerMask = SetMask();
+        _platformMask = SetMask();
         targetRb2d = target.GetComponent<Rigidbody2D>();
         _startingPos = transform.position;
         _amps_sound = GetComponent<AudioSource>();
         _lastAttackTime = 0;
         _attackAniDuration = 0;
         _lastHitTime = 0;
+        _lastPatrolTime = 0;
+        waiting = false;
         var movement = new Vector2(-1 * acceleration * rb2d.mass, 0);
         rb2d.AddForce(movement, ForceMode2D.Force);
+        patrolPointMin = new Vector2(this.transform.position.x - patrolDistance, this.transform.position.y);
+        patrolPointMax = new Vector2(this.transform.position.x + patrolDistance, this.transform.position.y);
+        _buddyMask = LayerMask.GetMask("Enemy");
     }
 
     LayerMask SetMask()
@@ -54,36 +67,33 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     // Update is called once per frame
     void Update()
     {
+
         if (isInKnockback)
         {
             return;
         }
-        if (range > targetDistance && !IsAttackCooldown())
+        if (state != EnemyState.KillerMode)
         {
-            //Debug.Log("Attacking: " + target.name + " Target distance: " + _targetDistance +
-            //          " range :" + range + " Last attack time: " + _lastAttackTime);
-            DoAttack();
+            if(CanSeePlayer())state = EnemyState.KillerMode;
         }
     }
 
     void FixedUpdate ()
     {
         targetDistance = getDistanceTo(target.transform.position);
-
         if (isInKnockback)
         {
             return;
         }
-        if (CanSeePlayer() &&
-                range < targetDistance)
+        if (state == EnemyState.KillerMode)
         {
             //Debug.Log("Moving to: " + target.name + " Target distance: " + targetDistance +
             //          " range :" + range + " Last attack time: " + _lastAttackTime + "My x speed is:" + rb2d.velocity.x);
-            TryMove(target);
+            KillTarget(target);
         }
         else
         {
-            UpdateAnimation(MovementType.IDLE);
+            Patrol();
             //Debug.Log("Idling: " + target.name + " Target distance: " + _targetDistance +
             //          " range :" + range +  " Last attack time: " + _lastAttackTime);
         }
@@ -96,9 +106,36 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         //amps_sound.Play();
     }
 
-    private void TryMove(GameObject target)
+    private void KillTarget(GameObject target)
     {
-        if (IsGrounded()) MoveTowards(target);
+        var direction = (target.transform.position.x - transform.position.x) < 0 ? -1 : 1;
+        MovementType type = Utils.GetMovementType(direction);
+        animationController.UpdateRotation(type);
+        if (range > targetDistance)
+        {
+            //Debug.Log("Attacking: " + target.name + " Target distance: " + _targetDistance +
+            //          " range :" + range + " Last attack time: " + _lastAttackTime);
+            if (!IsAttackCooldown()) DoAttack();
+            return;
+        }
+        if (IsBuddyNear())
+        {
+            Jump();
+            return;
+        }
+        if (!IsGrounded())
+        {
+            MoveTowards(target.transform.position, speed);
+            return;
+        }
+        if (Math.Abs(target.transform.position.x - rb2d.transform.position.x) < range && target.transform.position.y - rb2d.transform.position.y > range) Jump();
+        else if (IsEdgeNear())
+        {
+           
+            if (targetDistance > speed / 4 && target.transform.position.y - rb2d.transform.position.y > -4 ) Jump();
+            else MoveTowards(target.transform.position, speed);
+        }
+        else MoveTowards(target.transform.position, speed);
 
         //TODO pathing
 
@@ -108,26 +145,25 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
 
     }
 
-
-    private void MoveTowards(GameObject target)
+    private void Jump()
     {
-        var targetPosition = target.transform.position;
+        if (IsGrounded())
+        {
+            //TODO jumping animation
+            rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
+        }
+    }
+
+
+    private void MoveTowards(Vector3 targetPosition,float targetSpeed)
+    {
         var direction = (targetPosition.x - transform.position.x) < 0 ? -1 : 1;
         MovementType type = Utils.GetMovementType(direction);
         animationController.UpdateRotation(type);
-        if (!IsEdgeNear())
-        {
-            Debug.DrawLine(transform.position, targetPosition, Color.yellow);
-            UpdateAnimation(type);
-            var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
-            if (Math.Abs(rb2d.velocity.x) < speed) rb2d.AddForce(movement, ForceMode2D.Force);
-        }
-        else
-        {
-            Debug.Log("Jumping");
-            rb2d.AddForce(new Vector2(0, rb2d.mass * jumpPower), ForceMode2D.Impulse);
-            //StopMoving();
-        }
+        Debug.DrawLine(transform.position, targetPosition, Color.yellow);
+        UpdateAnimation(type);
+        var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
+        if (Math.Abs(rb2d.velocity.x) < targetSpeed) rb2d.AddForce(movement, ForceMode2D.Force);
 
     }
 
@@ -141,7 +177,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             var movement = new Vector2(direction * acceleration * rb2d.mass, 0);
             rb2d.AddForce(movement, ForceMode2D.Force);
         }
-        if(currentSpeed == 0) UpdateAnimation(MovementType.IDLE);
+        else UpdateAnimation(MovementType.IDLE);
 
     }
 
@@ -214,7 +250,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     {
         if (aggroDistance > targetDistance)
         {
-            var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position,aggroDistance,_layerMask);
+            var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position,aggroDistance,_platformMask);
             if (ray.collider.CompareTag("Player")) return true;
         }
         return false;
@@ -228,11 +264,54 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             var direction = -animationController.GetCurrentDirection();
             var xPos = rb2d.position.x;
             var edgeDistance = bounds.extents.x - (direction == 1 ? bounds.center.x - xPos : xPos - bounds.center.x);
-            var delta = speed / 4;
+            var delta = speed / 6;
             
             if (edgeDistance<delta) return true;
         }
 
+        return false;
+    }
+
+    public void Patrol()
+    {
+        var targetPos = animationController.GetCurrentDirection() == 1 ? patrolPointMax : patrolPointMin;
+        if (!waiting)
+        {
+            //Debug.Log(IsEdgeNear() + " " + (Math.Abs(transform.position.x - targetPos.x) < 0.1) + " " + IsBuddyNear());
+            if (IsEdgeNear() || Math.Abs(transform.position.x-targetPos.x) < 0.1 || IsBuddyNear() )
+            {
+                waiting = true;
+                _lastPatrolTime = Time.time;
+                UpdateAnimation(MovementType.IDLE);
+            }
+            else
+            {
+                MoveTowards(targetPos, speed/4);
+            }
+        }
+        else
+        {
+            if(Time.time-_lastPatrolTime > patrolTime)
+            {
+                waiting = false;
+                MovementType type = Utils.GetMovementType(-animationController.GetCurrentDirection());
+                animationController.UpdateRotation(type);
+            }
+        }
+    }
+
+    public bool IsBuddyNear()
+    {
+        var capsule = rb2d.GetComponent<CapsuleCollider2D>();
+        var capsulWidth = capsule.size.x / 2;
+        var pos = new Vector2(capsule.transform.position.x, capsule.transform.position.y) +capsule.offset;
+        pos.x += animationController.GetCurrentDirection()*(capsulWidth + 0.2f);
+        var ray = Physics2D.Raycast(pos, new Vector2(animationController.GetCurrentDirection(),0), range/2, _buddyMask);
+        Debug.DrawRay(pos, new Vector2(animationController.GetCurrentDirection(), 0), Color.blue);
+        if (ray)
+        {
+            return ray.collider.CompareTag(gameObject.tag);
+        }
         return false;
     }
 
@@ -245,7 +324,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         var direction = animationController.GetCurrentDirection();
         var angle = new Vector2(length * direction, -rayheight);
         var distance = (float)Math.Sqrt(length * length + rayheight * rayheight) + 1;
-        var ray = Physics2D.Raycast(position, angle, distance, _layerMask);
+        var ray = Physics2D.Raycast(position, angle, distance, _platformMask);
        
         Debug.DrawRay(position, angle, Color.red);
         if (ray)return false;
@@ -260,7 +339,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         var rayheight = capsule.size.y / 2;
         var position = new Vector2(capsule.transform.position.x, capsule.transform.position.y) + capsule.offset;
 
-        var ray = Physics2D.Raycast(position, new Vector2(0,-1), rayheight+0.1f, _layerMask);
+        var ray = Physics2D.Raycast(position, new Vector2(0,-1), rayheight+range/2, _platformMask);
 
         if (ray)
         {
