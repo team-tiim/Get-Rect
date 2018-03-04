@@ -2,41 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlamethrowerWeapon : Weapon
+public class FlamethrowerWeapon : BaseProjectileWeapon
 {
 
     public float length;
     public float radius;
     public float dps;
 
-    public Transform projectileSpawnPoint;
-    public Transform projectileStartPoint;
-
-    public Quaternion originalRotation;
-
     private bool isAttacking;
+    private Time lastDamageTime;
 
-    // Use this for initialization
-    void Start()
+    public override void Awake()
     {
         projectileSpawnPoint = transform.Find("projectileSpawnPoint");
-        projectileStartPoint = transform.Find("projectileStartPoint");
-        if (projectileSpawnPoint == null)
-        {
-            projectileSpawnPoint = this.transform;
-        }
-        originalRotation = transform.localRotation;
+
+        base.Awake();
     }
 
-    protected override void DoAttack(GameObject parent, Vector3 direction, float chargeTime)
+    public override void DoAttack(WeaponAttackParams parameters)
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(projectileSpawnPoint.position, radius, direction, length);
-        Debug.DrawRay(projectileSpawnPoint.position, direction.normalized * length, Color.red);
+        if (!CanAttack())
+        {
+            return;
+        }
+        base.DoAttack(parameters);
+
+        //TODO play animation
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(projectileSpawnPoint.position, radius, parameters.direction, length);
+        Debug.DrawRay(projectileSpawnPoint.position, parameters.direction.normalized * length, Color.red);
         Debug.Log("Player flamethrower attack");
-        foreach(RaycastHit2D hit in hits)
+        foreach (RaycastHit2D hit in hits)
         {
             Debug.Log(hit.collider.tag);
         }
 
+    }
+
+    public void StopAttack()
+    {
+        isAttacking = false;
+        //TODO stop animation
+    }
+
+    public override WeaponType GetWeaponType()
+    {
+        return WeaponType.CONTINUOUS;
     }
 }

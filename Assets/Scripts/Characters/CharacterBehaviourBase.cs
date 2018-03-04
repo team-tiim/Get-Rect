@@ -53,11 +53,6 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
         animationController.UpdateMoveAnimations(movementType);
     }
 
-    protected void Attack(Vector3 direction)
-    {
-        equippedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
-    }
-
     protected virtual void Attack(GameObject target, int damage)
     {        
         AttackType type = (RandomUtils.GetRandomFromArray(Enum.GetValues(typeof(AttackType)).Cast<AttackType>().ToArray()));

@@ -8,16 +8,13 @@ public abstract class Weapon : MonoBehaviour
     private const float MIN_SPEED_MULT = 0.1f;
     private const float MAX_SPEED_MULT = 1.0f;
 
-    public bool isChargedWeapon;
     public Transform handlePoint;
     public int damage = 1;
     public float attackCooldown = 1;
     public float knockback;
 
     private float lastAttack = -1;
-
     private TimedWeaponBehaviour timedBehaviour;
-    private Quaternion previousRotation;
 
     public virtual void Awake()
     {
@@ -25,17 +22,12 @@ public abstract class Weapon : MonoBehaviour
         //this.gameObject.GetComponent<Animator>().Play();
     }
 
-    public virtual void Attack(GameObject parent, Vector3 attackDirection, float chargeTime = 0f)
+    public virtual void DoAttack(WeaponAttackParams parameters)
     {
         //Debug.Log("weapon attack");
-        if (!CanAttack())
-        {
-            return;
-        }
         lastAttack = Time.time;
         PlayAnimation();
-        DoAttack(parent, attackDirection, chargeTime);
-    }
+    }    
 
     public bool CanAttack()
     {
@@ -46,8 +38,6 @@ public abstract class Weapon : MonoBehaviour
     {
         this.gameObject.GetComponent<Animator>().SetTrigger("Attack");
     }
-
-    protected abstract void DoAttack(GameObject parent, Vector3 direction, float chargeTime);
 
     public void ResetRotation(Quaternion q)
     {
@@ -79,6 +69,8 @@ public abstract class Weapon : MonoBehaviour
     {
         get { return damage; }
     }
+
+    public abstract WeaponType GetWeaponType();
 
 }
 

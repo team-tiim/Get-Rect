@@ -57,7 +57,7 @@ public class WeaponHand
 
     public bool IsMelee()
     {
-        return weapon.GetComponent<MeleeWeapon>() != null;
+        return weapon.GetComponent<Weapon>().GetWeaponType() == WeaponType.MELEE;
     }
 
     public void ResetWeaponRotation()

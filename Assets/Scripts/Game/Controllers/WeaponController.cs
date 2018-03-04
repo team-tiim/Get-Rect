@@ -10,7 +10,6 @@ public class WeaponController : MonoBehaviour
     private WeaponHand currentWeaponHand;
     private Coroutine currentIdleCoroutine;
 
-    private bool isChargedWeapon;
     private float currentChargeTime;
 
     void Start()
@@ -23,22 +22,27 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         AimWeapon();
-
-        if (isChargedWeapon)
+        WeaponType weaponType = currentWeaponHand.GetWeapon().GetWeaponType();
+        switch (weaponType)
         {
-            CheckChargedUserInput();
-        } else
-        {
-            CheckUserInput();
+            case WeaponType.CONTINUOUS:
+                CheckContinuousUserInput();
+                break;
+            case WeaponType.CHARGED:
+                CheckChargedUserInput();
+                break;
+            default:
+                CheckUserInput();
+                break;
         }
-
     }
 
     private void CheckUserInput()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            DoAttack();
+            WeaponAttackParams parameters = new WeaponAttackParams();
+            DoAttack(parameters);
         }
     }
 
@@ -51,26 +55,39 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             float chargeTime = Time.time - currentChargeTime;
-            Debug.Log(chargeTime);
-            DoAttack(chargeTime);
+            WeaponAttackParams parameters = new WeaponAttackParams();
+            parameters.chargeTime = chargeTime;
+            DoAttack(parameters);
         }
     }
 
-    private void DoAttack(float chargeTime = 0f)
+    private void CheckContinuousUserInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            WeaponAttackParams parameters = new WeaponAttackParams();
+            DoAttack(parameters);
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            ((FlamethrowerWeapon) currentWeaponHand.GetWeapon()).StopAttack();
+        }
+    }
+
+    private void DoAttack(WeaponAttackParams parameters)
     {
         Vector3 mousePosition = GetMousePosition();
         MoveMeleeWeapon(mousePosition);
 
         Vector3 direction = mousePosition - transform.position;
-        WeaponHand hand = GetUsedWeaponHand(mousePosition);
-        hand.GetWeapon().Attack(gameObject, direction, chargeTime);
-    }
+        parameters.parent = gameObject;
+        parameters.direction = direction;
 
+        currentWeaponHand.GetWeapon().DoAttack(parameters);
+    }
 
     public void EquipWeapon(GameObject weaponGO)
     {
-        isChargedWeapon = weaponGO.GetComponent<Weapon>().isChargedWeapon;
-
         if (currentIdleCoroutine != null)
         {
             StopCoroutine(currentIdleCoroutine);
@@ -109,14 +126,13 @@ public class WeaponController : MonoBehaviour
 
     private void MoveMeleeWeapon(Vector3 mousePosition)
     {
-        WeaponHand hand = GetUsedWeaponHand(mousePosition);
-        if (!hand.IsMelee() || !hand.GetWeapon().CanAttack())
+        if (!currentWeaponHand.IsMelee() || !currentWeaponHand.GetWeapon().CanAttack())
         {
             return;
         }
 
-        float attackCooldown = hand.GetWeapon().attackCooldown;
-        MovementUtils.Instance.RotateTowardsAndBack(hand.GetHand().transform, mousePosition, attackCooldown * 1 / 3, attackCooldown * 2 / 3);
+        float attackCooldown = currentWeaponHand.GetWeapon().attackCooldown;
+        MovementUtils.Instance.RotateTowardsAndBack(currentWeaponHand.GetHand().transform, mousePosition, attackCooldown * 1 / 3, attackCooldown * 2 / 3);
     }
 
     private Coroutine MoveToIdlePosition(WeaponHand weaponHand)
