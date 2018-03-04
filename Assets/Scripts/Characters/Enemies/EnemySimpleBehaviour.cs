@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Enums;
+﻿using Assets.Scripts.Core.Utils;
+using Assets.Scripts.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     public Rigidbody2D targetRb2d;
     public bool canJump = false;
 
+    public float sightRange = 5;
     public float acceleration = 15;
     public float aggroDistance = 20;
     public float patrolDistance = 5;
@@ -21,7 +23,8 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     public float coolDown = 1;
     public EnemyState state = EnemyState.Patrolling;
 
- 
+
+    private AISight _sight;
     private LayerMask _platformMask;
     private LayerMask _buddyMask;
     private Vector2 _startingPos;
@@ -54,6 +57,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         patrolPointMin = new Vector2(this.transform.position.x - patrolDistance, this.transform.position.y);
         patrolPointMax = new Vector2(this.transform.position.x + patrolDistance, this.transform.position.y);
         _buddyMask = LayerMask.GetMask("Enemy");
+        _sight = new AISight(gameObject.GetComponentInChildren<CapsuleCollider2D>(), sightRange);
     }
 
     LayerMask SetMask()
@@ -67,6 +71,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     // Update is called once per frame
     void Update()
     {
+        IsObstacleNear();
 
         if (isInKnockback)
         {
@@ -210,10 +215,13 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         if (coll.gameObject == target && !IsHitCooldown()) {
             var cbb = target.GetComponent<CharacterBehaviourBase>();
             cbb.TakeDamage(damage);
-            Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
-            cbb.DoKnockback(knockBackDir * 20);
             _lastHitTime = Time.time;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 
     public bool CanSeePlayer()
@@ -242,6 +250,12 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
             if (edgeDistance<delta) return true;
         }
 
+        return false;
+    }
+
+    public bool IsObstacleNear()
+    {
+        _sight.UpdateRays(animationController.GetCurrentDirection());
         return false;
     }
 
