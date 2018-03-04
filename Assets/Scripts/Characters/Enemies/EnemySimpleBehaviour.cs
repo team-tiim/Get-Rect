@@ -250,13 +250,11 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
     {
         if (aggroDistance > targetDistance)
         {
-<<<<<<< HEAD
-            var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position,aggroDistance,_platformMask);
-            if (ray.collider.CompareTag("Player")) return true;
-=======
-            var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position,aggroDistance,_layerMask);
-            if (ray.collider != null && ray.collider.CompareTag("Player")) return true;
->>>>>>> f13fd673dedad4f90dc2d9b6bee3da0ea747180d
+            var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position,aggroDistance, _platformMask);
+            if (ray)
+            {
+                if(ray.collider.CompareTag("Player")) return true;
+            }
         }
         return false;
     }
