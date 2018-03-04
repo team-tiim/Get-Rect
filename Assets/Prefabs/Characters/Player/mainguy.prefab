@@ -775,6 +775,9 @@ MonoBehaviour:
   hp: 100
   animationsComponent: {fileID: 0}
   isInKnockback: 0
+  isDead: 0
+  deathAnimation: {fileID: 1980888978987180, guid: 02950f9f0ac97894f96c8b70017f0747,
+    type: 2}
   sounds: []
   bgm: {fileID: 0}
   healthslider: {fileID: 0}

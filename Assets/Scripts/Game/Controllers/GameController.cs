@@ -54,8 +54,14 @@ public class GameController : MonoBehaviour {
     private void UpdateHealth()
     {
 		if (player.hp < 0) {
-			SceneManager.LoadScene ("menu");
+            StartCoroutine(LoadMenu(4.0f));
 		}
+    }
+
+    private IEnumerator LoadMenu(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene ("menu");
     }
 
     private void UpdatePlayerClosestPlatform()

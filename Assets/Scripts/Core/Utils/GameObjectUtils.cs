@@ -10,7 +10,6 @@ public class GameObjectUtils : Singleton<GameObjectUtils>
     {
         GameObject expl = Instantiate(gameObject, location, gameObject.transform.rotation);
         Animator animator = expl.GetComponent<Animator>();
-        //Debug.Log("destroy after " + animator.GetCurrentAnimatorStateInfo(0).length);
         Destroy(expl, animator.GetCurrentAnimatorStateInfo(0).length);
     }
 

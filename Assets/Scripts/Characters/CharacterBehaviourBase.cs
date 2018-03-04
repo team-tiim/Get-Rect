@@ -22,6 +22,7 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
     public Armor armor;
 
     public bool isInKnockback;
+    public bool isDead;
 
     protected BasicAnimationController animationController;
 
