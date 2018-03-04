@@ -16,10 +16,7 @@ public class FlamethrowerWeapon : Weapon
     public override void Awake()
     {
         flame = transform.Find("flame");    
-
-        Debug.Log(flame);
         flameAnimator = flame.gameObject.GetComponent<Animator>();
-        Debug.Log(flameAnimator);
         base.Awake();
     }
 
