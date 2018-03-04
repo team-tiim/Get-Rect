@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 061d8104a98188e4a8ffe0bbff8063fb
-timeCreated: 1520177542
+timeCreated: 1520180070
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -11,6 +11,14 @@ TextureImporter:
     21300008: flamethrower fire_4
     21300010: flamethrower fire_5
     21300012: flamethrower fire_6
+    21300014: flamethrower fire_7
+    21300016: flamethrower fire_8
+    21300018: flamethrower fire_9
+    21300020: flamethrower fire_10
+    21300022: flamethrower fire_11
+    21300024: flamethrower fire_12
+    21300026: flamethrower fire_13
+    21300028: flamethrower fire_14
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -82,57 +90,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flamethrower fire_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 666.6666
-        width: 500
-        height: 333.33334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: flamethrower fire_1
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 666.6666
-        width: 500
-        height: 333.33334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: flamethrower fire_2
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 666.6666
-        width: 500
-        height: 333.33334
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: flamethrower fire_3
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 666.6666
-        width: 500
-        height: 333.33334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 123
+        y: 772
+        width: 266
+        height: 68
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +107,12 @@ TextureImporter:
       name: flamethrower fire_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 333.66666
-        width: 500
-        height: 333.33334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 610
+        y: 773
+        width: 278
+        height: 66
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,26 +121,68 @@ TextureImporter:
       name: flamethrower fire_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 333.66666
-        width: 500
-        height: 333.33334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1098
+        y: 778
+        width: 276
+        height: 54
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: flamethrower fire_6
+      name: flamethrower fire_7
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 333.66666
-        width: 500
-        height: 333.33334
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1586
+        y: 776
+        width: 278
+        height: 57
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flamethrower fire_10
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 419
+        width: 296
+        height: 76
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flamethrower fire_11
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 423
+        width: 295
+        height: 75
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flamethrower fire_13
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 431
+        width: 276
+        height: 54
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

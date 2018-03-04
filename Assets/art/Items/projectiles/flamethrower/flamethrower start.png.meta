@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7c1fd9968c96cde4193bf21ba64f413e
-timeCreated: 1520179132
+timeCreated: 1520180266
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -84,12 +84,12 @@ TextureImporter:
       name: flamethrower start_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 666.6666
-        width: 400
-        height: 333.33334
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 71
+        y: 788
+        width: 13
+        height: 6
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -98,12 +98,12 @@ TextureImporter:
       name: flamethrower start_1
       rect:
         serializedVersion: 2
-        x: 400
-        y: 666.6666
-        width: 400
-        height: 333.33334
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 462
+        y: 788
+        width: 42
+        height: 9
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -112,12 +112,12 @@ TextureImporter:
       name: flamethrower start_2
       rect:
         serializedVersion: 2
-        x: 800
-        y: 666.6666
-        width: 400
-        height: 333.33334
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 852
+        y: 787
+        width: 75
+        height: 17
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,12 +126,12 @@ TextureImporter:
       name: flamethrower start_3
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 666.6666
-        width: 400
-        height: 333.33334
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 1243
+        y: 784
+        width: 117
+        height: 31
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: flamethrower start_4
       rect:
         serializedVersion: 2
-        x: 1600
-        y: 666.6666
-        width: 400
-        height: 333.33334
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 1634
+        y: 780
+        width: 187
+        height: 46
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,12 +154,12 @@ TextureImporter:
       name: flamethrower start_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 333.66666
-        width: 400
-        height: 333.33334
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 71
+        y: 390
+        width: 267
+        height: 65
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

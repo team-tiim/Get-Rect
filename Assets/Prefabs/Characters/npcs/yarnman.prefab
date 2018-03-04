@@ -1046,6 +1046,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targetRb2d: {fileID: 0}
   canJump: 0
+  sightRange: 5
   acceleration: 15
   aggroDistance: 1
   patrolDistance: 5
