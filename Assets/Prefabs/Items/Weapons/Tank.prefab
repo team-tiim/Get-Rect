@@ -50,8 +50,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4116342026616242}
   - component: {fileID: 212892499169398158}
-  - component: {fileID: 114813552187108664}
   - component: {fileID: 95887191976937680}
+  - component: {fileID: 114994118317792060}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114813552187108664
+--- !u!114 &114994118317792060
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -125,21 +125,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1783873506928370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e633a7e527613fc43bd6bd71e35320b2, type: 3}
+  m_Script: {fileID: 11500000, guid: cb6b50d8a13660c479f77a395b5313b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPoint: {fileID: 0}
-  isVertical: 0
-  damage: 100
-  attackCooldown: 1
-  knockback: 0
+  isChargedWeapon: 0
+  handlePoint: {fileID: 0}
+  damage: 4
+  attackCooldown: 2
+  knockback: 3
+  minChargeTime: 0
+  maxChargeTime: 3
   maxRecoilRotation: 10
-  recoilResetMultiplier: 50
-  gravityScale: 0.1
-  projectilePrefab: {fileID: 0}
+  recoilResetMultiplier: 0.5
+  gravityScale: 0
+  projectilePrefab: {fileID: 1408287409527776, guid: 1d67c465e90f6974f91b184dfc45bf37,
+    type: 2}
   projectileSpawnPoint: {fileID: 0}
-  projectileStartPoint: {fileID: 0}
-  originalRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!212 &212892499169398158
 SpriteRenderer:
   m_ObjectHideFlags: 1

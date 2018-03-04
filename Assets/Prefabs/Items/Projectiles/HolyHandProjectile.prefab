@@ -19,12 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4064122968503364}
-  - component: {fileID: 114547071839340522}
   - component: {fileID: 212838354731269036}
   - component: {fileID: 61472976121270052}
-  - component: {fileID: 95050255117921104}
   - component: {fileID: 50874321162367492}
   - component: {fileID: 82115695283118318}
+  - component: {fileID: 114540122963030076}
+  - component: {fileID: 95836029896207688}
   m_Layer: 0
   m_Name: HolyHandProjectile
   m_TagString: Untagged
@@ -74,16 +74,16 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.81, y: 1.36}
+    newSize: {x: 0.85, y: 1.37}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -170,7 +170,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95050255117921104
+--- !u!95 &95836029896207688
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -179,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 1793797247199408}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f5145ba2e8b882142adc2f55be9c6cc6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5e23f24f79b2f6245967924f74d28bef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -187,7 +187,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114547071839340522
+--- !u!114 &114540122963030076
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -195,9 +195,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793797247199408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d78eb09b6da07488173c48b55c5ee1, type: 3}
+  m_Script: {fileID: 11500000, guid: 50177f4e0746e2b46896577530533cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyAnimation: {fileID: 1879401155497326, guid: 3f78e687791234b42b411bee84f07411,
+    type: 2}
+  detonationTime: 0.5
+  radius: 1
 --- !u!212 &212838354731269036
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -230,13 +234,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300002, guid: a0832bf7125d7df4dbd679a004a7dc7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.85, y: 1.37}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0

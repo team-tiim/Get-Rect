@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         player = GetComponent<PlayerBehaviour>();
         keyActionMap.Add(KeyCode.Space, () => DoJump());
-        keyActionMap.Add(KeyCode.Mouse0, () => player.DoAttack());
+        //keyActionMap.Add(KeyCode.Mouse0, () => player.DoAttack());
     }
 
     // Use this for initialization

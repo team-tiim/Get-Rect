@@ -4,8 +4,12 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+
+    private const float MIN_SPEED_MULT = 0.1f;
+    private const float MAX_SPEED_MULT = 1.0f;
+
+    public bool isChargedWeapon;
     public Transform handlePoint;
-    public bool isVertical;
     public int damage = 1;
     public float attackCooldown = 1;
     public float knockback;
@@ -21,7 +25,7 @@ public abstract class Weapon : MonoBehaviour
         //this.gameObject.GetComponent<Animator>().Play();
     }
 
-    public virtual void Attack(GameObject parent, Vector3 attackDirection)
+    public virtual void Attack(GameObject parent, Vector3 attackDirection, float chargeTime = 0f)
     {
         //Debug.Log("weapon attack");
         if (!CanAttack())
@@ -30,7 +34,7 @@ public abstract class Weapon : MonoBehaviour
         }
         lastAttack = Time.time;
         PlayAnimation();
-        DoAttack(parent, attackDirection);
+        DoAttack(parent, attackDirection, chargeTime);
     }
 
     public bool CanAttack()
@@ -43,7 +47,7 @@ public abstract class Weapon : MonoBehaviour
         this.gameObject.GetComponent<Animator>().SetTrigger("Attack");
     }
 
-    protected abstract void DoAttack(GameObject parent, Vector3 direction);
+    protected abstract void DoAttack(GameObject parent, Vector3 direction, float chargeTime);
 
     public void ResetRotation(Quaternion q)
     {
@@ -53,7 +57,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected void Rotate(float angle)
     {
-        Debug.Log(angle);
+        //Debug.Log(angle);
         transform.RotateAround(handlePoint.position, Vector3.forward, angle);
     }
 

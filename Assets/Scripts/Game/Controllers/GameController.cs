@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject explosion;
     public GameObject basicBulletPrefab;
     public GameObject handBulletPrefab;
 
@@ -37,14 +36,6 @@ public class GameController : MonoBehaviour {
         UpdateHealth();
         UpdateTimer();
 
-    }
-
-    public void doExplosion(Vector3 location, string animation = "explosion")
-    {
-        GameObject expl = Instantiate(explosion);
-        expl.transform.position = location;
-        expl.GetComponent<Animator>().Play(animation);
-        Destroy(expl, expl.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
 
     private void UpdateTimer()

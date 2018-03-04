@@ -88,7 +88,8 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
     {
         GameObject.Destroy(this.gameObject);
         GameObject controller = GameObject.Find("GameControllers");
-        controller.GetComponent<GameController>().doExplosion(this.transform.position);
+        //TODO on death play animation
+        //controller.GetComponent<GameController>().doExplosion(this.transform.position);
     }
 
     protected virtual void OnDamage(int damage)

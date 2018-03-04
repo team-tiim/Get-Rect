@@ -62,11 +62,6 @@ public class PlayerBehaviour : CharacterBehaviourBase
         }
     }
 
-    public void DoAttack()
-    {
-        weaponController.DoAttack();
-    }
-
     public void EquipArmor(ArmorHolder armorHolder)
     {
         AddArmor(armorHolder);

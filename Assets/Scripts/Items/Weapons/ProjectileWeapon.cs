@@ -1,57 +1,56 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class ProjectileWeapon : Weapon
-{
+public  class ProjectileWeapon : Weapon {
+
+    public float minChargeTime = 0.0f;
+    public float maxChargeTime = 3.0f;
+
     public int maxRecoilRotation = 10;
     public float recoilResetMultiplier = 0.5f;
 
     public float gravityScale;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
-    public Transform projectileStartPoint;
-
-    public Quaternion originalRotation;
-
+    
     // Use this for initialization
-    void Start()
-    {
+    public override void Awake() {
+        projectileSpawnPoint = transform.Find("projectileSpawnPoint");
         if (projectilePrefab == null)
         {
             GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
             projectilePrefab = gc.basicBulletPrefab;
         }
-        projectileSpawnPoint = transform.Find("projectileSpawnPoint");
-        projectileStartPoint = transform.Find("projectileStartPoint");
-        if (projectileSpawnPoint == null)
-        {
-            projectileSpawnPoint = this.transform;
-        }
-        originalRotation = transform.localRotation;
+        base.Awake();
     }
 
-
-    protected override void DoAttack(GameObject parent, Vector3 attackDirection)
+    protected override void DoAttack(GameObject parent, Vector3 direction, float chargeTime)
     {
-        //Debug.Log("Projectile weapon attack");
+        float speedMultiplier = isChargedWeapon ? GetSpeedMultiplier(chargeTime) : 1.0f;
+
         SimulateRecoil();
-        SpawnPojectile(attackDirection);
-        DoKnockback(attackDirection);
+        SpawnPojectile(direction, speedMultiplier);
+        DoKnockback(direction);
     }
 
-    private void SpawnPojectile(Vector3 attackDirection)
+    private float GetSpeedMultiplier(float chargeTime)
     {
-        //Debug.Log("Spawning projectile " );
+        Debug.Log("charge time " + chargeTime);
+        chargeTime = Mathf.Min(maxChargeTime, chargeTime);
+        float speedMultiplier = (chargeTime - minChargeTime) / (maxChargeTime - minChargeTime);
+        Debug.Log("speed multiplier " + speedMultiplier);
+        return speedMultiplier;
+    }
+
+    protected void SpawnPojectile(Vector3 attackDirection, float speedMultiplier)
+    {
         Projectile p = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
-        if (projectileStartPoint != null)
-        {
-            attackDirection = projectileSpawnPoint.position - projectileStartPoint.position;
-        }
+        p.ApplySpeedMultiplier(speedMultiplier);
         p.SetVariables(this, attackDirection);
     }
 
-    private void DoKnockback(Vector3 attackDirection)
+    protected void DoKnockback(Vector3 attackDirection)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerBehaviour pc = player.GetComponent<PlayerBehaviour>();
@@ -59,7 +58,7 @@ public class ProjectileWeapon : Weapon
         pc.DoKnockback(-attackDirection.normalized * knockback);
     }
 
-    private void SimulateRecoil()
+    protected void SimulateRecoil()
     {
         float angle = RandomUtils.GetRandom(-maxRecoilRotation, maxRecoilRotation);
         Rotate(angle);

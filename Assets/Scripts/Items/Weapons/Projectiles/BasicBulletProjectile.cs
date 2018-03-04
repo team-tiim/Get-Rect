@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class BasicBulletProjectile: Projectile {
 
-    // Use this for initialization
-    protected new void Start()
+    public override void Awake()
     {
-        //Debug.Log("basic bullet start");
-        spriteSheetName = "weapons 1";
-        spriteIndex = 7;
-        speed = 20;
-        animationName = "projectile_pistol";
-        base.Start();
+        speed = 10;
+        base.Awake();
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("projectile hit: " + col.gameObject.tag);
+        if (col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.GetComponent<EnemySimpleBehaviour>().TakeDamage(weapon.Damage);
+        }
+        Destroy(gameObject);
     }
 
 }
