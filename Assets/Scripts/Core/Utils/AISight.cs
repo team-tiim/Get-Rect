@@ -19,15 +19,20 @@ namespace Assets.Scripts.Core.Utils
         private RaycastHit2D _midDownMidRay;
         private Vector2 _lastPos;
         private float _edgeDistance;
+        private bool _edgeNear;
+        private int _direction;
 
         public AISight(CapsuleCollider2D capsule, float range)
         {
             _capsule = capsule;
             _range = range;
             _distance = (float)Math.Sqrt(Math.Pow(_range, 2) + Math.Pow(_capsule.size.y / 2, 2));
-            _midDistance = (float)Math.Sqrt(Math.Pow(_range/2, 2) + Math.Pow(_capsule.size.y / 2, 2));
+            _midDistance = (float)Math.Sqrt(Math.Pow(_range-_capsule.size.x, 2) + Math.Pow(_capsule.size.y / 2, 2));
         }
-
+        public float EdgeDistance
+        {
+            get { return _edgeDistance; }
+        } 
         public void UpdateRays(int direction)
         {
             var rayheight = _capsule.size.y / 2;
@@ -44,12 +49,41 @@ namespace Assets.Scripts.Core.Utils
             _midDownRay = Physics2D.Raycast(position, angleMidDown, _distance+1);
             _midUpRay = Physics2D.Raycast(position, angleMidUp, _distance);
             _midDownMidRay = Physics2D.Raycast(position, angleMidDownMid, _midDistance+1);
+            _direction = direction;
 
             Debug.DrawRay(position, angleMidDown, _midDownRay ? Color.red : Color.green);
             Debug.DrawRay(position, angleMidUp, _midUpRay ? Color.red : Color.green);
             Debug.DrawRay(upPos, angleUpDown, _upDownRay ? Color.red : Color.green);
             Debug.DrawRay(downPos, angleDownUp,_downUpRay  ? Color.red : Color.green);
             Debug.DrawRay(position, angleMidDownMid, _midDownMidRay ? Color.red : Color.green);
+
+            _lastPos = new Vector2(_capsule.transform.position.x, _capsule.transform.position.y) + _capsule.offset;
+        }
+
+        
+
+        public void UpdateEdgeDistance()
+        {
+            if (!_edgeNear)
+            {
+                if (!_midDownRay)
+                {
+                    _edgeNear = true;
+                    _edgeDistance = _range;
+                }
+            }
+            else
+            {
+                if (_midDownRay)
+                {
+                    _edgeNear = false;
+                    _edgeDistance = _range;
+                }
+                else
+                {
+
+                }
+            }
         }
 
 

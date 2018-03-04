@@ -97,6 +97,15 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
         hp -= damage;
     }
 
+    protected virtual void OnDamage(int damage, Vector2 position)
+    {
+        if (armor != null)
+        {
+            damage = armor.BlockDamage(damage);
+        }
+        hp -= damage;
+    }
+
     public virtual void DoKnockback(Vector3 direction)
     {
         isInKnockback = true;
