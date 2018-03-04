@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Floats the death animation upwards over given distance and time.
+ */
 public class PlayerDeathAnimation : MonoBehaviour {
 
     public float floatTime = 2.0f;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlamethrowerWeapon : BaseProjectileWeapon
+public class FlamethrowerWeapon : Weapon
 {
 
     public float length;
@@ -10,12 +10,16 @@ public class FlamethrowerWeapon : BaseProjectileWeapon
     public float dps;
 
     private bool isAttacking;
-    private Time lastDamageTime;
+    private Transform flame;
+    private Animator flameAnimator;
 
     public override void Awake()
     {
-        projectileSpawnPoint = transform.Find("projectileSpawnPoint");
+        flame = transform.Find("flame");    
 
+        Debug.Log(flame);
+        flameAnimator = flame.gameObject.GetComponent<Animator>();
+        Debug.Log(flameAnimator);
         base.Awake();
     }
 
@@ -28,19 +32,29 @@ public class FlamethrowerWeapon : BaseProjectileWeapon
         base.DoAttack(parameters);
 
         //TODO play animation
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(projectileSpawnPoint.position, radius, parameters.direction, length);
-        Debug.DrawRay(projectileSpawnPoint.position, parameters.direction.normalized * length, Color.red);
-        Debug.Log("Player flamethrower attack");
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(flame.position, radius, parameters.direction, length);
+        Debug.DrawRay(flame.position, parameters.direction.normalized * length, Color.red);
         foreach (RaycastHit2D hit in hits)
         {
-            Debug.Log(hit.collider.tag);
+            GameObject hitGo = hit.collider.gameObject;
+            if (hitGo.tag == "Enemy" && hitGo.GetComponent<OngoingDamageEffect>() == null)
+            {
+                OngoingDamageEffect sc = hitGo.AddComponent<OngoingDamageEffect>() as OngoingDamageEffect;
+            }
         }
 
+        if (!isAttacking)
+        {
+            flameAnimator.SetTrigger("startFire");
+        }
+
+        isAttacking = true;
     }
 
     public void StopAttack()
     {
         isAttacking = false;
+        flameAnimator.SetTrigger("stopFire");
         //TODO stop animation
     }
 

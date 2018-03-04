@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class Utils {
 
+
     public static IEnumerator ChangeColor(SpriteRenderer renderer, Color origColor)
     {
         if (renderer != null)

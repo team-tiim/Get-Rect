@@ -9,6 +9,7 @@ public abstract class Weapon : MonoBehaviour
     private const float MAX_SPEED_MULT = 1.0f;
 
     public Transform handlePoint;
+
     public int damage = 1;
     public float attackCooldown = 1;
     public float knockback;
@@ -36,7 +37,11 @@ public abstract class Weapon : MonoBehaviour
 
     private void PlayAnimation()
     {
-        this.gameObject.GetComponent<Animator>().SetTrigger("Attack");
+        Animator animator = this.gameObject.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
     }
 
     public void ResetRotation(Quaternion q)

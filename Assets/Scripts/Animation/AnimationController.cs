@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * A controller for changing body, armor and hat animations for the player character and playing movement animations.
+ */
 public class AnimationController : BasicAnimationController
 {
 
