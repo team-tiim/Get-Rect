@@ -87,15 +87,11 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         }
         if (state == EnemyState.KillerMode)
         {
-            //Debug.Log("Moving to: " + target.name + " Target distance: " + targetDistance +
-            //          " range :" + range + " Last attack time: " + _lastAttackTime + "My x speed is:" + rb2d.velocity.x);
             KillTarget(target);
         }
         else
         {
             Patrol();
-            //Debug.Log("Idling: " + target.name + " Target distance: " + _targetDistance +
-            //          " range :" + range +  " Last attack time: " + _lastAttackTime);
         }
 
     }
@@ -111,7 +107,7 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         var direction = (target.transform.position.x - transform.position.x) < 0 ? -1 : 1;
         MovementType type = Utils.GetMovementType(direction);
         animationController.UpdateRotation(type);
-        if (range > targetDistance)
+        if (IsTargetInRange())
         {
             //Debug.Log("Attacking: " + target.name + " Target distance: " + _targetDistance +
             //          " range :" + range + " Last attack time: " + _lastAttackTime);
@@ -186,32 +182,6 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         return Vector2.Distance(transform.position, position);
     }
 
-    private bool ShouldJump(Vector3 targetPosition)
-    {
-        //if (!IsGrounded() || !canJump)
-        //{
-        //    return false;
-        //}
-
-        //float targetHeight = GetComponent<CompositeCollider2D>().bounds.size.y;
-        //float yDif = (targetPosition.y - targetHeight / 2) - (transform.position.y + this.size.y / 2);
-        //GameObject targetPlatform = target.GetComponent<PlayerBehaviour>().closestPlatform;
-        //return (yDif > 0.5) && (CanJumpToObject(target) || CanJumpToObject(targetPlatform));
-        return false;
-    }
-
-    private bool CanJumpToObject(GameObject obj)
-    {
-        if (obj == null)
-        {
-            return false;
-        }
-        Transform t = obj.transform;
-        bool yReachable = Math.Abs(t.position.y - transform.position.y) <= jumpPower;
-        bool xReachable = Math.Abs(t.position.x - transform.position.x) <= jumpPower * 0.33;
-        return yReachable && xReachable;
-    }
-
     protected override void OnDamage(int damage)
     {
         base.OnDamage(damage);
@@ -280,7 +250,6 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         var targetPos = animationController.GetCurrentDirection() == 1 ? patrolPointMax : patrolPointMin;
         if (!waiting)
         {
-            //Debug.Log(IsEdgeNear() + " " + (Math.Abs(transform.position.x - targetPos.x) < 0.1) + " " + IsBuddyNear());
             if (IsEdgeNear() || Math.Abs(transform.position.x-targetPos.x) < 0.1 || IsBuddyNear() )
             {
                 waiting = true;
@@ -309,11 +278,22 @@ public class EnemySimpleBehaviour : CharacterBehaviourBase
         var capsulWidth = capsule.size.x / 2;
         var pos = new Vector2(capsule.transform.position.x, capsule.transform.position.y) +capsule.offset;
         pos.x += animationController.GetCurrentDirection()*(capsulWidth + 0.2f);
-        var ray = Physics2D.Raycast(pos, new Vector2(animationController.GetCurrentDirection(),0), range/2, _buddyMask);
+        var ray = Physics2D.Raycast(pos, new Vector2(animationController.GetCurrentDirection(),0), range, _buddyMask);
         Debug.DrawRay(pos, new Vector2(animationController.GetCurrentDirection(), 0), Color.blue);
         if (ray)
         {
             return ray.collider.CompareTag(gameObject.tag);
+        }
+        return false;
+    }
+
+    public bool IsTargetInRange()
+    {
+        var ray = Physics2D.Raycast(rb2d.position, targetRb2d.position - rb2d.position, range, _platformMask);
+        Debug.DrawRay(rb2d.position, targetRb2d.position - rb2d.position, Color.cyan);
+        if (ray)
+        {
+            if (ray.collider.CompareTag(target.tag)) return true;
         }
         return false;
     }

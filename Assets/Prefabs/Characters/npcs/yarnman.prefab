@@ -334,8 +334,8 @@ GameObject:
   - component: {fileID: 4504579030587956}
   - component: {fileID: 50374467737701046}
   - component: {fileID: 114403973011146202}
-  - component: {fileID: 61167441923864788}
   - component: {fileID: 114068722917143078}
+  - component: {fileID: 70739917201947088}
   m_Layer: 0
   m_Name: yarnman
   m_TagString: Enemy
@@ -626,7 +626,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614295666212206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.38, y: -4.13, z: 0}
+  m_LocalPosition: {x: -136.3106, y: 9.289625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4063619252102580}
@@ -954,8 +954,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.4986796, y: 0.3005628}
   m_EdgeRadius: 0
---- !u!61 &61167441923864788
-BoxCollider2D:
+--- !u!70 &70739917201947088
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -966,19 +966,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.14, y: 0.42}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.95, y: 3.03}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.09000397, y: 0.42751408}
+  m_Size: {x: 0.9320221, y: 3.1330662}
+  m_Direction: 0
 --- !u!95 &95518649789862854
 Animator:
   serializedVersion: 3
@@ -1058,9 +1048,11 @@ MonoBehaviour:
   acceleration: 15
   aggroDistance: 1
   patrolDistance: 5
+  patrolTime: 1
   range: 4
   damage: 1
   coolDown: 3
+  state: 0
 --- !u!114 &114072198757991078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1073,7 +1065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.8251412
+  m_Length: 0.8251406
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4524629612676058}
   m_AttachedIK: {fileID: 0}
@@ -1163,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.46000046
+  m_Length: 0.46000054
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4901993471579054}
   m_AttachedIK: {fileID: 0}
@@ -1385,7 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0000017
+  m_Length: 0.9999981
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4467200422996290}
   m_AttachedIK: {fileID: 0}
@@ -1401,7 +1393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.470038
+  m_Length: 0.47003847
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4630660764210238}
   m_AttachedIK: {fileID: 0}
@@ -1491,7 +1483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.5186637
+  m_Length: 0.5186634
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4508982031481040}
   m_AttachedIK: {fileID: 0}
@@ -1544,7 +1536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0000011
+  m_Length: 1.0000004
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4653831078327952}
   m_AttachedIK: {fileID: 0}
@@ -1641,7 +1633,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43051857414629986, guid: 3092f82da2f86d24996d5cba39a1cc24, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4729013263503018}
   - {fileID: 4653831078327952}
@@ -1687,7 +1679,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43679649725447978, guid: 3278c23af6d6f1143bd5e1e6db59ac61, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4614438392776644}
   - {fileID: 4524629612676058}
@@ -1733,7 +1725,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43180577403018434, guid: 60a66ee57df89e745b85ab1f2677180f, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4149238940347732}
   - {fileID: 4508982031481040}
@@ -1779,7 +1771,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43769114760601650, guid: e29f1db488828e140849b382d48bc0cc, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4784143541290642}
   m_BlendShapeWeights: []
@@ -1824,7 +1816,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43396159204194846, guid: cc5374593d1fcd54e869a57294f82dd4, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4672871007613152}
   - {fileID: 4901993471579054}
@@ -1870,7 +1862,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43394733341407546, guid: e2212479b5616864ca087ede566bfabf, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4832696788725382}
   - {fileID: 4630660764210238}
@@ -1916,7 +1908,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43464446322624494, guid: 224f7ecf077a05c4083572b07537b2e1, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4467200422996290}
   m_BlendShapeWeights: []
@@ -1961,7 +1953,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43047679167265164, guid: 87315905a321d1140bdc039522db2b1b, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4729013263503018}
   m_BlendShapeWeights: []
@@ -2006,7 +1998,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 43554499276631208, guid: b4fdfdca4eb966d4db632bab289d355b, type: 2}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 4614438392776644}
   m_BlendShapeWeights: []
