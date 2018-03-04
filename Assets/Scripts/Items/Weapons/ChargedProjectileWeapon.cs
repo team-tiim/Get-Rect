@@ -7,20 +7,6 @@ public class ChargedProjectileWeapon : BaseProjectileWeapon {
     public float minChargeTime = 0.0f;
     public float maxChargeTime = 3.0f;
 
-
-    public override void DoAttack(WeaponAttackParams parameters)
-    {
-        if (!CanAttack())
-        {
-            return;
-        }
-        base.DoAttack(parameters);
-
-        SimulateRecoil();
-        SpawnPojectile(parameters);
-        DoKnockback(parameters);
-    }
-
     protected override void OnProjectileSpawn(WeaponAttackParams parameters, Projectile projectile)
     {
         projectile.ApplySpeedMultiplier(GetSpeedMultiplier(parameters.chargeTime));
