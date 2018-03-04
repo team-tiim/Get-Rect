@@ -22,6 +22,7 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
     public Armor armor;
 
     public bool isInKnockback;
+    public bool isDead;
 
     protected BasicAnimationController animationController;
 
@@ -51,11 +52,6 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
     public virtual void UpdateAnimation(MovementType movementType)
     {
         animationController.UpdateMoveAnimations(movementType);
-    }
-
-    protected void Attack(Vector3 direction)
-    {
-        equippedWeapon.GetComponent<Weapon>().Attack(gameObject, direction);
     }
 
     protected virtual void Attack(GameObject target, int damage)

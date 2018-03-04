@@ -154,14 +154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07cc71dfb491014494a1fdc489b9695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isChargedWeapon: 0
   handlePoint: {fileID: 4746816099016188}
-  isVertical: 1
   damage: 10
   attackCooldown: 1
   knockback: 0
   trailPrefab: {fileID: 1890431527222562, guid: 2f0962c66f8db8a41ad486572fc3ec7b,
     type: 2}
-  swingSpeed: 0.5
+  swingSpeed: 0.3
   swingLength: 1.2
   swingRadius: 0.2
   swingAngle: 120

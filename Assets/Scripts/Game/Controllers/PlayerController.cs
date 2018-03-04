@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
-        if (player.hp <= 0)
+        if (player.isDead)
         {
             return;
         }

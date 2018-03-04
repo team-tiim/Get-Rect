@@ -5,6 +5,8 @@ using Anima2D;
 
 public class PlayerBehaviour : CharacterBehaviourBase
 {
+    public GameObject deathAnimation;
+
     public AudioSource[] sounds;
     public AudioSource bgm;
     public Slider healthslider;
@@ -43,7 +45,13 @@ public class PlayerBehaviour : CharacterBehaviourBase
 
     protected override void OnDeath()
     {
-        GetComponent<Animator>().Play("player_death");
+        //TODO mainguy death animation
+        if (deathAnimation != null && !isDead)
+        {
+            GameObject expl = Instantiate(deathAnimation, transform.position, gameObject.transform.rotation);
+        }
+
+        isDead = true;
     }
 
     protected override void OnDamage(int damage)

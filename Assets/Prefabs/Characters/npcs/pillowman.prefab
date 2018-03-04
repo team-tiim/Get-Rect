@@ -1598,6 +1598,7 @@ MonoBehaviour:
   hp: 10
   animationsComponent: {fileID: 0}
   isInKnockback: 0
+  isDead: 0
   target: {fileID: 0}
   targetRb2d: {fileID: 0}
   canJump: 0
@@ -2029,7 +2030,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43130089815617948, guid: 575027c8bc798b94eb5084f77577d5e8, type: 2}
   m_Bones:
   - {fileID: 4326129192838768}
   - {fileID: 4767137011529614}
@@ -2075,7 +2076,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43555791771445904, guid: 9b387f539cf56cf47a93df8b523965c7, type: 2}
   m_Bones:
   - {fileID: 4122662983452962}
   - {fileID: 4169495913837184}
@@ -2121,7 +2122,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43828631893897166, guid: 7ffd7ea8eae89984287f5808bdb43c2b, type: 2}
   m_Bones:
   - {fileID: 4444425310381316}
   - {fileID: 4576309164269584}
@@ -2167,7 +2168,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43404922067345240, guid: 9953359bcff85084895c380fd4006b74, type: 2}
   m_Bones:
   - {fileID: 4697591803812860}
   - {fileID: 4225572337126954}
@@ -2213,7 +2214,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43242094436924854, guid: ab4fcbb02e1eddd4aad6f403203cf014, type: 2}
   m_Bones:
   - {fileID: 4137026353097338}
   - {fileID: 4319747069792502}
@@ -2266,7 +2267,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43220040636698250, guid: 2c429fbc9f1c2c94293c05b15a115062, type: 2}
   m_Bones:
   - {fileID: 4235822526245420}
   - {fileID: 4754861942501522}
@@ -2312,7 +2313,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 43987047089968424, guid: 599d48b0f3d89924d9c66bbcbc119fbd, type: 2}
   m_Bones:
   - {fileID: 4010540351872710}
   - {fileID: 4901306977344208}

@@ -16,11 +16,17 @@ public class MeleeWeapon : Weapon
         tipPoint = transform.Find("tip");
     }
 
-    protected override void DoAttack(GameObject parent, Vector3 direction, float chargeTime)
+    public override void DoAttack(WeaponAttackParams parameters)
     {
+        if (!CanAttack())
+        {
+            return;
+        }
+        base.DoAttack(parameters);
+
         Debug.Log("Player melee attack");
         DoSwing();
-        RaycastHit2D[] targets = Physics2D.CircleCastAll(parent.transform.position, swingRadius, direction, swingLength);
+        RaycastHit2D[] targets = Physics2D.CircleCastAll(parameters.parent.transform.position, swingRadius, parameters.direction, swingLength);
         foreach (RaycastHit2D target in targets)
         {
             if (target.transform.CompareTag("Enemy"))
@@ -55,4 +61,8 @@ public class MeleeWeapon : Weapon
         Destroy(trail, swingTime);
     }
 
+    public override WeaponType GetWeaponType()
+    {
+        return WeaponType.MELEE;
+    }
 }
