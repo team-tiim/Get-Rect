@@ -25,12 +25,14 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
     public bool isDead;
 
     protected BasicAnimationController animationController;
+    protected BloodEffectSpawner bloodEffectSpawner;
 
     public virtual void Awake()
     {
         animationsComponent = transform.Find("animations");
         rb2d = GetComponent<Rigidbody2D>();
         animationController = animationsComponent.GetComponent<BasicAnimationController>();
+        bloodEffectSpawner = GameObject.FindGameObjectWithTag("GameController").GetComponent<BloodEffectSpawner>();
     }
 
     public virtual void Start()
@@ -77,6 +79,11 @@ public abstract class CharacterBehaviourBase : MonoBehaviour
         if (hp <= 0)
         {
             OnDeath();
+        }
+
+        if(bloodEffectSpawner != null)
+        {
+            bloodEffectSpawner.SpawnEffect(transform.position);
         }
     }
 
